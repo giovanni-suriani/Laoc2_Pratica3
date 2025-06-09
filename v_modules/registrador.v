@@ -1,4 +1,4 @@
-module registrador_SP(R, Rin, Clock, Resetn, Q);
+module registrador(R, Rin, Clock, Resetn, Q);
   // Modulo que representa um registrador de 16 bits que quando habilitado
   // armazena o valor Rin na entrada R. O valor armazenado é lido na
 
@@ -14,5 +14,5 @@ module registrador_SP(R, Rin, Clock, Resetn, Q);
     if (Rin && !Resetn) // se Rin for alto e Resetn for baixo, armazena R
       Q <= R;
     else if (Resetn)
-      Q <= 16'd64; // Reseta o registrador Q para o tamanho maximo de memoria
+      Q <= 16'd0;
 endmodule
