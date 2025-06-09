@@ -1,0 +1,29 @@
+// SR_R_cheia (estacao de reserva do tipo R cheia)
+// SR_I_cheia (estacao de reserva do tipo I cheia)
+
+// Tipo R: [ op(2 bits) | R1(3 bits) | R2 (3 bits) | R3 (3 bits) ] total: 11 bits
+// Tipo I: [ op(2 bits) | R1(3 bits) | R2(3 bits) | im (8 bits) ] total: 16 bits
+
+/* 
+Op: 
+00 -> soma
+01 -> sub
+10 -> load
+11 -> store
+*/
+module filaInstrucoes(input SR_R_cheia, input SR_I_cheia, output out);
+	reg [15:0] instrucoes [15:0];
+	reg PC;
+	
+	initial begin // inicialização do banco de registradores
+		PC <= 1'b0;
+		//instrucoes[0] = 16'b0000000000000000;
+	end
+	
+	always(posedge clock) begin 
+		if(!(SR_R_cheia && instrucoes[PC][15:14] <= 2'b01) && !(SR_I_cheia && instrucoes[PC] >= 2'b10)) begin 
+			out = instrucoes[PC];
+			PC = PC + 1;
+		end
+	end
+endmodule

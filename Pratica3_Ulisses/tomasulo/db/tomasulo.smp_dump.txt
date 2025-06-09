@@ -1,0 +1,5 @@
+
+State Machine - |tomasulo|memoria:memDado|cont
+Name cont.001 
+cont.000 0 
+cont.001 1 

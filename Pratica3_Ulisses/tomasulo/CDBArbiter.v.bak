@@ -1,0 +1,5 @@
+module CDBArbiter(input [15:0] in_mem, input[2:0] dest_mem, input [3:0] Qi_mem, input [15:0] in_R, input[2:0] dest_R, input [3:0] Qi_R, output reg [15:0] out, output reg [2:0] dest_out, output reg [3:0] Qi_out);
+	
+	
+	
+endmodule

@@ -1,0 +1,36 @@
+module unidadeFuncional(input clock, inout reg nova, input [1:0] opcode, input [15:0] Vj, input [15:0] Vk, input [2:0] dest_in, input [3:0] Qi_in, 
+								output reg [15:0] Vi, output reg V_pronto, output reg UF_atoa, output reg [2:0] dest_out, output reg [3:0] Qi_out);
+	
+	reg [1:0] cont;
+	
+	initial begin
+		cont <= 2'b00;
+	end
+	
+	always @(posedge clock) begin
+	
+		if(nova == 1) begin
+			nova = 0;
+			cont <= 2'b00;
+		end
+	
+		if(cont != 2'b10) begin
+			cont <= cont + 1;
+			V_pronto <= 0;
+			UF_atoa <= 0;
+			
+			if(!(opcode == 2'b01))
+				Vi <= Vj + Vk;
+			else
+				Vi <= Vj - Vk;
+
+			dest_out <= dest_in;
+			Qi_out <= Qi_in;
+			
+		end else begin
+			V_pronto <= 1;
+			UF_atoa <= 1;
+		end
+	end
+	
+endmodule

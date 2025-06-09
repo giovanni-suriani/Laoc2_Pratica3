@@ -1,0 +1,170 @@
+# Reading C:/altera/13.0sp1/modelsim_ase/tcl/vsim/pref.tcl 
+# do tomasulo_run_msim_rtl_verilog.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Copying C:\altera\13.0sp1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied C:\altera\13.0sp1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/bancoReg.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module bancoReg
+# 
+# Top level modules:
+# 	bancoReg
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/tomasulo.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tomasulo
+# 
+# Top level modules:
+# 	tomasulo
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/filaInstrucoes.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module filaInstrucoes
+# 
+# Top level modules:
+# 	filaInstrucoes
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/estacaoReserva.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module estacaoReserva
+# 
+# Top level modules:
+# 	estacaoReserva
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/mem.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module mem
+# 
+# Top level modules:
+# 	mem
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/memoria.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module memoria
+# 
+# Top level modules:
+# 	memoria
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/CDBArbiter.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module CDBArbiter
+# 
+# Top level modules:
+# 	CDBArbiter
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/unidadeFuncional.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module unidadeFuncional
+# 
+# Top level modules:
+# 	unidadeFuncional
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/decodificadorComportamental.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module decodificadorComportamental
+# 
+# Top level modules:
+# 	decodificadorComportamental
+# 
+vsim +altera -do tomasulo_run_msim_rtl_verilog.do -l msim_transcript -gui work.CDBArbiter
+# vsim +altera -do tomasulo_run_msim_rtl_verilog.do -l msim_transcript -gui work.CDBArbiter 
+# Loading work.CDBArbiter
+# do tomasulo_run_msim_rtl_verilog.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/bancoReg.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module bancoReg
+# 
+# Top level modules:
+# 	bancoReg
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/tomasulo.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tomasulo
+# 
+# Top level modules:
+# 	tomasulo
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/filaInstrucoes.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module filaInstrucoes
+# 
+# Top level modules:
+# 	filaInstrucoes
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/estacaoReserva.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module estacaoReserva
+# 
+# Top level modules:
+# 	estacaoReserva
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/mem.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module mem
+# 
+# Top level modules:
+# 	mem
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/memoria.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module memoria
+# 
+# Top level modules:
+# 	memoria
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/CDBArbiter.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module CDBArbiter
+# 
+# Top level modules:
+# 	CDBArbiter
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/unidadeFuncional.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module unidadeFuncional
+# 
+# Top level modules:
+# 	unidadeFuncional
+# vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/decodificadorComportamental.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module decodificadorComportamental
+# 
+# Top level modules:
+# 	decodificadorComportamental
+# 
+wave create -driver freeze -pattern clock -initialvalue HiZ -period 10ps -dutycycle 50 -starttime 0ps -endtime 1000ps sim:/CDBArbiter/clock
+wave create -driver freeze -pattern constant -value 1010 -range 15 0 -starttime 0ps -endtime 1000ps sim:/CDBArbiter/in_mem
+wave create -driver freeze -pattern constant -value 000 -range 2 0 -starttime 0ps -endtime 1000ps sim:/CDBArbiter/dest_mem
+wave create -driver freeze -pattern constant -value 0 -range 3 0 -starttime 0ps -endtime 1000ps sim:/CDBArbiter/Qi_mem
+wave create -driver freeze -pattern constant -value 0 -starttime 0ps -endtime 200ps sim:/CDBArbiter/V_mem_pronto
+wave create -driver freeze -pattern constant -value 1 -starttime 200ps -endtime 210ps sim:/CDBArbiter/V_mem_pronto
+# /CDBArbiter/V_mem_pronto already exists in the wave, cannot add twice
+# Usage: wave create -pattern <clock|constant|random|repeater|counter|none> <args>
+# See Command Reference manual for pattern specific <args>
+wave create -driver freeze -pattern constant -value 1 -starttime 200ps -endtime 210ps sim:/CDBArbiter/V_mem_pronto
+# /CDBArbiter/V_mem_pronto already exists in the wave, cannot add twice
+# Usage: wave create -pattern <clock|constant|random|repeater|counter|none> <args>
+# See Command Reference manual for pattern specific <args>
+wave modify -driver freeze -pattern constant -value 1 -starttime 200ps -endtime 210ps Edit:/CDBArbiter/V_mem_pronto
+wave modify -driver freeze -pattern constant -value 0 -starttime 210ps -endtime 1000ps Edit:/CDBArbiter/V_mem_pronto
+add wave -position insertpoint  \
+sim:/CDBArbiter/in_R
+wave create -driver freeze -pattern constant -value 101 -range 15 0 -starttime 0ps -endtime 1000ps sim:/CDBArbiter/in_R
+wave create -driver freeze -pattern constant -value 1 -range 2 0 -starttime 0ps -endtime 1000ps sim:/CDBArbiter/dest_R
+wave create -driver freeze -pattern constant -value 1 -range 3 0 -starttime 0ps -endtime 1000ps sim:/CDBArbiter/Qi_R
+wave create -driver freeze -pattern constant -value 0 -starttime 0ps -endtime 1000ps sim:/CDBArbiter/V_R_pronto
+wave modify -driver freeze -pattern constant -value 1 -starttime 200ps -endtime 210ps Edit:/CDBArbiter/V_R_pronto
+add wave -position insertpoint  \
+sim:/CDBArbiter/opcode
+wave create -driver freeze -pattern constant -value 10 -range 1 0 -starttime 0ps -endtime 1000ps sim:/CDBArbiter/opcode
+add wave -position insertpoint  \
+sim:/CDBArbiter/data \
+sim:/CDBArbiter/dest \
+sim:/CDBArbiter/Qi \
+sim:/CDBArbiter/busy
+add wave -position insertpoint  \
+sim:/CDBArbiter/out \
+sim:/CDBArbiter/dest_out \
+sim:/CDBArbiter/Qi_out \
+sim:/CDBArbiter/habEscr \
+sim:/CDBArbiter/nv_adt
+run -all

@@ -1,0 +1,4 @@
+module memoria(input [7:0] A, input [15:0] data, input W, input dest, input Qi);
+
+
+endmodule

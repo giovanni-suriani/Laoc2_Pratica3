@@ -1,0 +1,9 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vlog -vlog01compat -work work +incdir+D:/Faculdade/LAOC\ II/pratica3/tomasulo {D:/Faculdade/LAOC II/pratica3/tomasulo/bancoReg.v}
+

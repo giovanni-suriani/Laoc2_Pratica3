@@ -1,0 +1,4 @@
+Warning (10273): Verilog HDL warning at estacaoReserva.v(117): extended using "x" or "z"
+Warning (10273): Verilog HDL warning at estacaoReserva.v(123): extended using "x" or "z"
+Info (10281): Verilog HDL Declaration information at estacaoReserva.v(16): object "I" differs only in case from object "i" in the same scope
+Warning (10268): Verilog HDL information at unidadeFuncional.v(10): always construct contains both blocking and non-blocking assignments

@@ -1,0 +1,156 @@
+module estacaoReserva(input clock, input [15:0] instrucao_in, input [15:0] Vj_in, input [15:0] Vk_in, input [3:0] Qj_in, input [3:0] Qk_in, 
+								input W, input UF_R_atoa, input UF_I_atoa, input [3:0] adt_Q_in, input [15:0] adt_V_in,
+								output SR_R_cheia, output SR_I_cheia, output [2:0] endr_Vj, output [2:0] endr_Vk,
+								output [15:0] Vj_R_out, output [15:0] Vk_R_out, output [2:0] dest_R_out, output [3:0] Qi_R_out,
+								output [15:0] Vj_I_out, output [15:0] Vk_I_out, output [2:0] dest_I_out, output [3:0] Qi_I_out);
+
+	reg [2:0] busy;
+	reg [2:0] tipo; // 0 -> R e 1 -> I
+	reg [1:0] opcode [2:0];
+	reg [15:0] Vj [2:0];
+	reg [15:0] Vk [2:0];
+	reg [3:0] Qj [2:0]; // 10 possiveis valores para as tags (5 de add/sub e 5 de load/store)
+	reg [3:0] Qk [2:0];
+	reg [7:0] A [2:0];
+	reg [2:0] dest [2:0];
+	
+	reg [2:0] cont_R, cont_I;
+	
+	reg Vj_W, Vk_W; // habilitam a escrita do valor vindo do banco de regs
+	
+	integer i, j, k, l, m, n;
+	
+	initial begin 
+		for(i = 0; i < 10; i = i + 1) begin 
+			busy[i] <= 0;
+		end
+	end
+	
+	assign endr_Vj = instrucao_in[10:8]; // passa os enderecos dos regs para o BR
+	assign endr_Vk = instrucao_in[7:5];
+	
+	
+	always @(posedge clock) begin // verifica se as estacoes de reserva estao cheias
+		for(n = 0; n < 10; n = n + 1) begin
+			if(instrucao_in[15:14] < 2'b01)
+				tipo[i] <= 0;
+			else
+				tipo[i] <= 1;
+				
+			if(busy[n]) begin 
+				if(tipo[n]) begin // tipo R
+					cont_R <= cont_R + 1;
+				end else begin // tipo I
+					cont_I <= cont_I + 1;
+				end
+			end
+		end
+		
+		if(cont_R == 5)
+			SR_R_cheia <= 1'b1
+		else 
+			SR_R_cheia <= 1'b0;
+			
+		if(cont_I == 5)
+			SR_I_cheia <= 1'b1;
+		else
+			SR_I_cheia <= 1'b0;
+	end
+	
+	always @(posedge clock) begin // decodificacao inicial da instrucao
+		begin: for1
+		for(i = 0; i < 10; i = i + 1) begin
+			if(!busy[i]) begin // se a posicao i estiver vazia
+				busy[i] <= 1;
+				opcode[i] <= instrucao_in[15:14];
+				dest[i] <= instrucao_in[13:11];
+				
+				if(tipo[i] && !SR_R_cheia) begin
+					// logica para Vj e Qj
+					begin: for2 // procura dentro dessa SR
+						for(j = 0; j < 10; j = j + 1) begin
+							if(j != i && busy[j]) begin
+								if(dest[j] == endr_Vj) begin // se encontrar colocar em Qj a posicao da SR que ira gerar o valor
+									Qj[i] <= j;
+									disable for2;
+								end 
+							end
+						end
+					end
+					
+					if(Qj[i] != j) begin // se nao encontrar em nenhum dest de nenhuma SR coloca em Vj o valor vindo do BR
+						Vj[i] <= Vj_in;
+					end
+					
+					// logica para Vk e Qk
+					begin: for3 // procura dentro dessa SR
+						for(j = 0; j < 5; j = j + 1) begin
+							if(j != i && busy[j]) begin
+								if(dest[j] == endr_Vk) begin // se encontrar colocar em Qk a posicao da SR que ira gerar o valor
+									Qk[i] <= j;
+									disable for3;
+								end 
+							end
+						end
+					end
+					
+					if(Qk[i] != j) begin // se nao encontrar em nenhum dest de nenhuma SR coloca em Vk o valor vindo do BR
+						Vk[i] <= Vk_in;
+					end
+				end
+				
+				if(!tipo[i] && !SR_I_cheia) begin
+					
+					// TODO:
+					
+				end
+				
+				
+				disable for1;
+			end
+		end
+	end
+	
+	always @(posedge clock) begin // procurar, escolher e passar uma instrucao para a UF
+		begin: forR
+			for(m = 0; m < 10; m = m + 1) begin
+				if(busy[m] && Qj[m] == 4'bXXXX && Qk[m] == 4'bXXXX && tipo[m] && UF_R_atoa) begin // tipo R
+					Vj_R_out <= Vj[m];
+					Vk_R_out <= Vk[m];
+					dest_R_out <= dest[m];
+					Qi_R_out <= m;
+					busy <= 0;
+					disable forR;
+				end
+			end
+		end
+		
+		begin: forI
+			for(m = 0; m < 10; m = m + 1) begin
+				if(busy[m] && Qj[m] == 4'bXXXX && Qk[m] == 4'bXXXX && !tipo[m] && UF_I_atoa) begin // tipo I
+					Vj_I_out <= Vj[m];
+					Vk_I_out <= Vk[m];
+					dest_I_out <= dest[m];
+					Qi_I_out <= m;
+					busy <= 0;
+					disable forI;
+				end
+			end
+		end
+	end
+	
+	always @(posedge clock) begin // adiantamento (substituir o adt_Q_in por adt_V_in se existir adt_Q_in na SR)
+		for(int l = 0; l < 10; l = l + 1) begin
+			if(Qj[l] == adt_Q_in) begin
+				Qj[l] <= 4'bXXXX;
+				Vj[l] <= adt_V_in;
+			end
+			
+			if(Qk[l] == adt_Q_in) begin
+				Qk[l] <= 4'bXXXX;
+				Vk[l] <= adt_V_in;
+			end
+		end
+	end
+	
+endmodule

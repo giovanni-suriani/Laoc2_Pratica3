@@ -1,0 +1,45 @@
+library verilog;
+use verilog.vl_types.all;
+entity estacaoReserva is
+    port(
+        clock           : in     vl_logic;
+        instrucao_in    : in     vl_logic_vector(15 downto 0);
+        Vj_in           : in     vl_logic_vector(15 downto 0);
+        Vk_in           : in     vl_logic_vector(15 downto 0);
+        V_R_pronto      : in     vl_logic;
+        adt_Q_R         : in     vl_logic_vector(3 downto 0);
+        adt_Q_in        : in     vl_logic_vector(3 downto 0);
+        adt_V_in        : in     vl_logic_vector(15 downto 0);
+        adt_dest_in     : in     vl_logic_vector(2 downto 0);
+        nv_adt          : in     vl_logic;
+        nv_inst         : in     vl_logic;
+        endr_Vj         : in     vl_logic_vector(2 downto 0);
+        endr_Vk         : in     vl_logic_vector(2 downto 0);
+        adt_V_I         : in     vl_logic_vector(15 downto 0);
+        V_I_pronto      : in     vl_logic;
+        adt_Q_I         : in     vl_logic_vector(3 downto 0);
+        V_mem_pronto    : in     vl_logic;
+        adt_Q_mem       : in     vl_logic_vector(3 downto 0);
+        SR_R_cheia      : out    vl_logic;
+        SR_I_cheia      : out    vl_logic;
+        opcode_mem      : out    vl_logic_vector(1 downto 0);
+        opcode_I        : out    vl_logic_vector(1 downto 0);
+        opcode_R        : out    vl_logic_vector(1 downto 0);
+        Vj_R_out        : out    vl_logic_vector(15 downto 0);
+        Vk_R_out        : out    vl_logic_vector(15 downto 0);
+        dest_R_out      : out    vl_logic_vector(2 downto 0);
+        Qi_R_out        : out    vl_logic_vector(3 downto 0);
+        nova_R          : out    vl_logic;
+        Vj_I_out        : out    vl_logic_vector(15 downto 0);
+        Vk_I_out        : out    vl_logic_vector(15 downto 0);
+        dest_I_out      : out    vl_logic_vector(2 downto 0);
+        Qi_I_out        : out    vl_logic_vector(3 downto 0);
+        nova_I          : out    vl_logic;
+        A_out           : out    vl_logic_vector(7 downto 0);
+        data_out        : out    vl_logic_vector(15 downto 0);
+        W_mem           : out    vl_logic;
+        dest_mem_out    : out    vl_logic_vector(2 downto 0);
+        Qi_mem_out      : out    vl_logic_vector(3 downto 0);
+        nova_mem        : out    vl_logic
+    );
+end estacaoReserva;

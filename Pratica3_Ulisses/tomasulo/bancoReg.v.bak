@@ -1,0 +1,18 @@
+module BancoReg (RegLido1, RegLido2, RegEscr, DadoEscr, Dado1, Dado2, habEscr, Clock);
+
+  input [2:0] RegLido1, RegLido2, RegEscr; // 8 registradores cada um com 16 bits
+  input [15:0] DadoEscr;
+  input habEscr, Clock;
+  output [15:0] Dado1, Dado2;
+  
+  reg [15:0] BR [15:0];
+  
+  always @(posedge Clock) begin
+    if(habEscr) begin
+      BR[RegEscr] = DadoEscr;
+    end
+  end
+  
+  assign Dado1 = BR[RegLido1];
+  assign Dado2 = BR[RegLido2];
+endmodule

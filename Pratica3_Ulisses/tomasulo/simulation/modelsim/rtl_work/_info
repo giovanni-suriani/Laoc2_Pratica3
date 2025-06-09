@@ -1,0 +1,191 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\Faculdade\LAOC II\pratica3\tomasulo\simulation\modelsim
+vbancoReg
+IiNQ59MmVcj3l3EhDiF9_:3
+VGC0b8o0]?c<jY?>E>lGk[1
+Z1 dD:\Faculdade\LAOC II\pratica3\tomasulo\simulation\modelsim
+w1698844648
+8D:/Faculdade/LAOC II/pratica3/tomasulo/bancoReg.v
+FD:/Faculdade/LAOC II/pratica3/tomasulo/bancoReg.v
+L0 1
+Z2 OV;L;10.1d;51
+r1
+31
+Z3 o-vlog01compat -work work -O0
+nbanco@reg
+Z4 !s92 -vlog01compat -work work {+incdir+D:/Faculdade/LAOC II/pratica3/tomasulo} -O0
+!i10b 1
+!s100 2?07S:kmTY=8M1d;HNKi92
+!s85 0
+!s108 1698926714.249000
+!s107 D:/Faculdade/LAOC II/pratica3/tomasulo/bancoReg.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Faculdade/LAOC II/pratica3/tomasulo|D:/Faculdade/LAOC II/pratica3/tomasulo/bancoReg.v|
+!s101 -O0
+vCDBArbiter
+I:QUNMaM>B2XOno6fhS@7V0
+V<;A4Y5o5WGIE9`l9aUz`o1
+R1
+w1698717620
+8D:/Faculdade/LAOC II/pratica3/tomasulo/CDBArbiter.v
+FD:/Faculdade/LAOC II/pratica3/tomasulo/CDBArbiter.v
+L0 1
+R2
+r1
+31
+R3
+R4
+n@c@d@b@arbiter
+!i10b 1
+!s100 hc;bVAY`[XAE<Rg<ET^n30
+!s85 0
+!s108 1698926716.835000
+!s107 D:/Faculdade/LAOC II/pratica3/tomasulo/CDBArbiter.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Faculdade/LAOC II/pratica3/tomasulo|D:/Faculdade/LAOC II/pratica3/tomasulo/CDBArbiter.v|
+!s101 -O0
+vdecodificadorComportamental
+!i10b 1
+!s100 EHQa8<4M^j6]d8Vco6gPH0
+IZQP959D4lXzE7`;4=kWI[2
+VkWa0J2@d9A_@>klZVlK=Q2
+R1
+w1698844026
+8D:/Faculdade/LAOC II/pratica3/tomasulo/decodificadorComportamental.v
+FD:/Faculdade/LAOC II/pratica3/tomasulo/decodificadorComportamental.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1698926717.158000
+!s107 D:/Faculdade/LAOC II/pratica3/tomasulo/decodificadorComportamental.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Faculdade/LAOC II/pratica3/tomasulo|D:/Faculdade/LAOC II/pratica3/tomasulo/decodificadorComportamental.v|
+!s101 -O0
+R3
+R4
+ndecodificador@comportamental
+vestacaoReserva
+I`MeZ<zZ9RIznH:jbooc8=3
+V[blCd@MZVQYX9XVc8YP@B0
+R1
+w1698714369
+8D:/Faculdade/LAOC II/pratica3/tomasulo/estacaoReserva.v
+FD:/Faculdade/LAOC II/pratica3/tomasulo/estacaoReserva.v
+L0 1
+R2
+r1
+31
+R3
+R4
+nestacao@reserva
+!i10b 1
+!s100 zg9V`1R2`ahW0nXSdo^C12
+!s85 0
+!s108 1698926714.428000
+!s107 D:/Faculdade/LAOC II/pratica3/tomasulo/estacaoReserva.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Faculdade/LAOC II/pratica3/tomasulo|D:/Faculdade/LAOC II/pratica3/tomasulo/estacaoReserva.v|
+!s101 -O0
+vfilaInstrucoes
+INWPMX=D:g^GdM^7]7oTSi3
+VdIR8=z0MoF`eP<FN28k:K2
+R1
+w1698849102
+8D:/Faculdade/LAOC II/pratica3/tomasulo/filaInstrucoes.v
+FD:/Faculdade/LAOC II/pratica3/tomasulo/filaInstrucoes.v
+L0 15
+R2
+r1
+31
+R3
+R4
+nfila@instrucoes
+!i10b 1
+!s100 czbYMN[glSFhb218;DDES0
+!s85 0
+!s108 1698926714.371000
+!s107 D:/Faculdade/LAOC II/pratica3/tomasulo/filaInstrucoes.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Faculdade/LAOC II/pratica3/tomasulo|D:/Faculdade/LAOC II/pratica3/tomasulo/filaInstrucoes.v|
+!s101 -O0
+vmem
+IdOG=gUOz^oe]ScZko=ihT3
+V4OTK1[8@BIN60PWl7fi@_2
+R1
+w1698422728
+8D:/Faculdade/LAOC II/pratica3/tomasulo/mem.v
+FD:/Faculdade/LAOC II/pratica3/tomasulo/mem.v
+L0 39
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 TG15;o>9h4J>QoVdUcPYh0
+!s85 0
+!s108 1698926714.477000
+!s107 D:/Faculdade/LAOC II/pratica3/tomasulo/mem.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Faculdade/LAOC II/pratica3/tomasulo|D:/Faculdade/LAOC II/pratica3/tomasulo/mem.v|
+!s101 -O0
+vmemoria
+I?icf`U@::8TRRIO`kZ23Q2
+V9F3>i5c2O4TUh^H_1?WmO3
+R1
+w1698715280
+8D:/Faculdade/LAOC II/pratica3/tomasulo/memoria.v
+FD:/Faculdade/LAOC II/pratica3/tomasulo/memoria.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 C[3i@@i?jmAMD]91Si]j03
+!s85 0
+!s108 1698926714.525000
+!s107 D:/Faculdade/LAOC II/pratica3/tomasulo/memoria.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Faculdade/LAOC II/pratica3/tomasulo|D:/Faculdade/LAOC II/pratica3/tomasulo/memoria.v|
+!s101 -O0
+vtomasulo
+Ilf^Z;TV:B;XY2_=@9o1[M1
+VA:[Xl2f54?cmXMQ?3UY8P2
+R1
+w1698844504
+8D:/Faculdade/LAOC II/pratica3/tomasulo/tomasulo.v
+FD:/Faculdade/LAOC II/pratica3/tomasulo/tomasulo.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 NjSl=hSikn`zFColdSCnm1
+!s85 0
+!s108 1698926714.320000
+!s107 D:/Faculdade/LAOC II/pratica3/tomasulo/tomasulo.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Faculdade/LAOC II/pratica3/tomasulo|D:/Faculdade/LAOC II/pratica3/tomasulo/tomasulo.v|
+!s101 -O0
+vunidadeFuncional
+IQA7OIfFIcKF:MCYe=QEiW2
+VzPb:eO=CF>?f1okKPa<ge0
+R1
+w1698426943
+8D:/Faculdade/LAOC II/pratica3/tomasulo/unidadeFuncional.v
+FD:/Faculdade/LAOC II/pratica3/tomasulo/unidadeFuncional.v
+L0 1
+R2
+r1
+31
+R3
+R4
+nunidade@funcional
+!i10b 1
+!s100 ;1SHeVi>AN:QbJhJh]ZbD2
+!s85 0
+!s108 1698926717.088000
+!s107 D:/Faculdade/LAOC II/pratica3/tomasulo/unidadeFuncional.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Faculdade/LAOC II/pratica3/tomasulo|D:/Faculdade/LAOC II/pratica3/tomasulo/unidadeFuncional.v|
+!s101 -O0
