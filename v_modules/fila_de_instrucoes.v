@@ -1,33 +1,65 @@
-module fila_de_instrucoes(        input Clock,
-                                      input Reset,
-                                      output[15:0] Instrucao
-                             );
-    reg Contador1bit;
-    reg [3:0] PC ; // 16 instrucoes possiveis
-    reg [15:0] data;
+module fila_de_instrucoes(
+        input Clock,
+        input Reset,
+        input ReadEnable,                      // Sinal externo para despachar instrucao
+        output reg [15:0] Instrucao_Despachada,
+        output reg Full,
+        output reg Empty
+    );
 
-    memoram u_memoram(
-                .address (PC ),
-                .clock   (Clock   ),
-                .data    (16'b0    ),
-                .wren    (1'b0    ),  // Read only
-                .q       (Instrucao)
-            );
+    // FIFO interna
+    reg [15:0] Fila [15:0];                // 16 instrucoes de 16 bits
+    reg [3:0] head;                        // leitura
+    reg [3:0] tail;                        // escrita
+    reg [4:0] count;                       // numero de elementos
 
-    always @(posedge Clock)
-    begin
+    // PC para buscar na memoria
+    reg [3:0] PC;
+    wire [15:0] Data;                      // saida da memoria (instrucao buscada)
+
+    // Memoria de instrucoes externa
+    memoria_instrucoes u_memoria_instrucoes(
+                           .Reset   (Reset),
+                           .Clock   (Clock),
+                           .wren    (1'b0),
+                           .Address ({12'b0, PC}),
+                           .Din     (16'b0),
+                           .Q       (Data)
+                       );
+
+    always @(posedge Clock or posedge Reset) begin
         if (Reset)
         begin
-            PC <= 4'b0000;        // Reset PC to 0
-            Contador1bit <= 1'b0; // Reset Contador1bit
+            head <= 0;
+            tail <= 0;
+            count <= 0;
+            PC <= 0;
+            Instrucao_Despachada <= 0;
+            Full <= 0;
+            Empty <= 1;
         end
         else
         begin
-          Contador1bit <= Contador1bit + 1;
-            if (Contador1bit)
+            // Busca automatica enquanto FIFO nao esta cheia
+            if (count < 16)
             begin
-                PC <= PC + 1; // Increment PC apos pegar com certeza a instrucao
+                Fila[tail] <= Data;
+                tail <= tail + 1;
+                count <= count + 1;
+                PC <= PC + 1;
             end
+
+            // Despacho externo
+            if (ReadEnable && count > 0) 
+            begin
+                Instrucao_Despachada <= Fila[head];
+                head <= head + 1;
+                count <= count - 1;
+            end
+
+            // Flags
+            Full <= (count == 16);
+            Empty <= (count == 0);
         end
     end
 

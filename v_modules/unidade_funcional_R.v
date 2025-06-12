@@ -1,4 +1,4 @@
-module ula(A, BusWires, Ulaop, Q);
+module unidade_funcional_R(A, BusWires, Ulaop, Q);
   input [15:0] A, BusWires;
   input [2:0] Ulaop; // 2 bits para selecionar a operação da ULA
   output reg [15:0] Q; // Saída da ULA
