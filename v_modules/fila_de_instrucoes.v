@@ -1,7 +1,7 @@
 module fila_de_instrucoes(
         input Clock,
         input Reset,
-        input ReadEnable,                      // Sinal externo para despachar instrucao
+        input Pop,                      // Sinal externo para despachar instrucao
         output reg [15:0] Instrucao_Despachada,
         output reg Full,
         output reg Empty
@@ -50,7 +50,7 @@ module fila_de_instrucoes(
             end
 
             // Despacho externo
-            if (ReadEnable && count > 0) 
+            if (Pop && count > 0)
             begin
                 Instrucao_Despachada <= Fila[head];
                 head <= head + 1;
