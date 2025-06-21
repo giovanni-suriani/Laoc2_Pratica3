@@ -7,9 +7,18 @@ module memoria_instrucoes (
         output reg [15:0] Q             // dado de saida
     );
 /* 
- 0000 = ADD
- 0001 = SUB
+ 001 = ADD
+ 010 = SUB
 */
+
+    parameter NOP = 16'd0; // NOP (No Operation) - 0000
+    parameter ADD = 3'd1;
+    parameter SUB = 3'd2;
+
+    parameter R0 = 3'd0; // Registrador R0
+    parameter R1 = 3'd1; // Registrador R1
+    parameter R2 = 3'd2; // Registrador R2
+
 
     // Memoria com 16 posicoes de 16 bits
     reg [15:0] mem [15:0];
@@ -22,10 +31,21 @@ module memoria_instrucoes (
         begin
             // Inicializa todas as posicoes de memoria
             for (i = 0; i < 16; i = i + 1) begin
-                if (i == 0) // Inicializa a posicao 0 com a instrucao ADD
-                    mem[i] <= 16'b0000_001_010_011_000; // ADD R1 R2 R3
-                else if (i == 1) // Inicializa a posicao 1 com a instrucao SUB
-                    mem[i] <= 16'b0001_001_010_011_000; // SUB R1 R2 R3
+                if (i == 0) // Inicializa a posicao 0 com a instrucao ADD R0 R1 R2
+                    mem[i] <= {ADD, R0, R1, R2, 4'b0};
+                else if (i == 1) // Inicializa a posicao 1 com a instrucao SUB R0 R1 R2
+                    mem[i] <= {SUB, R0, R1, R2, 4'b0};
+                else if (i == 2) // Inicializa a posicao 2com a instrucao ADD R0 R1 R2
+                    mem[i] <= {ADD, R0, R1, R2, 4'b0};
+                else if (i == 3)
+                    mem[i] <= {ADD, R0, R1, R2, 4'b0};
+                else if (i == 4)
+                    mem[i] <= {ADD, R0, R1, R2, 4'b0};
+                else if (i == 5)
+                    mem[i] <= {ADD, R0, R1, R2, 4'b0};
+                else if (i == 6)
+                    mem[i] <= {SUB, R0, R1, R2, 4'b0};
+                    // mem[i] <= NOP; // NOP
                 else
                 mem[i] <= 16'b0; // Atribuicao nao bloqueante para sincrono
             end

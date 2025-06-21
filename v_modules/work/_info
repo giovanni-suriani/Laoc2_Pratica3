@@ -1,0 +1,80 @@
+m255
+K4
+z2
+!s11f MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules
+vfila_de_instrucoes
+Z1 !s110 1750504325
+!i10b 1
+!s100 XzYDhB=[30YjNF81Di6DK2
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I=N5SkHJ`]zi_U]33bLn8l3
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1750501576
+8fila_de_instrucoes.v
+Ffila_de_instrucoes.v
+!i122 54
+L0 1 92
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1750504325.000000
+!s107 tb_fila.v|fila_de_instrucoes.v|memoria_instrucoes.v|
+Z6 !s90 -reportprogress|300|+acc|memoria_instrucoes.v|fila_de_instrucoes.v|tb_fila.v|
+!i113 1
+Z7 o+acc
+Z8 tCvgOpt 0
+vmemoria_instrucoes
+R1
+!i10b 1
+!s100 P2?zl?:5ONPCWkNSj@TK23
+R2
+I?C8WHML>_hKDBM9=CD;=M0
+R3
+R0
+w1750429935
+8memoria_instrucoes.v
+Fmemoria_instrucoes.v
+!i122 54
+L0 1 66
+R4
+r1
+!s85 0
+31
+R5
+Z9 !s107 tb_fila.v|fila_de_instrucoes.v|memoria_instrucoes.v|
+R6
+!i113 1
+R7
+R8
+vtb_fila
+R1
+!i10b 1
+!s100 ^Ten5Fo=N3:c`Aoe]m^_10
+R2
+IXbdOU6;_ng]T@jJ5f^fQ52
+R3
+R0
+w1750501653
+8tb_fila.v
+Ftb_fila.v
+!i122 54
+L0 2 48
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 1
+R7
+R8
