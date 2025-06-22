@@ -1,32 +1,35 @@
-# do vlog_wave_tb_fila.do
+# do vlog_wave_tb_tomasulo.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 08:12:05 on Jun 21,2025
-# vlog -reportprogress 300 "+acc" memoria_instrucoes.v fila_de_instrucoes.v tb_fila.v 
+# Start time: 17:38:19 on Jun 22,2025
+# vlog -reportprogress 300 "+acc" tomasulo.v memoria_instrucoes.v memoria_dados.v fila_de_instrucoes.v CDB_arbiter.v register_status.v unidade_despacho.v res_station_R.v tb_tomasulo.v 
+# -- Compiling module tomasulo
 # -- Compiling module memoria_instrucoes
+# -- Compiling module memoria_dados
 # -- Compiling module fila_de_instrucoes
-# -- Compiling module tb_fila
+# -- Compiling module CDB_arbiter
+# -- Compiling module register_status
+# -- Compiling module unidade_despacho
+# -- Compiling module res_station_R
+# -- Compiling module tb_tomasulo
 # 
 # Top level modules:
-# 	tb_fila
-# End time: 08:12:05 on Jun 21,2025, Elapsed time: 0:00:00
+# 	memoria_dados
+# 	CDB_arbiter
+# 	tb_tomasulo
+# End time: 17:38:19 on Jun 22,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vsim -L altera work.tb_fila 
-# Start time: 08:12:05 on Jun 21,2025
-# Loading work.tb_fila
+# vsim -L altera work.tb_tomasulo 
+# Start time: 17:38:19 on Jun 22,2025
+# Loading work.tb_tomasulo
+# Loading work.tomasulo
+# Loading work.register_status
 # Loading work.fila_de_instrucoes
 # Loading work.memoria_instrucoes
-# [200] Linha 71 fila instrucoes Instrucao 0 inserida na fila: 0010000010100000
-# [300] Linha 71 fila instrucoes Instrucao 1 inserida na fila: 0100000010100000
-# [400] Linha 71 fila instrucoes Instrucao 2 inserida na fila: 0010000010100000
-# [500] Linha 71 fila instrucoes Instrucao 3 inserida na fila: 0010000010100000
-# [550] Ativando despacho
-# [600] Linha 71 fila instrucoes Instrucao 4 inserida na fila: 0010000010100000
-# [700] Linha 71 fila instrucoes Instrucao 5 inserida na fila: 0010000010100000
-# [800] Linha 71 fila instrucoes Instrucao 6 inserida na fila: 0100000010100000
-# [900] Linha 71 fila instrucoes Instrucao 7 inserida na fila: 0000000000000000
-# [1000] Linha 71 fila instrucoes Instrucao 8 inserida na fila: 0000000000000000
-# unsigned
-# .main_pane.wave.interior.cs.body.pw.wf
-# End time: 08:12:09 on Jun 21,2025, Elapsed time: 0:00:04
-# Errors: 0, Warnings: 0
+# Loading work.unidade_despacho
+# Loading work.res_station_R
+# ** UI-Msg: (vish-4014) No objects found matching 'tb_fila/Clock'.
+# Error in macro ./vlog_wave_tb_tomasulo.do line 22
+# ** UI-Msg: (vish-4014) No objects found matching 'tb_fila/Clock'.
+#     while executing
+# "add wave -label "Clock" tb_fila/Clock"

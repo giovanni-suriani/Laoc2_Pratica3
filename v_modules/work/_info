@@ -9,29 +9,76 @@ z2
 !i10f 100
 cModel Technology
 Z0 d/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules
-vfila_de_instrucoes
-Z1 !s110 1750504325
+vCDB_arbiter
+Z1 !s110 1750624699
 !i10b 1
-!s100 XzYDhB=[30YjNF81Di6DK2
+!s100 =oR`@Al]FUB3fIVCaT8;D0
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
-I=N5SkHJ`]zi_U]33bLn8l3
+IVQGZg:P=^JHKm<X:WTDQM1
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1750501576
-8fila_de_instrucoes.v
-Ffila_de_instrucoes.v
-!i122 54
-L0 1 92
+w1749766313
+8CDB_arbiter.v
+FCDB_arbiter.v
+!i122 63
+L0 1 7
 Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1750504325.000000
-!s107 tb_fila.v|fila_de_instrucoes.v|memoria_instrucoes.v|
-Z6 !s90 -reportprogress|300|+acc|memoria_instrucoes.v|fila_de_instrucoes.v|tb_fila.v|
+Z5 !s108 1750624699.000000
+!s107 tb_tomasulo.v|res_station_R.v|unidade_despacho.v|register_status.v|CDB_arbiter.v|fila_de_instrucoes.v|memoria_dados.v|memoria_instrucoes.v|tomasulo.v|
+Z6 !s90 -reportprogress|300|+acc|tomasulo.v|memoria_instrucoes.v|memoria_dados.v|fila_de_instrucoes.v|CDB_arbiter.v|register_status.v|unidade_despacho.v|res_station_R.v|tb_tomasulo.v|
 !i113 1
 Z7 o+acc
 Z8 tCvgOpt 0
+n@c@d@b_arbiter
+vfila_de_instrucoes
+R1
+!i10b 1
+!s100 XzYDhB=[30YjNF81Di6DK2
+R2
+I=N5SkHJ`]zi_U]33bLn8l3
+R3
+R0
+w1750501576
+8fila_de_instrucoes.v
+Ffila_de_instrucoes.v
+!i122 63
+L0 1 92
+R4
+r1
+!s85 0
+31
+R5
+Z9 !s107 tb_tomasulo.v|res_station_R.v|unidade_despacho.v|register_status.v|CDB_arbiter.v|fila_de_instrucoes.v|memoria_dados.v|memoria_instrucoes.v|tomasulo.v|
+R6
+!i113 1
+R7
+R8
+vmemoria_dados
+R1
+!i10b 1
+!s100 TAz8Lna`KRgDHcb0hLTl22
+R2
+IPRakTU92eLJ<QGjkb^h3R0
+R3
+R0
+w1749594315
+8memoria_dados.v
+Fmemoria_dados.v
+!i122 63
+L0 1 36
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 1
+R7
+R8
 vmemoria_instrucoes
 R1
 !i10b 1
@@ -43,20 +90,67 @@ R0
 w1750429935
 8memoria_instrucoes.v
 Fmemoria_instrucoes.v
-!i122 54
+!i122 63
 L0 1 66
 R4
 r1
 !s85 0
 31
 R5
-Z9 !s107 tb_fila.v|fila_de_instrucoes.v|memoria_instrucoes.v|
+R9
 R6
 !i113 1
 R7
 R8
-vtb_fila
+vregister_status
 R1
+!i10b 1
+!s100 ekGzJFKnCcOUR^GL[L_RG1
+R2
+IljFiGg3]lYlLPN?E_69_C1
+R3
+R0
+w1750614225
+8register_status.v
+Fregister_status.v
+!i122 63
+L0 1 45
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 1
+R7
+R8
+vres_station_R
+R1
+!i10b 1
+!s100 ]hLDzSMNDN]=0SQ45P]L=0
+R2
+ITNm:iQcUE<kCdE0AGl>R71
+R3
+R0
+w1750624585
+8res_station_R.v
+Fres_station_R.v
+!i122 63
+L0 1 25
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 1
+R7
+R8
+nres_station_@r
+vtb_fila
+!s110 1750624683
 !i10b 1
 !s100 ^Ten5Fo=N3:c`Aoe]m^_10
 R2
@@ -66,8 +160,77 @@ R0
 w1750501653
 8tb_fila.v
 Ftb_fila.v
-!i122 54
+!i122 62
 L0 2 48
+R4
+r1
+!s85 0
+31
+!s108 1750624683.000000
+!s107 tb_fila.v|fila_de_instrucoes.v|memoria_instrucoes.v|
+!s90 -reportprogress|300|+acc|memoria_instrucoes.v|fila_de_instrucoes.v|tb_fila.v|
+!i113 1
+R7
+R8
+vtb_tomasulo
+R1
+!i10b 1
+!s100 o@z99jWDLInf^A2MX9YZX1
+R2
+Ib<hIF;T5<lgCWAh`7<9EZ2
+R3
+R0
+w1750621404
+8tb_tomasulo.v
+Ftb_tomasulo.v
+!i122 63
+L0 3 25
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 1
+R7
+R8
+vtomasulo
+R1
+!i10b 1
+!s100 N?m[BoGk7jX`gCSl<BQ?11
+R2
+I3dUjiKZd<QXoBE8>;IPaC3
+R3
+R0
+w1750624520
+8tomasulo.v
+Ftomasulo.v
+!i122 63
+L0 1 117
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 1
+R7
+R8
+vunidade_despacho
+R1
+!i10b 1
+!s100 `FB834d:jG8In1h9I2]<N1
+R2
+IC2A>S:8KNAh@?]gBiLlJS0
+R3
+R0
+w1750620341
+8unidade_despacho.v
+Funidade_despacho.v
+!i122 63
+L0 1 96
 R4
 r1
 !s85 0
