@@ -36,7 +36,7 @@ module tomasulo(
   wire [15:0] Vk_R1, Vk_R2;                           // Valor do segundo operando (Variaveis)
 
 
-  // Instancia do modulo de estacao de reserva 
+  // Instancia do modulo de estacao de reserva
   wire [15:0] Q_ADD1, Q_ADD2;                         // Valor do segundo operando (Variaveis)
   wire        Ready_R1, Ready_R2;                     // Sinal de pronto para executar a operacao
   wire        Busy_R1, Busy_R2;                       // Sinal de ocupado da estacao de reserva
@@ -47,15 +47,15 @@ module tomasulo(
   integer     conta_ciclos = 0;
 
 
-// Instancia do modulo register_status
-register_status u_register_status(
-                  .Clock       (Clock       ),
-                  .Reset       (Reset       ),
-                  .Qi_CDB      (Qi_CDB      ),
-                  .Qi_CDB_data (Qi_CDB_data ),
-                  .Rs_Qi       (Rs_Qi       ),
-                  .Rs_Qi_data  (Rs_Qi_data  )
-                )
+  // Instancia do modulo register_status
+  register_status u_register_status(
+                    .Clock       (Clock       ),
+                    .Reset       (Reset       ),
+                    .Qi_CDB      (Qi_CDB      ),
+                    .Qi_CDB_data (Qi_CDB_data ),
+                    .Rs_Qi       (Rs_Qi       ),
+                    .Rs_Qi_data  (Rs_Qi_data  )
+                  )
                   ;
 
   // Instancia do modulo unidade_despacho
@@ -84,7 +84,7 @@ register_status u_register_status(
                      .Estacao_Reserva_ADD2_Enable (Estacao_Reserva_ADD2_Enable )
                    );
 
-  res_station_R Estacao_De_Reserva_R_1(
+  res_station_R Estacao_De_Reserva_ADD1(
                   .Clock  (Clock     ),
                   .Reset  (Reset     ),
                   .Op     (Op        ),
@@ -98,7 +98,7 @@ register_status u_register_status(
                   .Enable_VQ (Estacao_Reserva_ADD1_Enable)
                 );
 
-  res_station_R Estacao_De_Reserva_R_2(
+  res_station_R Estacao_De_Reserva_ADD2(
                   .Clock  (Clock     ),
                   .Reset  (Reset     ),
                   .Op     (Op        ),
@@ -112,6 +112,18 @@ register_status u_register_status(
                   .Enable_VQ (Estacao_Reserva_ADD2_Enable)
                 );
 
+  unidade_funcional_R u_unidade_funcional_R(
+                        .A        (A        ),
+                        .BusWires (BusWires ),
+                        .Ulaop    (Ulaop    ),
+                        .Q        (Q        )
+                      );
 
+
+
+  always @(posedge Reset)
+    begin
+      // Ready_R1
+    end
 
 endmodule

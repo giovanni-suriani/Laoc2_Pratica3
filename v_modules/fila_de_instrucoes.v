@@ -68,7 +68,7 @@ module fila_de_instrucoes(
             begin
                 Fila[tail] <= Mem_data;
                 // $display("[%0t] Tail inserido %0d",$time, tail);
-                $display("[%0t] Linha 71 fila instrucoes Instrucao %0d inserida na fila: %b",$time, tail, Mem_data);
+                // $display("[%0t] fila_de_instrucoes: Linha 71 fila instrucoes Instrucao %0d inserida na fila: %b",$time, tail, Mem_data);
                 tail = tail + 1;
                 count <= count + 1;
                 PC <= PC + 1;

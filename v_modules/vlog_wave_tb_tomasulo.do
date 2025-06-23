@@ -19,23 +19,56 @@ vsim -L altera work.tb_tomasulo
 
 
 # Sinais do uut (unit under test)
-#add wave -label "Clock" tb_fila/Clock
-#add wave -label "Pop" /tb_fila/uut/Pop
-#add wave -label "Reset" tb_fila/Reset
-#add wave -label "Instrucao_Despachada" -radix binary  tb_fila/uut/Instrucao_Despachada
-#add wave -label "Fila de Instrucoes" -radix binary  tb_fila/uut/Fila
-#add wave -label "mem" -radix binary /tb_fila/uut/u_memoria_instrucoes/mem
-#add wave -label "Mem_data" -radix binary  /tb_fila/uut/Mem_data
-#add wave -label "Instrucao_Despachada" -radix binary /tb_fila/uut/Instrucao_Despachada
-#add wave -label "Full" /tb_fila/uut/Full
-#add wave -label "Empty" /tb_fila/uut/Empty
-#add wave -label "head" /tb_fila/uut/head
-#add wave -label "tail" /tb_fila/uut/tail
-#add wave -label "count" /tb_fila/uut/count
-#add wave -label "PC" /tb_fila/uut/PC
-#add wave -label "preenche" /tb_fila/uut/preenche
-#add wave -label "Address" /tb_fila/uut/u_memoria_instrucoes/Address
-#add wave -label "Q" /tb_fila/uut/u_memoria_instrucoes/Q
+add wave -label "Clock" tb_tomasulo/Clock
+add wave -label "Reset" tb_tomasulo/Reset
+add wave -label "Pop" /tb_tomasulo/uut/Pop
+add wave -label "Fila de Instrucoes" -radix binary  tb_tomasulo/uut/u_fila_de_instrucoes/Fila
+add wave -label "Instrucao_Despachada" -radix binary /tb_tomasulo/uut/Instrucao_Despachada
+
+
+#add wave -label "Full" /tb_tomasulo/uut/Full
+#add wave -label "Instrucao_Despachada" -radix binary  tb_tomasulo/uut/u_fila_de_instrucoes/Instrucao_Despachada
+#add wave -label "mem" -radix binary /tb_tomasulo/uut/u_fila_de_instrucoes/u_memoria_instrucoes/mem
+#add wave -label "Mem_data" -radix binary  /tb_tomasulo/uut/u_fila_de_instrucoes/Mem_data
+#add wave -label "Empty" /tb_tomasulo/uut/Empty
+#add wave -label "head" /tb_tomasulo/uut/head
+#add wave -label "tail" /tb_tomasulo/uut/tail
+#add wave -label "count" /tb_tomasulo/uut/count
+#add wave -label "PC" /tb_tomasulo/uut/PC
+#add wave -label "preenche" /tb_tomasulo/uut/preenche
+#add wave -label "Address" /tb_tomasulo/uut/u_memoria_instrucoes/Address
+#add wave -label "Q" /tb_tomasulo/uut/u_memoria_instrucoes/Q
+
+# Sinais da unidade de despacho
+add wave -label "Estacao_Reserva_ADD1_Enable" /tb_tomasulo/uut/u_unidade_despacho/Estacao_Reserva_ADD1_Enable
+add wave -label "Estacao_Reserva_ADD2_Enable" /tb_tomasulo/uut/u_unidade_despacho/Estacao_Reserva_ADD2_Enable
+add wave -label "Ready_R1" /tb_tomasulo/uut/u_unidade_despacho/Ready_R1
+add wave -label "Ready_R2" /tb_tomasulo/uut/u_unidade_despacho/Ready_R2
+add wave -label "Rs_Qi" /tb_tomasulo/uut/u_unidade_despacho/Rs_Qi
+add wave -label "Rs_Qi_data" /tb_tomasulo/uut/u_unidade_despacho/Rs_Qi_data
+add wave -label "Vj" /tb_tomasulo/uut/u_unidade_despacho/Vj
+add wave -label "Vk" /tb_tomasulo/uut/u_unidade_despacho/Vk
+add wave -label "Qj" /tb_tomasulo/uut/u_unidade_despacho/Qj
+add wave -label "Qk" /tb_tomasulo/uut/u_unidade_despacho/Qk
+
+# Sinais da unidade de reserva ADD1
+Busy  
+Vj    
+Vk    
+Qj    
+Qk    
+Ready 
+Result
+Enable
+
+add wave -label "ADD1/Busy" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Busy
+add wave -label "ADD1/Vj" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Vj
+add wave -label "ADD1/Vk" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Vk
+add wave -label "ADD1/Qj" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Qj
+add wave -label "ADD1/Qk" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Qk
+add wave -label "ADD1/Ready" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Ready
+add wave -label "ADD1/Result" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Result
+add wave -label "ADD1/Enable" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Enable
 
 
 # Executa a simulacao
@@ -49,4 +82,4 @@ view wave
 configure wave -timelineunits ps
 
 
-# para rodar:   killmodelsim;vsim -do vlog_wave_tb_fila.do 
+# para rodar:   killmodelsim;vsim -do vlog_wave_tb_tomasulo.do 

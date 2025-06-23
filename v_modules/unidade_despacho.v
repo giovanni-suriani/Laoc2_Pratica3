@@ -10,6 +10,7 @@ module unidade_despacho (
     Vk,
     Qj,
     Qk,
+    Opcode,
     Estacao_Reserva_ADD1_Enable,
     Estacao_Reserva_ADD2_Enable
   );
@@ -28,10 +29,13 @@ module unidade_despacho (
   input [1:0]  Rs_Qi [2:0];
   input [15:0] Rs_Qi_data [2:0];
 
-  output reg [15:0] Vj, Vk; // Valores dos operandos da instrucao despachada
-  output reg [2:0]  Qj, Qk; // Estacao de reserva que encaminha o dado para o registrador
-  output reg        Estacao_Reserva_ADD1_Enable; // Estacao de reserva destino para a instrucao despachada
-  output reg        Estacao_Reserva_ADD2_Enable; // Estacao de reserva destino para a instrucao despachada
+  output reg  [15:0] Vj, Vk;                        // Valores dos operandos da instrucao despachada
+  output reg  [2:0]  Qj, Qk;                        // Estacao de reserva que encaminha o dado para o registrador
+  output wire [2:0]  Opcode;                        // Opcode da instrucao despachada
+  output reg         Estacao_Reserva_ADD1_Enable;   // Estacao de reserva destino para a instrucao despachada
+  output reg         Estacao_Reserva_ADD2_Enable;   // Estacao de reserva destino para a instrucao despachada
+
+  assign Opcode = Instrucao_Despachada [15:13]; // Extrai o opcode da instrucao despachada
 
   // if instrucao opcode in alguma do tipo R
   wire [2:0] Ri = Instrucao_Despachada [12:10];  // Extrai o primeiro operando da instrucao despachada
@@ -52,45 +56,55 @@ module unidade_despacho (
   // assign Qi_data[2] = Rs_Qi_data[2]; // R2
   assign Qi_Ready = {1'b0, 1'b0, Ready_R2, Ready_R1}; // Sinal de prontidao das estacoes de reserva
 
-  always @(posedge Clock)
-    begin
-      // Resolvendo vj ou qj
-      if (Rs_Qi[Rj] == FREE_REGISTER)
-        begin
-          Vj <= Rs_Qi_data[Rj];
-          Qj <= 3'b000;
-        end
-      else
-        begin
-          Vj <= Vj_Vk_sem_valor;
-          Qj <= Rs_Qi[Rj];
-        end
+  always @(posedge Clock or posedge Reset)
+    if (Reset)
+      begin
+        Vj <= Vj_Vk_sem_valor; // Valor padrao para vj
+        Vk <= Vj_Vk_sem_valor; // Valor padrao para vk
+        Qj <= Qj_Qk_sem_valor; // Estacao de reserva padrao para qj
+        Qk <= Qj_Qk_sem_valor; // Estacao de reserva padrao para qk
+        Estacao_Reserva_ADD1_Enable <= 1'b0; // Desativa a estacao de reserva R1
+        Estacao_Reserva_ADD2_Enable <= 1'b0; // Desativa a estacao de reserva R2
+      end
+    else
+      begin
+        // Resolvendo vj ou qj
+        if (Rs_Qi[Rj] == FREE_REGISTER)
+          begin
+            Vj <= Rs_Qi_data[Rj];
+            Qj <= 3'b000;
+          end
+        else
+          begin
+            Vj <= Vj_Vk_sem_valor;
+            Qj <= Rs_Qi[Rj];
+          end
 
-      // Resolvendo vk ou qk
-      if (Rs_Qi[Rk] == FREE_REGISTER)
-        begin
-          Vk <= Rs_Qi_data[Rk];
-          Qk <= 3'b000;
-        end
-      else
-        begin
-          Vk <= Vj_Vk_sem_valor;
-          Qk <= Rs_Qi[Rk];
-        end
+        // Resolvendo vk ou qk
+        if (Rs_Qi[Rk] == FREE_REGISTER)
+          begin
+            Vk <= Rs_Qi_data[Rk];
+            Qk <= 3'b000;
+          end
+        else
+          begin
+            Vk <= Vj_Vk_sem_valor;
+            Qk <= Rs_Qi[Rk];
+          end
 
-      // Devolve a estacao de reserva responsavel por realizar a instrucao despachada
-      if (Qi_Ready[0])
-        begin
-          Estacao_Reserva_ADD1_Enable <= 1'b1; // Ativa a estacao de reserva R1
-          Estacao_Reserva_ADD2_Enable <= 1'b0; // Desativa a est
-          // Estacao_Reserva_Destino <= RES_STATION_ADD1; // Estacao de reserva R1
-        end
-      else if (Qi_Ready[1])
-        begin
-          Estacao_Reserva_ADD1_Enable <= 1'b0; // Desativa a estacao de reserva R1
-          Estacao_Reserva_ADD2_Enable <= 1'b1; // Ativa a est
-        end
-    end
+        // Devolve a estacao de reserva responsavel por realizar a instrucao despachada
+        if (Qi_Ready[0])
+          begin
+            Estacao_Reserva_ADD1_Enable <= 1'b1; // Ativa a estacao de reserva R1
+            Estacao_Reserva_ADD2_Enable <= 1'b0; // Desativa a est
+            // Estacao_Reserva_Destino <= RES_STATION_ADD1; // Estacao de reserva R1
+          end
+        else if (Qi_Ready[1])
+          begin
+            Estacao_Reserva_ADD1_Enable <= 1'b0; // Desativa a estacao de reserva R1
+            Estacao_Reserva_ADD2_Enable <= 1'b1; // Ativa a est
+          end
+      end
   // O acesso aos registradores sera feito pela tabela de registradores
 
 endmodule

@@ -13,26 +13,26 @@ module register_status(
 
   // Parametros sobre Vj/Vk, Qi/Qk sem valor
   parameter Vj_Vk_sem_valor = 16'b1111_1111_1111_0000, // Valor padrao para algo sem valor (como xxx nao existe na fpga)
-            Qj_Qk_sem_valor = 3'b000; // Valor padrao para estacao de reserva sem valor
+            Qj_Qk_sem_valor = 3'b000;                  // Valor padrao para estacao de reserva sem valor
 
 
   input             Clock, Reset;
-  input [3:0]       Qi_CDB;                 // Sinal de CDB (Common Data Bus) indicando que o dado foi enviado
+  input [3:0]       Qi_CDB;                // Sinal de CDB (Common Data Bus) indicando que o dado foi enviado
   input [15:0]      Qi_CDB_data;           // Dados dos registradores R0, R1 e R2
-  output reg [1:0]  Rs_Qi [2:0];       // Qi dos registradores R0, R1 e R2
-  output reg [15:0] Rs_Qi_data [2:0]; // Dados dos registradores R0, R1 e R2
+  output reg [1:0]  Rs_Qi [2:0];           // Qi dos registradores R0, R1 e R2
+  output reg [15:0] Rs_Qi_data [2:0];      // Dados dos registradores R0, R1 e R2
 
 
   always @(posedge Clock or posedge Reset) // Provavelmente atribuicao no negedge
     begin
       if (Reset)
         begin
-          Rs_Qi[0] <= FREE_REGISTER;  // Inicializa o registrador R0
-          Rs_Qi[1] <= FREE_REGISTER;  // Inicializa o registrador R1
-          Rs_Qi[2] <= FREE_REGISTER;  // Inicializa o registrador R2
-          Rs_Qi_data[0] <= 16'b0;     // Inicializa o valor do registrador R0
-          Rs_Qi_data[1] <= 16'b0;     // Inicializa o valor do registrador R1
-          Rs_Qi_data[2] <= 16'b0;     // Inicializa o valor do registrador R2
+          Rs_Qi[0]      <= FREE_REGISTER;  // Inicializa o registrador R0
+          Rs_Qi[1]      <= FREE_REGISTER;  // Inicializa o registrador R1
+          Rs_Qi[2]      <= FREE_REGISTER;  // Inicializa o registrador R2
+          Rs_Qi_data[0] <= 16'b1;          // Inicializa o valor do registrador R0
+          Rs_Qi_data[1] <= 16'b1;          // Inicializa o valor do registrador R1
+          Rs_Qi_data[2] <= 16'b1;          // Inicializa o valor do registrador R2
         end
       else
         begin
