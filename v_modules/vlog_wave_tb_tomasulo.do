@@ -7,7 +7,7 @@ vlib work
 # vlog -work altera /home/giovanni/intelFPGA/20.1/modelsim_ase/altera/verilog/src/altera_mf.v
 
 # Compila os arquivos Verilog necessários
-vlog +acc tomasulo.v memoria_instrucoes.v memoria_dados.v fila_de_instrucoes.v CDB_arbiter.v register_status.v unidade_despacho.v res_station_R.v tb_tomasulo.v 
+vlog +acc tomasulo.v memoria_instrucoes.v memoria_dados.v fila_de_instrucoes.v CDB_arbiter.v register_status.v unidade_despacho.v res_station_R.v unidade_funcional_R.v tb_tomasulo.v 
 vsim -L altera work.tb_tomasulo
 
 
@@ -46,29 +46,22 @@ add wave -label "Ready_R1" /tb_tomasulo/uut/u_unidade_despacho/Ready_R1
 add wave -label "Ready_R2" /tb_tomasulo/uut/u_unidade_despacho/Ready_R2
 add wave -label "Rs_Qi" /tb_tomasulo/uut/u_unidade_despacho/Rs_Qi
 add wave -label "Rs_Qi_data" /tb_tomasulo/uut/u_unidade_despacho/Rs_Qi_data
-add wave -label "Vj" /tb_tomasulo/uut/u_unidade_despacho/Vj
-add wave -label "Vk" /tb_tomasulo/uut/u_unidade_despacho/Vk
-add wave -label "Qj" /tb_tomasulo/uut/u_unidade_despacho/Qj
-add wave -label "Qk" /tb_tomasulo/uut/u_unidade_despacho/Qk
+add wave -label "Despacho/Vj" /tb_tomasulo/uut/u_unidade_despacho/Vj
+add wave -label "Despacho/Vk" /tb_tomasulo/uut/u_unidade_despacho/Vk
+add wave -label "Despacho/Qj" /tb_tomasulo/uut/u_unidade_despacho/Qj
+add wave -label "Despacho/Qk" /tb_tomasulo/uut/u_unidade_despacho/Qk
 
 # Sinais da unidade de reserva ADD1
-Busy  
-Vj    
-Vk    
-Qj    
-Qk    
-Ready 
-Result
-Enable
 
-add wave -label "ADD1/Busy" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Busy
-add wave -label "ADD1/Vj" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Vj
-add wave -label "ADD1/Vk" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Vk
-add wave -label "ADD1/Qj" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Qj
-add wave -label "ADD1/Qk" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Qk
-add wave -label "ADD1/Ready" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Ready
-add wave -label "ADD1/Result" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Result
-add wave -label "ADD1/Enable" /tb_tomasulo/uut/Estacao_De_Reserva_ADD1/Enable
+add wave -label "ADD1/Busy" /tb_tomasulo/uut/ADD1/Busy
+add wave -label "ADD1/Vj" /tb_tomasulo/uut/ADD1/Vj
+add wave -label "ADD1/Vk" /tb_tomasulo/uut/ADD1/Vk
+add wave -label "ADD1/Qj" /tb_tomasulo/uut/ADD1/Qj
+add wave -label "ADD1/Qk" /tb_tomasulo/uut/ADD1/Qk
+add wave -label "ADD1/Ready" /tb_tomasulo/uut/ADD1/Ready
+add wave -label "ADD1/Result" /tb_tomasulo/uut/ADD1/Result
+add wave -label "ADD1/Ufop" -radix binary /tb_tomasulo/uut/ADD1/Ufop
+#add wave -label "ADD1/Enable" /tb_tomasulo/uut/ADD1/Estacao_Reserva_ADD1_Enable
 
 
 # Executa a simulacao

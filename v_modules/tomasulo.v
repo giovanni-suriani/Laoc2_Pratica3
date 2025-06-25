@@ -12,7 +12,7 @@ module tomasulo(
 
   parameter sem_valor = 16'b1111_1111_1111_0000; // Valor padrao para algo sem valor (como xxx nao existe na fpga)
 
-  // Instanciação do módulo registrador
+  // Instanciação do módulo register status
   wire [3:0]  Qi_CDB;
   wire [15:0] Qi_CDB_data;
   wire [1:0]  Rs_Qi [2:0];
@@ -21,12 +21,12 @@ module tomasulo(
 
   // Instancia do modulo fila de instrucoes
   wire [15:0] Instrucao_Despachada;                   // Saida da fila de instrucoes
-  wire [2:0] Op = Instrucao_Despachada[15:13];        // Extrai a operacao da instrucao despachada
   wire [2:0] Ri = Instrucao_Despachada[12:10];        // Extrai o primeiro operando da instrucao despachada
   wire [2:0] Rj = Instrucao_Despachada[9:6];          // Extrai o segundo operando da instrucao despachada
   wire [2:0] Rk = Instrucao_Despachada[5:3];          // Extrai o primeiro operando da instrucao despachada
 
   // Instancia do modulo unidade_despacho
+  wire [2:0]  Opcode;                                 // Opcode da instrucao despachada
   wire [15:0] Vj;                                     // Valor do primeiro operando (Variaveis)
   wire [15:0] Vk;                                     // Valor do segundo operando (Variaveis)
   wire [2:0]  Qj;                                     // Estacao de reserva do primeiro operando
@@ -40,6 +40,12 @@ module tomasulo(
   wire [15:0] Q_ADD1, Q_ADD2;                         // Valor do segundo operando (Variaveis)
   wire        Ready_R1, Ready_R2;                     // Sinal de pronto para executar a operacao
   wire        Busy_R1, Busy_R2;                       // Sinal de ocupado da estacao de reserva
+
+  // Instancia do modulo unidade_funcional_R
+  wire [15:0] A;                                      // Valor do primeiro operando (Variaveis)
+  wire [15:0] B;                               // Sinal de saida
+  wire [2:0]  Ufop;                                  // Sinal de operacao
+  wire [3:0]  Q;                                      // Sinal de saida da unidade
 
   // Sinais inuteis
   wire        Full;                       // Sinal de FIFO cheia
@@ -80,46 +86,47 @@ module tomasulo(
                      .Vk                          (Vk                          ),
                      .Qj                          (Qj                          ),
                      .Qk                          (Qk                          ),
+                     .Opcode                      (Opcode                      ),
                      .Estacao_Reserva_ADD1_Enable (Estacao_Reserva_ADD1_Enable ),
                      .Estacao_Reserva_ADD2_Enable (Estacao_Reserva_ADD2_Enable )
                    );
 
-  res_station_R Estacao_De_Reserva_ADD1(
-                  .Clock  (Clock     ),
-                  .Reset  (Reset     ),
-                  .Op     (Op        ),
-                  .Busy   (Busy_R1   ),
-                  .Vj     (Vj        ),
-                  .Vk     (Vk        ),
-                  .Qj     (Qj        ),
-                  .Qk     (Qk        ),
-                  .Ready  (Ready_R1  ),
-                  .Result (Q_ADD1    ),
-                  .Enable_VQ (Estacao_Reserva_ADD1_Enable)
+  res_station_R ADD1(
+                  .Clock     (Clock     ),
+                  .Reset     (Reset     ),
+                  .Opcode    (Opcode        ),
+                  .Busy      (Busy_R1   ),
+                  .Vj        (Vj        ),
+                  .Vk        (Vk        ),
+                  .Qj        (Qj        ),
+                  .Qk        (Qk        ),
+                  .Enable_VQ (Estacao_Reserva_ADD1_Enable),
+                  .Ufop      (Ufop      ),
+                  .Ready     (Ready_R1  ),
+                  .Result    (Q_ADD1    )
                 );
 
-  res_station_R Estacao_De_Reserva_ADD2(
-                  .Clock  (Clock     ),
-                  .Reset  (Reset     ),
-                  .Op     (Op        ),
-                  .Busy   (Busy_R2   ),
-                  .Vj     (Vj        ),
-                  .Vk     (Vk        ),
-                  .Qj     (Qj        ),
-                  .Qk     (Qk        ),
-                  .Ready  (Ready_R2  ),
-                  .Result (Q_ADD2    ),
-                  .Enable_VQ (Estacao_Reserva_ADD2_Enable)
+  res_station_R ADD2(
+                  .Clock     (Clock     ),
+                  .Reset     (Reset     ),
+                  .Opcode        (Opcode        ),
+                  .Busy      (Busy_R2   ),
+                  .Vj        (Vj        ),
+                  .Vk        (Vk        ),
+                  .Qj        (Qj        ),
+                  .Qk        (Qk        ),
+                  .Enable_VQ (Estacao_Reserva_ADD2_Enable),
+                  .Ufop      (Ufop ),
+                  .Ready     (Ready_R2  ),
+                  .Result    (Q_ADD2    )
                 );
 
-  unidade_funcional_R u_unidade_funcional_R(
+  unidade_funcional_R unidade_funcional_ADD1(
                         .A        (A        ),
-                        .BusWires (BusWires ),
-                        .Ulaop    (Ulaop    ),
+                        .B        (B        ),
+                        .Ufop     (Ufop     ),
                         .Q        (Q        )
                       );
-
-
 
   always @(posedge Reset)
     begin

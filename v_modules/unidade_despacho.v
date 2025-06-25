@@ -24,7 +24,6 @@ module unidade_despacho (
 
   input        Clock;
   input        Reset;
-  input        Ready_R1, Ready_R2; // Sinal de prontidao da estacao de reserva R1
   input [15:0] Instrucao_Despachada;  // Instrucao que sera despachada
   input [1:0]  Rs_Qi [2:0];
   input [15:0] Rs_Qi_data [2:0];
@@ -34,6 +33,7 @@ module unidade_despacho (
   output wire [2:0]  Opcode;                        // Opcode da instrucao despachada
   output reg         Estacao_Reserva_ADD1_Enable;   // Estacao de reserva destino para a instrucao despachada
   output reg         Estacao_Reserva_ADD2_Enable;   // Estacao de reserva destino para a instrucao despachada
+  output reg         Ready_R1, Ready_R2; // Sinal de prontidao da estacao de reserva R1
 
   assign Opcode = Instrucao_Despachada [15:13]; // Extrai o opcode da instrucao despachada
 
@@ -65,6 +65,10 @@ module unidade_despacho (
         Qk <= Qj_Qk_sem_valor; // Estacao de reserva padrao para qk
         Estacao_Reserva_ADD1_Enable <= 1'b0; // Desativa a estacao de reserva R1
         Estacao_Reserva_ADD2_Enable <= 1'b0; // Desativa a estacao de reserva R2
+        Ready_R1 <= 1'b1; // Ativa a estacao de reserva R1
+        Ready_R2 <= 1'b1; // Ativa a estacao de reserva R
+
+
       end
     else
       begin

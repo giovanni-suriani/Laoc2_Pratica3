@@ -1,10 +1,11 @@
-module unidade_funcional_R(A, B, Ulaop, Q);
+module unidade_funcional_R(A, B, Ufop, Q); 
+// Talvez crirar um sinal para indicar se comeca ou nao a execucao, quem envia eh a estacao de reserva
   input [15:0] A, B;
-  input [2:0] Ulaop; // 2 bits para selecionar a operação da ULA
+  input [2:0] Ufop; // 2 bits para selecionar a operação da ULA
   output reg [15:0] Q; // Saída da ULA
-  always @(A or B or Ulaop)
+  always @(A or B or Ufop)
     begin
-      case (Ulaop)
+      case (Ufop)
         3'b000: // Adição
           Q <= A + B;
         3'b001: // Subtração
