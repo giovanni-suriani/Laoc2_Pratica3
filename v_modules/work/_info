@@ -10,52 +10,52 @@ z2
 cModel Technology
 Z0 d/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules
 vCDB_arbiter
-Z1 !s110 1750852499
+Z1 !s110 1750891027
 !i10b 1
 !s100 =oR`@Al]FUB3fIVCaT8;D0
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
 IVQGZg:P=^JHKm<X:WTDQM1
 Z3 VDg1SIo80bB@j0V0VzS_@n1
-R0
-w1749766313
+Z4 d/home/giovanni/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules
+w1749682029
 8CDB_arbiter.v
 FCDB_arbiter.v
-!i122 125
+!i122 126
 L0 1 7
-Z4 OV;L;2020.1;71
+Z5 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1750852499.000000
+Z6 !s108 1750891027.000000
 !s107 tb_tomasulo.v|unidade_funcional_R.v|res_station_R.v|unidade_despacho.v|register_status.v|CDB_arbiter.v|fila_de_instrucoes.v|memoria_dados.v|memoria_instrucoes.v|tomasulo.v|
-Z6 !s90 -reportprogress|300|+acc|tomasulo.v|memoria_instrucoes.v|memoria_dados.v|fila_de_instrucoes.v|CDB_arbiter.v|register_status.v|unidade_despacho.v|res_station_R.v|unidade_funcional_R.v|tb_tomasulo.v|
+Z7 !s90 -reportprogress|300|+acc|tomasulo.v|memoria_instrucoes.v|memoria_dados.v|fila_de_instrucoes.v|CDB_arbiter.v|register_status.v|unidade_despacho.v|res_station_R.v|unidade_funcional_R.v|tb_tomasulo.v|
 !i113 1
-Z7 o+acc
-Z8 tCvgOpt 0
+Z8 o+acc
+Z9 tCvgOpt 0
 n@c@d@b_arbiter
 vfila_de_instrucoes
 R1
 !i10b 1
-!s100 Ba7IC?kT>N[<8g]7gU[5`1
+!s100 YS1TFP=@l<lLcNeLXfP@C0
 R2
-I7IGKYBF;XUEDlPeHUD=J[1
+IoaSD1O==KcO7=_^TDWQ6F2
 R3
-R0
-w1750666486
+R4
+w1750890957
 8fila_de_instrucoes.v
 Ffila_de_instrucoes.v
-!i122 125
-L0 1 92
-R4
+!i122 126
+L0 1 93
+R5
 r1
 !s85 0
 31
-R5
-Z9 !s107 tb_tomasulo.v|unidade_funcional_R.v|res_station_R.v|unidade_despacho.v|register_status.v|CDB_arbiter.v|fila_de_instrucoes.v|memoria_dados.v|memoria_instrucoes.v|tomasulo.v|
 R6
-!i113 1
+Z10 !s107 tb_tomasulo.v|unidade_funcional_R.v|res_station_R.v|unidade_despacho.v|register_status.v|CDB_arbiter.v|fila_de_instrucoes.v|memoria_dados.v|memoria_instrucoes.v|tomasulo.v|
 R7
+!i113 1
 R8
+R9
 vmemoria_dados
 R1
 !i10b 1
@@ -63,45 +63,45 @@ R1
 R2
 IPRakTU92eLJ<QGjkb^h3R0
 R3
-R0
-w1749594315
+R4
+w1749558398
 8memoria_dados.v
 Fmemoria_dados.v
-!i122 125
+!i122 126
 L0 1 36
-R4
+R5
 r1
 !s85 0
 31
-R5
-R9
 R6
-!i113 1
+R10
 R7
+!i113 1
 R8
+R9
 vmemoria_instrucoes
 R1
 !i10b 1
-!s100 P2?zl?:5ONPCWkNSj@TK23
+!s100 EiL?nD8PAj@mjF=la@lFL1
 R2
-I?C8WHML>_hKDBM9=CD;=M0
+IAHYGeOflj9;?>`mA`dYY81
 R3
-R0
-w1750429935
+R4
+w1750890929
 8memoria_instrucoes.v
 Fmemoria_instrucoes.v
-!i122 125
-L0 1 66
-R4
+!i122 126
+L0 1 67
+R5
 r1
 !s85 0
 31
-R5
-R9
 R6
-!i113 1
+R10
 R7
+!i113 1
 R8
+R9
 vregister_status
 R1
 !i10b 1
@@ -109,45 +109,45 @@ R1
 R2
 IDG?P=;o5VDfLfG1@fCG8O2
 R3
-R0
-w1750669858
+R4
+Z11 w1750889893
 8register_status.v
 Fregister_status.v
-!i122 125
+!i122 126
 L0 1 45
-R4
+R5
 r1
 !s85 0
 31
-R5
-R9
 R6
-!i113 1
+R10
 R7
+!i113 1
 R8
+R9
 vres_station_R
 R1
 !i10b 1
-!s100 gK3ho5Sl8;G=l8dM6Gd??0
+!s100 70@_P9FkJ3^Ef8H_mTE4`2
 R2
-IhUReKjmX33Ve_EaOf@ko[1
+IH3VAzOUBb[QQU_b20AlMU0
 R3
-R0
-w1750850568
+R4
+R11
 8res_station_R.v
 Fres_station_R.v
-!i122 125
-L0 1 41
-R4
+!i122 126
+L0 1 59
+R5
 r1
 !s85 0
 31
-R5
-R9
 R6
-!i113 1
+R10
 R7
+!i113 1
 R8
+R9
 nres_station_@r
 vtb_fila
 !s110 1750666129
@@ -162,7 +162,7 @@ w1750501653
 Ftb_fila.v
 !i122 91
 L0 2 48
-R4
+R5
 r1
 !s85 0
 31
@@ -170,8 +170,8 @@ r1
 !s107 tb_fila.v|fila_de_instrucoes.v|memoria_instrucoes.v|
 !s90 -reportprogress|300|+acc|memoria_instrucoes.v|fila_de_instrucoes.v|tb_fila.v|
 !i113 1
-R7
 R8
+R9
 vtb_tomasulo
 R1
 !i10b 1
@@ -179,22 +179,22 @@ R1
 R2
 IfIQOPkc8g8R_KBe`M>UOd0
 R3
-R0
-w1750669589
+R4
+R11
 8tb_tomasulo.v
 Ftb_tomasulo.v
-!i122 125
+!i122 126
 L0 3 49
-R4
+R5
 r1
 !s85 0
 31
-R5
-R9
 R6
-!i113 1
+R10
 R7
+!i113 1
 R8
+R9
 vtomasulo
 R1
 !i10b 1
@@ -202,22 +202,22 @@ R1
 R2
 I`A@Q?Q]I7C<QR:be:2nYL2
 R3
-R0
-w1750850396
+R4
+w1750890849
 8tomasulo.v
 Ftomasulo.v
-!i122 125
+!i122 126
 L0 1 136
-R4
+R5
 r1
 !s85 0
 31
-R5
-R9
 R6
-!i113 1
+R10
 R7
+!i113 1
 R8
+R9
 vunidade_despacho
 R1
 !i10b 1
@@ -225,22 +225,22 @@ R1
 R2
 II`zE;WI@T]A93iR^bInzJ0
 R3
-R0
-w1750851214
+R4
+R11
 8unidade_despacho.v
 Funidade_despacho.v
-!i122 125
+!i122 126
 L0 1 114
-R4
+R5
 r1
 !s85 0
 31
-R5
-R9
 R6
-!i113 1
+R10
 R7
+!i113 1
 R8
+R9
 vunidade_funcional_R
 R1
 !i10b 1
@@ -248,20 +248,20 @@ R1
 R2
 IXbZz@oIC`STX[JY[4RL=10
 R3
-R0
-w1750803377
+R4
+R11
 8unidade_funcional_R.v
 Funidade_funcional_R.v
-!i122 125
+!i122 126
 L0 1 23
-R4
+R5
 r1
 !s85 0
 31
-R5
-R9
 R6
-!i113 1
+R10
 R7
+!i113 1
 R8
+R9
 nunidade_funcional_@r
