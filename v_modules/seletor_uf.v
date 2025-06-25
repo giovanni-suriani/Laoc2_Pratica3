@@ -8,7 +8,8 @@ module seletor_uf (
     Qi_CDB,
     Qi_CDB_data,
     A,
-    B);
+    B,
+    Ready_to_uf);
   parameter Vj_Vk_sem_valor = 16'b1111_1111_1111_0000, // Valor padrao para algo sem valor (como xxx nao existe na fpga)
             Qj_Qk_sem_valor = 3'b000, // Valor padrao para estacao de reserva sem valor
             Qi_CDB_data_sem_valor = 16'b1111_1111_1111_0000;
