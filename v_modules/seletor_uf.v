@@ -9,55 +9,73 @@ module seletor_uf (
     Qi_CDB_data,
     A,
     B,
+    Busy,
     Ready_to_uf);
   parameter Vj_Vk_sem_valor = 16'b1111_1111_1111_0000, // Valor padrao para algo sem valor (como xxx nao existe na fpga)
             Qj_Qk_sem_valor = 3'b000, // Valor padrao para estacao de reserva sem valor
             Qi_CDB_data_sem_valor = 16'b1111_1111_1111_0000;
   input Clock;
   input Reset;
-  input Vj;
-  input Vk;
-  input Qj;
-  input Qk;
-  input Qi_CDB;
-  input Qi_CDB_data;
+  input [15:0] Vj;
+  input [15:0] Vk;
+  input [15:0] Qj;
+  input [2:0]  Qk;
+  input [2:0]  Qi_CDB;
+  input [15:0] Qi_CDB_data;
+  input        Busy; // Sinal de ocupado da unidade funcional
   output reg[15:0] A;
   output reg[15:0] B;
-  output Ready_to_uf;
+  output reg Ready_to_uf; // Talvez fazer um sinal one hot aqui
+
+  reg clear; // Sinal para limpar os registradores A e B
 
   always @(posedge Clock or posedge Reset)
     if (Reset)
       begin
-        A <= 16'b0;
-        B <= 16'b0;
+        A <= Vj_Vk_sem_valor;
+        B <= Vj_Vk_sem_valor;
+        Ready_to_uf <= 1'b0;
       end
     else
       begin
-        // Check primeiro de Vj
-        if (Vj == Vj_Vk_sem_valor)
+        if (Busy == 1)
           begin
-            if (Qj == Qi_CDB)
+            if (A == Vj_Vk_sem_valor)
               begin
-                A <= Qi_CDB_data;
+                // Check primeiro de Vj
+                if (Vj == Vj_Vk_sem_valor)
+                  begin
+                    if (Qj == Qi_CDB)
+                      begin
+                        A = Qi_CDB_data;
+                      end
+                  end
+                else if (Vj != Vj_Vk_sem_valor)
+                  begin
+                    A = Vj;
+                  end
               end
-          end
-        else if (Vj != Vj_Vk_sem_valor) 
-          begin
-            A <= Vj;
-          end
+            if (B == Vj_Vk_sem_valor)
+              begin
+                // Check de Vk
+                if (Vk == Vj_Vk_sem_valor)
+                  begin
+                    if (Qj == Qi_CDB)
+                      begin
+                        B = Qi_CDB_data;
+                      end
+                  end
+                else if (Vj != Vj_Vk_sem_valor)
+                  begin
+                    B = Vk;
+                  end
+              end
 
-        // Check de Vk
-        if (Vk == Vj_Vk_sem_valor)
-          begin
-            if (Qj == Qi_CDB)
+            // Check se A e B estao prontos
+            if (A != Vj_Vk_sem_valor && B != Vj_Vk_sem_valor)
               begin
-                B <= Qi_CDB_data;
+                Ready_to_uf <= 1'b1; // Pronto para a unidade funcional
               end
-          end
-        else if (Vj != Vj_Vk_sem_valor) 
-          begin
-            B <= Vk;
           end
       end
-
 endmodule

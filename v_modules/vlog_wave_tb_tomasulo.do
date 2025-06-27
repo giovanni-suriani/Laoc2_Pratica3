@@ -40,8 +40,8 @@ add wave -label "Instrucao_Despachada" -radix binary /tb_tomasulo/uut/Instrucao_
 #add wave -label "Q" /tb_tomasulo/uut/u_memoria_instrucoes/Q
 
 # Sinais da unidade de despacho
-add wave -label "Estacao_Reserva_ADD1_Enable" /tb_tomasulo/uut/u_unidade_despacho/Estacao_Reserva_ADD1_Enable
-add wave -label "Estacao_Reserva_ADD2_Enable" /tb_tomasulo/uut/u_unidade_despacho/Estacao_Reserva_ADD2_Enable
+add wave -label "Enable_VQ_ADD1" /tb_tomasulo/uut/u_unidade_despacho/Enable_VQ_ADD1
+add wave -label "Enable_VQ_ADD2" /tb_tomasulo/uut/u_unidade_despacho/Enable_VQ_ADD2
 add wave -label "Ready_R1" /tb_tomasulo/uut/u_unidade_despacho/Ready_R1
 add wave -label "Ready_R2" /tb_tomasulo/uut/u_unidade_despacho/Ready_R2
 add wave -label "Rs_Qi" /tb_tomasulo/uut/u_unidade_despacho/Rs_Qi
@@ -50,6 +50,8 @@ add wave -label "Despacho/Vj" /tb_tomasulo/uut/u_unidade_despacho/Vj
 add wave -label "Despacho/Vk" /tb_tomasulo/uut/u_unidade_despacho/Vk
 add wave -label "Despacho/Qj" /tb_tomasulo/uut/u_unidade_despacho/Qj
 add wave -label "Despacho/Qk" /tb_tomasulo/uut/u_unidade_despacho/Qk
+#add wave -label "Despacho/Rj" /tb_tomasulo/uut/u_unidade_despacho/Rj
+#add wave -label "Despacho/Rk" /tb_tomasulo/uut/u_unidade_despacho/Rk
 
 # Sinais da unidade de reserva ADD1
 
@@ -61,8 +63,20 @@ add wave -label "ADD1/Qk" /tb_tomasulo/uut/ADD1/Qk
 add wave -label "ADD1/Ready" /tb_tomasulo/uut/ADD1/Ready
 add wave -label "ADD1/Result" /tb_tomasulo/uut/ADD1/Result
 add wave -label "ADD1/Ufop" -radix binary /tb_tomasulo/uut/ADD1/Ufop
-#add wave -label "ADD1/Enable" /tb_tomasulo/uut/ADD1/Estacao_Reserva_ADD1_Enable
+add wave -label "ADD1/Busy" -radix binary /tb_tomasulo/uut/ADD1/Busy
+#add wave -label "ADD1/Enable" /tb_tomasulo/uut/ADD1/Enable_VQ_ADD1
 
+# sinais do seletor da unidade funcional 
+add wave -label "seletor_uf_ADD1/Qi_CDB" /tb_tomasulo/uut/seletor_uf_ADD1/Qi_CDB
+add wave -label "seletor_uf_ADD1/Qi_CDB_data" /tb_tomasulo/uut/seletor_uf_ADD1/Qi_CDB_data
+add wave -label "seletor_uf_ADD1/A" /tb_tomasulo/uut/seletor_uf_ADD1/A
+add wave -label "seletor_uf_ADD1/B" /tb_tomasulo/uut/seletor_uf_ADD1/B
+add wave -label "seletor_uf_ADD1/Ready_to_uf" /tb_tomasulo/uut/seletor_uf_ADD1/Ready_to_uf
+
+
+# Sinais da unidade funcional
+add wave -label "UF_ADD1/Ufop" -radix binary /tb_tomasulo/uut/unidade_funcional_ADD1/Ufop
+add wave -label "UF_ADD1/Q" /tb_tomasulo/uut/unidade_funcional_ADD1/Q
 
 # Executa a simulacao
 run 1000ps

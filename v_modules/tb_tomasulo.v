@@ -23,6 +23,7 @@ module tb_tomasulo;
       @(posedge Clock);
       @(posedge Clock);
       Reset = 0;
+      Pop = 1;
       // Espera 4 ciclos de clock
       @(posedge Clock);
       @(posedge Clock);
@@ -30,7 +31,6 @@ module tb_tomasulo;
       @(posedge Clock);
       // Ativa o despacho de instrução
       $display("[%0t] Ativando despacho", $time);
-      Pop = 1;
 
       // Depurando unidade de despacho
 

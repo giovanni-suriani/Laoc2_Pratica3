@@ -15,7 +15,7 @@ module res_station_R (
 
   input Clock, Reset;
   input [2:0] Opcode;
-  input Busy;
+  output reg Busy;
   input [15:0] Vj, Vk;
   input [2:0] Qj, Qk;
   input Enable_VQ;        // Habilita a sobrescrita do Vj e Vk, Qj e Qk
@@ -30,7 +30,7 @@ module res_station_R (
 
   // Talvez Busy seja um reg
 
-  always @(Ready or Reset or Enable_VQ)
+  always @(Reset or Enable_VQ)
     begin
       if (Reset)
         begin
@@ -42,10 +42,12 @@ module res_station_R (
           // Tenho que passar os operandos para a unidade funcional
           if (Enable_VQ)
             begin
-              Vj_reg <= Vj; // Sobrescreve o valor de Vj
-              Vk_reg <= Vk; // Sobrescreve o valor de Vk
-              Qj_reg <= Qj; // Sobrescreve o valor de Qj
-              Qk_reg <= Qk; // Sobrescreve o valor de Qk
+              Vj_reg <= Vj;  // Sobrescreve o valor de Vj
+              Vk_reg <= Vk;  // Sobrescreve o valor de Vk
+              Qj_reg <= Qj;  // Sobrescreve o valor de Qj
+              Qk_reg <= Qk;  // Sobrescreve o valor de Qk
+              Busy  <= 1'b1; // Ativa a unidade funcional
+              Ready <= 1'b1; // Ativa a prontidao, pois esta executando
             end
         end
     end
