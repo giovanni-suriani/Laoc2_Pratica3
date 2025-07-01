@@ -40,7 +40,7 @@ add wave -label "Instrucao_Despachada" -radix binary /tb_tomasulo/uut/Instrucao_
 #add wave -label "Q" /tb_tomasulo/uut/u_memoria_instrucoes/Q
 
 # Sinais da unidade de despacho
-#add wave -label "Qi_Busy" /tb_tomasulo/uut/u_unidade_despacho/Qi_Busy
+add wave -label "Qi_Busy" -radix binary /tb_tomasulo/uut/u_unidade_despacho/Qi_Busy
 add wave -label "Enable_VQ_ADD1" /tb_tomasulo/uut/u_unidade_despacho/Enable_VQ_ADD1
 add wave -label "Enable_VQ_ADD2" /tb_tomasulo/uut/u_unidade_despacho/Enable_VQ_ADD2
 #add wave -label "Ready_R1" /tb_tomasulo/uut/u_unidade_despacho/Ready_R1
@@ -79,6 +79,34 @@ add wave -label "seletor_uf_ADD1/Ready_to_uf" /tb_tomasulo/uut/seletor_uf_ADD1/R
 add wave -label "UF_ADD1/Ufop" -radix binary /tb_tomasulo/uut/unidade_funcional_ADD1/Ufop
 add wave -label "UF_ADD1/Q" /tb_tomasulo/uut/unidade_funcional_ADD1/Q
 #add wave -label "UF_ADD1/Write_Enable_CDB" /tb_tomasulo/uut/unidade_funcional_ADD1/Write_Enable_CDB
+
+
+# Sinais da unidade de reserva ADD2
+add wave -label "ADD2/Busy" /tb_tomasulo/uut/ADD2/Busy
+add wave -label "ADD2/Vj" /tb_tomasulo/uut/ADD2/Vj
+add wave -label "ADD2/Vk" /tb_tomasulo/uut/ADD2/Vk
+add wave -label "ADD2/Qj" /tb_tomasulo/uut/ADD2/Qj
+add wave -label "ADD2/Qk" /tb_tomasulo/uut/ADD2/Qk
+add wave -label "ADD2/Done" /tb_tomasulo/uut/ADD2/Done
+add wave -label "ADD2/Finished" /tb_tomasulo/uut/ADD2/Finished
+#add wave -label "ADD2/Ready" /tb_tomasulo/uut/ADD2/Ready
+#add wave -label "ADD2/Result" /tb_tomasulo/uut/ADD2/Result
+add wave -label "ADD2/Ufop" -radix binary /tb_tomasulo/uut/ADD2/Ufop
+add wave -label "ADD2/Busy" -radix binary /tb_tomasulo/uut/ADD2/Busy
+#add wave -label "ADD2/Enable" /tb_tomasulo/uut/ADD2/Enable_VQ_ADD2
+
+# sinais do seletor da unidade funcional ADD2
+add wave -label "seletor_uf_ADD2/Qi_CDB" /tb_tomasulo/uut/seletor_uf_ADD2/Qi_CDB
+add wave -label "seletor_uf_ADD2/Qi_CDB_data" /tb_tomasulo/uut/seletor_uf_ADD2/Qi_CDB_data
+add wave -label "seletor_uf_ADD2/A" /tb_tomasulo/uut/seletor_uf_ADD2/A
+add wave -label "seletor_uf_ADD2/B" /tb_tomasulo/uut/seletor_uf_ADD2/B
+add wave -label "seletor_uf_ADD2/Ready_to_uf" /tb_tomasulo/uut/seletor_uf_ADD2/Ready_to_uf
+
+# Sinais da unidade funcional ADD2
+add wave -label "UF_ADD2/Ufop" -radix binary /tb_tomasulo/uut/unidade_funcional_ADD2/Ufop
+add wave -label "UF_ADD2/Q" /tb_tomasulo/uut/unidade_funcional_ADD2/Q
+#add wave -label "UF_ADD2/Write_Enable_CDB" /tb_tomasulo/uut/unidade_funcional_ADD2/Write_Enable_CDB
+
 
 
 # Sinais do CDB_arbiter

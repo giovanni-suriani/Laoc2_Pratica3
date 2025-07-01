@@ -41,7 +41,7 @@ module fila_de_instrucoes(
           Full <= 0;
           Empty <= 1;
           preenche <= 1;
-          $display("[%0t] fuck",$time);
+          // $display("[%0t] fuck",$time);
         end
 
       // if (Reset && !preenche) // Reset sem preencher a FIFO, Passivel de dar merda na fpga
@@ -69,21 +69,20 @@ module fila_de_instrucoes(
           if (count < 16)
             begin
               Fila[tail] <= Mem_data;
-              $display("[%0t] Tail inserido %0d",$time, tail);
-              $display("[%0t] fila_de_instrucoes: Linha 71 fila instrucoes Instrucao %0d inserida na fila: %b",$time, tail, Mem_data);
+              // $display("[%0t] Tail inserido %0d",$time, tail);
+              // $display("[%0t] fila_de_instrucoes: Linha 71 fila instrucoes Instrucao %0d inserida na fila: %b",$time, tail, Mem_data);
               tail = tail + 1;
               count <= count + 1;
               PC <= PC + 1;
             end
 
-          $display("[%0t] fofo",$time);
           // Despacho externo
           if (Pop && !Empty) // Se o sinal de despacho for ativo e a FIFO nao estiver vazia
             begin
               Instrucao_Despachada = Fila[head];
               Fila[head] = sem_valor; // Joga a instrucao buscada na
               head <= head + 1;
-              count <= count - 1;
+              // count <= count - 1;
             end
 
           // Flags

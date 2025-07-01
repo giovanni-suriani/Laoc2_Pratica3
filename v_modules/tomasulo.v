@@ -37,19 +37,22 @@ module tomasulo(
   wire        Enable_VQ_ADD1;                         // Sinal de habilitacao da estacao de reserva ADD1
   wire        Enable_VQ_ADD2;                         // Sinal de habilitacao da estacao de reserva ADD2
   wire [15:0] Vk_R1, Vk_R2;                           // Valor do segundo operando (Variaveis)
+  wire        R_enable_despacho;
+  wire [3:0]  R_target_despacho;                     // Registrador de destino da instrucao
+  wire [3:0]  R_res_station_despacho;                // Estacao de reserva que o registrador destino esta dependente
 
 
   // Instancia do modulo de estacao de reserva
   // wire [15:0] Q_ADD1, Q_ADD2;                      // Valor do segundo operando (Variaveis)
   // wire        Ready_R1, Ready_R2;                  // Sinal de pronto para executar a operacao
   wire        Busy_ADD1, Busy_ADD2;                   // Sinal de ocupado da estacao de reserva
-  wire [2:0]  R_target_ADD1, R_target_ADD2;           // Registrador de destino da estacao de reserva ADD1 e ADD2
+  wire [3:0]  R_target_ADD1, R_target_ADD2;           // Registrador de destino da estacao de reserva ADD1 e ADD2
   wire        R_enable_ADD1;                          // Sinal de habilitacao da escrita no banco de registradores
   wire        R_enable_ADD2;                          // Sinal de habilitacao da escrita no banco de registradores
 
   // Instancia do modulo unidade_funcional_R
-  wire [15:0] A;                                      // Valor do primeiro operando (Variaveis)
-  wire [15:0] B;                                      // Sinal de saida
+  wire [15:0] A_ADD1, A_ADD2;                                      // Valor do primeiro operando (Variaveis)
+  wire [15:0] B_ADD1, B_ADD2;                                      // Sinal de saida
   wire [2:0]  Ufop_ADD1;                                   // Sinal de operacao
   wire [2:0]  Ufop_ADD2;                                   // Sinal de operacao
   wire [15:0] Q_ADD1;                                      // Sinal de saida da unidade
@@ -112,6 +115,9 @@ module tomasulo(
                      .Enable_VQ_ADD2              (Enable_VQ_ADD2              ),
                      .R_target_ADD1               (R_target_ADD1               ),
                      .R_target_ADD2               (R_target_ADD2               ),
+                     .R_enable_despacho           ( R_enable_despacho          ),
+                     .R_target_despacho           (R_target_despacho           ),
+                     .R_res_station_despacho      (R_res_station_despacho      ),
                      .Pop                         (Pop                         )
                    );
 
@@ -176,30 +182,30 @@ module tomasulo(
                .Qk          (Qk          ),
                .Qi_CDB      (Qi_CDB      ),
                .Qi_CDB_data (Qi_CDB_data ),
-               .A           (A           ),
-               .B           (B           ),
+               .A           (A_ADD1      ),
+               .B           (B_ADD1      ),
                .Ready_to_uf (Ready_to_uf_ADD1 ),
                .Busy        (Busy_ADD1)
              );
 
- /*  seletor_uf seletor_uf_ADD2(
-               .Clock       (Clock       ),
-               .Reset       (Reset       ),
-               .Vj          (Vj          ),
-               .Vk          (Vk          ),
-               .Qj          (Qj          ),
-               .Qk          (Qk          ),
-               .Qi_CDB      (Qi_CDB      ),
-               .Qi_CDB_data (Qi_CDB_data ),
-               .A           (A           ),
-               .B           (B           ),
+  seletor_uf seletor_uf_ADD2(
+               .Clock       (Clock            ),
+               .Reset       (Reset            ),
+               .Vj          (Vj               ),
+               .Vk          (Vk               ),
+               .Qj          (Qj               ),
+               .Qk          (Qk               ),
+               .Qi_CDB      (Qi_CDB           ),
+               .Qi_CDB_data (Qi_CDB_data      ),
+               .A           (A_ADD2           ),
+               .B           (B_ADD2           ),
                .Ready_to_uf (Ready_to_uf_ADD2 ),
                .Busy        (Busy_ADD2)
-             ); */
+             );
 
   unidade_funcional_R unidade_funcional_ADD1(
-                        .A                (A                     ),
-                        .B                (B                     ),
+                        .A                (A_ADD1                ),
+                        .B                (B_ADD1                ),
                         .Ufop             (Ufop_ADD1             ),
                         .Ready_to_uf      (Ready_to_uf_ADD1      ),
                         .Busy             (Busy_ADD1             ),
@@ -207,6 +213,18 @@ module tomasulo(
                         .Reset            (Reset                 ),
                         .Write_Enable_CDB (Write_Enable_CDB      ),
                         .Done             (Done_ADD1             )
+                      );
+
+  unidade_funcional_R unidade_funcional_ADD2(
+                        .A                (A_ADD2                ),
+                        .B                (B_ADD2                ),
+                        .Ufop             (Ufop_ADD2             ),
+                        .Ready_to_uf      (Ready_to_uf_ADD2      ),
+                        .Busy             (Busy_ADD2             ),
+                        .Q                (Q_ADD2                ),
+                        .Reset            (Reset                 ),
+                        .Write_Enable_CDB (Write_Enable_CDB      ),
+                        .Done             (Done_ADD2             )
                       );
 
   always @(posedge Reset)

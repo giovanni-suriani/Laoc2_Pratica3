@@ -16,6 +16,9 @@ module unidade_despacho (
     Enable_VQ_ADD2,
     R_target_ADD1,
     R_target_ADD2,
+    R_enable_despacho,
+    R_target_despacho,
+    R_res_station_despacho,
     Pop
   );
   parameter  FREE_REGISTER = 3'd0,    // Registrador livre, sem estacao de reserva
@@ -39,7 +42,9 @@ module unidade_despacho (
   output reg  [2:0]  Ufop_ADD2;                        // Opcode da instrucao despachada
   output reg         Enable_VQ_ADD1;   // Estacao de reserva destino para a instrucao despachada
   output reg         Enable_VQ_ADD2;   // Estacao de reserva destino para a instrucao despachada
-  output reg  [2:0]  R_target_ADD1, R_target_ADD2; // Registrador de destino da estacao de reserva ADD1 e ADD2
+  output reg  [3:0]  R_target_despacho, R_target_ADD1, R_target_ADD2; // Registrador de destino da estacao de reserva ADD1 e ADD2
+  output reg  [3:0]  R_res_station_despacho; // Estacao de reserva usada para o despacho
+  output reg         R_enable_despacho; // Sinal de habilitacao da escrita no banco de registradores para o despacho
   output reg         Pop; // Sinal de pop para a unidade de despacho
 
   // assign Opcode = Instrucao_Despachada [15:13]; // Extrai o opcode da instrucao despachada
@@ -61,26 +66,29 @@ module unidade_despacho (
   // assign Qi_data[0] = Rs_Qi_data[0]; // R0
   // assign Qi_data[1] = Rs_Qi_data[1]; // R1
   // assign Qi_data[2] = Rs_Qi_data[2]; // R2
-  assign Qi_Busy = {1'b0, 1'b0, Busy_ADD2, Busy_ADD1}; // Sinal de prontidao das estacoes de reserva
+  assign Qi_Busy = {1'b1, 1'b1, Busy_ADD2, Busy_ADD1}; // Sinal de prontidao das estacoes de reserva
 
   always @(posedge Clock or posedge Reset)
     if (Reset)
       begin
-        Vj <= Vj_Vk_sem_valor; // Valor padrao para vj
-        Vk <= Vj_Vk_sem_valor; // Valor padrao para vk
-        Qj <= Qj_Qk_sem_valor; // Estacao de reserva padrao para qj
-        Qk <= Qj_Qk_sem_valor; // Estacao de reserva padrao para qk
-        Enable_VQ_ADD1 <= 1'b0; // Desativa a estacao de reserva R1
-        Enable_VQ_ADD2 <= 1'b0; // Desativa a estacao de reserva R2
-        R_target_ADD1 <= 3'b000; // Registrador de destino da estacao de reserva ADD1
-        R_target_ADD2 <= 3'b000; // Registrador de destino da estacao de reserva ADD2
-        Ufop_ADD1 <= 3'b000; // Opcode padrao para instrucao sem valor
-        Ufop_ADD2 <= 3'b000; // Opcode padrao para instrucao sem valor
-        Pop       <= 1'b0; // Sinal de pop padrao
+        Vj                     <= Vj_Vk_sem_valor; // Valor padrao para vj
+        Vk                     <= Vj_Vk_sem_valor; // Valor padrao para vk
+        Qj                     <= Qj_Qk_sem_valor; // Estacao de reserva padrao para qj
+        Qk                     <= Qj_Qk_sem_valor; // Estacao de reserva padrao para qk
+        Enable_VQ_ADD1         <= 1'b0; // Desativa a estacao de reserva R1
+        Enable_VQ_ADD2         <= 1'b0; // Desativa a estacao de reserva R2
+        R_enable_despacho      <= 1'b0; // Desativa o sinal de habilitacao da escrita no banco de registradores para o despacho
+        R_target_despacho      <= 3'b000; // Qual registrador de destino da estacao de reserva despacho
+        R_res_station_despacho <= 3'b000; // Estacao de reserva despacho
+        R_target_ADD1          <= 3'b000; // Registrador de destino da estacao de reserva ADD1
+        R_target_ADD2          <= 3'b000; // Registrador de destino da estacao de reserva ADD2
+        Ufop_ADD1              <= 3'b000; // Opcode padrao para instrucao sem valor
+        Ufop_ADD2              <= 3'b000; // Opcode padrao para instrucao sem valor
+        Pop                    <= 1'b0; // Sinal de pop padrao
       end
     else
       begin
-        Pop <= 1'b1; // Ativa o sinal de pop para a unidade de despacho
+        Pop = 1'b1; // Ativa o sinal de pop para a unidade de despacho
         if (Instrucao_Despachada [15:13] == 3'b000) // NOP
           begin
             // Faz nada
@@ -129,6 +137,10 @@ module unidade_despacho (
                 Enable_VQ_ADD2 <= 1'b1; // Ativa a est
                 R_target_ADD2  <= Ri;
                 Ufop_ADD2      <= Instrucao_Despachada [15:13]; // Opcode da instrucao despachada
+              end
+            else if (Qi_Busy[1:0] == 2'b11) // Estacoes de reservas ocupadas
+              begin
+                Pop <= 1'b0; // Desativa o sinal de pop para a unidade de despacho
               end
           end
       end
