@@ -3,7 +3,8 @@ module res_station_R (
     Reset,
     Opcode,
     Busy,
-    Done,
+    Done,                // Sinal de finalizacao da operacao da unidade funcional
+    Finished,            // Sinal de finalizacao da operacao da instrucao
     Vj, Vk,              // valores dos operandos
     Qj, Qk,               // estacoes de reserva dependentes
     Ufop, // qual operacao esta sendo executada
@@ -18,6 +19,7 @@ module res_station_R (
 
   input Clock, Reset;
   input Done; // Sinal de finalizacao da operacao da unidade funcional
+  input Finished; // Sinal de finalizacao da operacao da instrucao
   input [2:0] Opcode;
   input [2:0] R_target; // Registrador de destino
   input [15:0] Vj, Vk;
@@ -36,7 +38,7 @@ module res_station_R (
 
   // Talvez Busy seja um reg
 
-  always @(Reset or Enable_VQ or Done)
+  always @(Reset or Enable_VQ or Done or Finished)
     begin
       if (Reset)
         begin
@@ -48,11 +50,15 @@ module res_station_R (
       else
         begin
           // Tenho que passar os operandos para a unidade funcional
-          if (Done)
+          if (Finished)
             begin
               Busy     <= 1'b0; // Desativa a unidade funcional
+              R_enable <= 1'b1; // Habilita o registrador de destino para escrita
               // Ready <= 1'b0; // Desativa a prontidao, pois nao esta executando
               // Result <= Vj_reg + Vk_reg; // Resultado da operacao
+            end
+          else if (Done)
+            begin
               R_enable <= 1'b1; // Habilita o registrador de destino para escrita
             end
           else if (Enable_VQ)

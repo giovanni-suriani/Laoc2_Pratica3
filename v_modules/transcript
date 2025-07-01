@@ -1,7 +1,7 @@
 # do vlog_wave_tb_tomasulo.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 10:14:16 on Jul 01,2025
+# Start time: 13:43:39 on Jul 01,2025
 # vlog -reportprogress 300 "+acc" tomasulo.v memoria_instrucoes.v memoria_dados.v fila_de_instrucoes.v CDB_arbiter.v register_status.v unidade_despacho.v res_station_R.v unidade_funcional_R.v seletor_uf.v tb_tomasulo.v 
 # -- Compiling module tomasulo
 # -- Compiling module memoria_instrucoes
@@ -18,10 +18,10 @@
 # Top level modules:
 # 	memoria_dados
 # 	tb_tomasulo
-# End time: 10:14:16 on Jul 01,2025, Elapsed time: 0:00:00
+# End time: 13:43:39 on Jul 01,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -L altera work.tb_tomasulo 
-# Start time: 10:14:16 on Jul 01,2025
+# Start time: 13:43:39 on Jul 01,2025
 # Loading work.tb_tomasulo
 # Loading work.tomasulo
 # Loading work.register_status
@@ -33,11 +33,32 @@
 # Loading work.seletor_uf
 # Loading work.unidade_funcional_R
 # ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: CDB_arbiter.v(9).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/u_CDB_arbiter File: tomasulo.v Line: 112
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/u_CDB_arbiter File: tomasulo.v Line: 119
 # ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (3) for port 'Qj'. The port definition is at: seletor_uf.v(6).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD1 File: tomasulo.v Line: 162
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD1 File: tomasulo.v Line: 170
 # ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: seletor_uf.v(8).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD1 File: tomasulo.v Line: 162
-# [550] Ativando despacho
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD1 File: tomasulo.v Line: 170
+# [0] fuck
+# [100] Tail inserido 15
+# [100] fila_de_instrucoes: Linha 71 fila instrucoes Instrucao 15 inserida na fila: xxxxxxxxxxxxxxxx
+# [100] fofo
+# [200] Tail inserido 0
+# [200] fila_de_instrucoes: Linha 71 fila instrucoes Instrucao 0 inserida na fila: 0100000010100000
+# [200] fofo
+# [300] Tail inserido 1
+# [300] fila_de_instrucoes: Linha 71 fila instrucoes Instrucao 1 inserida na fila: 0110000010100000
+# [300] fofo
+# [350] Ativando despacho
+# [400] Tail inserido 2
+# [400] fila_de_instrucoes: Linha 71 fila instrucoes Instrucao 2 inserida na fila: 0100000010100000
+# [400] fofo
+# [500] Tail inserido 3
+# [500] fila_de_instrucoes: Linha 71 fila instrucoes Instrucao 3 inserida na fila: 0100000010100000
+# [500] fofo
+# [600] fofo
+# [700] fofo
+# [800] fofo
+# [900] fofo
+# [1000] fofo
 # unsigned
 # .main_pane.wave.interior.cs.body.pw.wf

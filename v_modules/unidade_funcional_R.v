@@ -15,7 +15,6 @@ module unidade_funcional_R(A, B, Ufop, Ready_to_uf, Reset, Q, Busy, Write_Enable
         Q <= 16'b0; // Reseta o valor de Q
         Write_Enable_CDB <= 1'b0; // Desabilita escrita no CDB
         Done <= 1'b0; // Indica que a operação não foi concluída
-        
       end
       if (Ready_to_uf)
         begin

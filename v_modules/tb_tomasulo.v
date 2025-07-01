@@ -8,8 +8,7 @@ module tb_tomasulo;
   // Instancia do modulo tomasulo
   tomasulo uut (
              .Clock(Clock),
-             .Reset(Reset),
-             .Pop(Pop)
+             .Reset(Reset)
            );
 
   always #50 Clock = ~Clock; // Clock com periodo de 10ps
@@ -19,19 +18,21 @@ module tb_tomasulo;
       // Teste de funcionalidade
       Clock = 0;
       Reset = 1;
-      Pop = 0;
-      @(posedge Clock);
+      // Pop = 0;
       @(posedge Clock);
       Reset = 0;
-      Pop = 1;
+      @(posedge Clock);
+      @(posedge Clock);
+      // Ciclos para botar a primeira instrucao
+      // Pop = 1;
+      @(posedge Clock);
+      $display("[%0t] Ativando despacho", $time);
       // Espera 4 ciclos de clock
       @(posedge Clock);
       @(posedge Clock);
-      Pop = 0;
       @(posedge Clock);
       @(posedge Clock);
       // Ativa o despacho de instrução
-      $display("[%0t] Ativando despacho", $time);
 
       // Depurando unidade de despacho
 

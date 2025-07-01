@@ -59,8 +59,7 @@ module tomasulo(
   wire        Done_ADD2;                                // Sinal de finalizacao da operacao da unidade funcional ADD1
 
   // Instancia do modulo seletor de unidade funcional
-  wire Ready_to_uf_ADD1;                           // Sinal de pronto para
-  wire Ready_to_uf_ADD2;                           // Sinal de pronto para
+  wire Ready_to_uf;                           // Sinal de pronto para
 
   // Sinais inuteis
   wire        Full;                       // Sinal de FIFO cheia
@@ -178,35 +177,20 @@ module tomasulo(
                .Qi_CDB_data (Qi_CDB_data ),
                .A           (A           ),
                .B           (B           ),
-               .Ready_to_uf (Ready_to_uf_ADD1 ),
+               .Ready_to_uf (Ready_to_uf ),
                .Busy        (Busy_ADD1)
              );
 
- /*  seletor_uf seletor_uf_ADD2(
-               .Clock       (Clock       ),
-               .Reset       (Reset       ),
-               .Vj          (Vj          ),
-               .Vk          (Vk          ),
-               .Qj          (Qj          ),
-               .Qk          (Qk          ),
-               .Qi_CDB      (Qi_CDB      ),
-               .Qi_CDB_data (Qi_CDB_data ),
-               .A           (A           ),
-               .B           (B           ),
-               .Ready_to_uf (Ready_to_uf_ADD2 ),
-               .Busy        (Busy_ADD2)
-             ); */
-
   unidade_funcional_R unidade_funcional_ADD1(
-                        .A                (A                     ),
-                        .B                (B                     ),
-                        .Ufop             (Ufop_ADD1             ),
-                        .Ready_to_uf      (Ready_to_uf_ADD1      ),
-                        .Busy             (Busy_ADD1             ),
+                        .A                (A                ),
+                        .B                (B                ),
+                        .Ufop             (Ufop_ADD1        ),
+                        .Ready_to_uf      (Ready_to_uf      ),
+                        .Busy             (Busy_ADD1        ),
                         .Q                (Q_ADD1                ),
-                        .Reset            (Reset                 ),
-                        .Write_Enable_CDB (Write_Enable_CDB      ),
-                        .Done             (Done_ADD1             )
+                        .Reset            (Reset            ),
+                        .Write_Enable_CDB (Write_Enable_CDB ),
+                        .Done             (Done_ADD1     )
                       );
 
   always @(posedge Reset)
