@@ -4,15 +4,17 @@ module unidade_despacho (
     Instrucao_Despachada, // Instrucao que sera despachada
     Rs_Qi,
     Rs_Qi_data,
-    Ready_R1,
-    Ready_R2,
+    Busy_ADD1,
+    Busy_ADD2,
     Vj,
     Vk,
     Qj,
     Qk,
     Opcode,
     Enable_VQ_ADD1,
-    Enable_VQ_ADD2
+    Enable_VQ_ADD2,
+    R_target_ADD1, 
+    R_target_ADD2
   );
   parameter  FREE_REGISTER = 3'd0,    // Registrador livre, sem estacao de reserva
              RES_STATION_ADD1 = 3'd1, // Estacao de reserva R2
@@ -27,13 +29,14 @@ module unidade_despacho (
   input [15:0] Instrucao_Despachada;  // Instrucao que sera despachada
   input [1:0]  Rs_Qi [2:0];
   input [15:0] Rs_Qi_data [2:0];
+  input        Busy_ADD1, Busy_ADD2;            // Sinal de prontidao da estacao de reserva R1
 
   output reg  [15:0] Vj, Vk;                        // Valores dos operandos da instrucao despachada
   output reg  [2:0]  Qj, Qk;                        // Estacao de reserva que encaminha o dado para o registrador
   output wire [2:0]  Opcode;                        // Opcode da instrucao despachada
   output reg         Enable_VQ_ADD1;   // Estacao de reserva destino para a instrucao despachada
   output reg         Enable_VQ_ADD2;   // Estacao de reserva destino para a instrucao despachada
-  output reg         Ready_R1, Ready_R2;            // Sinal de prontidao da estacao de reserva R1
+  output reg  [2:0]  R_target_ADD1, R_target_ADD2; // Registrador de destino da estacao de reserva ADD1 e ADD2
 
   assign Opcode = Instrucao_Despachada [15:13]; // Extrai o opcode da instrucao despachada
 
@@ -45,7 +48,7 @@ module unidade_despacho (
   // Sinais das estacoes de reserva
   // wire [2:0]  Qi      [3:0];
   // wire  [15:0] Qi_data [3:0];
-  wire [3:0] Qi_Ready;
+  wire [3:0] Qi_Busy;
 
 
   // assign Qi[0] = Rs_Qi[0]; // R0
@@ -54,7 +57,7 @@ module unidade_despacho (
   // assign Qi_data[0] = Rs_Qi_data[0]; // R0
   // assign Qi_data[1] = Rs_Qi_data[1]; // R1
   // assign Qi_data[2] = Rs_Qi_data[2]; // R2
-  assign Qi_Ready = {1'b0, 1'b0, Ready_R2, Ready_R1}; // Sinal de prontidao das estacoes de reserva
+  assign Qi_Busy = {1'b0, 1'b0, Busy_ADD2, Busy_ADD1}; // Sinal de prontidao das estacoes de reserva
 
   always @(posedge Clock or posedge Reset)
     if (Reset)
@@ -65,9 +68,8 @@ module unidade_despacho (
         Qk <= Qj_Qk_sem_valor; // Estacao de reserva padrao para qk
         Enable_VQ_ADD1 <= 1'b0; // Desativa a estacao de reserva R1
         Enable_VQ_ADD2 <= 1'b0; // Desativa a estacao de reserva R2
-        Ready_R1 <= 1'b1; // Ativa a estacao de reserva R1
-        Ready_R2 <= 1'b1; // Ativa a estacao de reserva R
-
+        R_target_ADD1 <= 3'b000; // Registrador de destino da estacao de reserva ADD1
+        R_target_ADD2 <= 3'b000; // Registrador de destino da estacao de reserva ADD2
 
       end
     else
@@ -78,6 +80,8 @@ module unidade_despacho (
           end
         else
           begin
+            Enable_VQ_ADD1 <= 1'b0; // Desativa a estacao de reserva R1
+            Enable_VQ_ADD2 <= 1'b0; // Desativa a estacao de reserva R2
             // Resolvendo vj ou qj
             if (Rs_Qi[Rj] == FREE_REGISTER)
               begin
@@ -103,16 +107,18 @@ module unidade_despacho (
               end
 
             // Devolve a estacao de reserva responsavel por realizar a instrucao despachada
-            if (Qi_Ready[0])
+            if (!Qi_Busy[0])
               begin
                 Enable_VQ_ADD1 <= 1'b1; // Ativa a estacao de reserva R1
-                Enable_VQ_ADD2 <= 1'b0; // Desativa a est
+                Enable_VQ_ADD2 <= 1'b0; // Desativa a estacao de reserva R2
+                R_target_ADD1  <= Ri;
                 // Estacao_Reserva_Destino <= RES_STATION_ADD1; // Estacao de reserva R1
               end
-            else if (Qi_Ready[1])
+            else if (!Qi_Busy[1])
               begin
                 Enable_VQ_ADD1 <= 1'b0; // Desativa a estacao de reserva R1
                 Enable_VQ_ADD2 <= 1'b1; // Ativa a est
+                R_target_ADD2  <= Ri;
               end
           end
       end

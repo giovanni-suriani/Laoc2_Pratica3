@@ -27,6 +27,7 @@ module tb_tomasulo;
       // Espera 4 ciclos de clock
       @(posedge Clock);
       @(posedge Clock);
+      Pop = 0;
       @(posedge Clock);
       @(posedge Clock);
       // Ativa o despacho de instrução

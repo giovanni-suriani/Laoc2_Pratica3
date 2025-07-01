@@ -3,6 +3,10 @@ module register_status(
     Reset,
     Rs_Qi,
     Rs_Qi_data,
+    R_enable_ADD1, // Sinal de habilitacao da escrita no banco de registradores para ADD1
+    R_enable_ADD2, // Sinal de habilitacao da escrita no banco de registradores para ADD2
+    R_target_ADD1, // Registrador de destino da estacao de reserva ADD1
+    R_target_ADD2, // Registrador de destino da estacao de reserva ADD2
     Qi_CDB,
     Qi_CDB_data
   );
@@ -19,6 +23,10 @@ module register_status(
   input             Clock, Reset;
   input [3:0]       Qi_CDB;                // Sinal de CDB (Common Data Bus) indicando que o dado foi enviado
   input [15:0]      Qi_CDB_data;           // Dados dos registradores R0, R1 e R2
+  input             R_enable_ADD1;         // Sinal de habilitacao da escrita no banco de registradores para ADD1
+  input             R_enable_ADD2;         // Sinal de habilitacao da escrita no banco de registradores para ADD2
+  input [2:0]       R_target_ADD1;         // Registrador de destino da estacao de reserva ADD1
+  input [2:0]       R_target_ADD2;         // Registrador de destino da estacao de reserva ADD2
   output reg [1:0]  Rs_Qi [2:0];           // Qi dos registradores R0, R1 e R2
   output reg [15:0] Rs_Qi_data [2:0];      // Dados dos registradores R0, R1 e R2
 
@@ -36,6 +44,12 @@ module register_status(
         end
       else
         begin
+          if (R_enable_ADD1) // Se o sinal de habilitacao da escrita no banco de registradores para ADD1 estiver ativo
+            begin
+              Rs_Qi[R_target_ADD1] <= RES_STATION_ADD1; // Atualiza o Qi do registrador de destino ADD1
+              Rs_Qi_data[R_target_ADD1] <= Qi_CDB_data;  // Atualiza o valor do registrador de destino ADD1
+            end
+          
           // implementar a logica para atualizar os valores de Qi dos registradores de acordo
           // com a instrucao, ou alguma coisa na estacao de reserva, ou algum modulo intermediario, modulo de despacho
           // dependendo das operacoes que estao sendo executadas nas estacoes de reserva.

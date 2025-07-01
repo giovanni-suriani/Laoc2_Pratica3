@@ -12,8 +12,8 @@ module memoria_instrucoes (
   */
 
   parameter NOP = 16'd0; // NOP (No Operation) - 0000
-  parameter ADD = 3'd1;
-  parameter SUB = 3'd2;
+  parameter ADD = 3'd2;
+  parameter SUB = 3'd3;
 
   parameter R0 = 3'd0; // Registrador R0
   parameter R1 = 3'd1; // Registrador R1
