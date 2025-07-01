@@ -10,7 +10,7 @@ z2
 cModel Technology
 Z0 d/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules
 vCDB_arbiter
-Z1 !s110 1751375609
+Z1 !s110 1751375656
 !i10b 1
 !s100 0oU8]a@Q5BD:cWnEN^G^U0
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -20,13 +20,13 @@ R0
 w1751360095
 8CDB_arbiter.v
 FCDB_arbiter.v
-!i122 209
+!i122 211
 L0 1 37
 Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1751375608.000000
+Z5 !s108 1751375656.000000
 !s107 tb_tomasulo.v|seletor_uf.v|unidade_funcional_R.v|res_station_R.v|unidade_despacho.v|register_status.v|CDB_arbiter.v|fila_de_instrucoes.v|memoria_dados.v|memoria_instrucoes.v|tomasulo.v|
 Z6 !s90 -reportprogress|300|+acc|tomasulo.v|memoria_instrucoes.v|memoria_dados.v|fila_de_instrucoes.v|CDB_arbiter.v|register_status.v|unidade_despacho.v|res_station_R.v|unidade_funcional_R.v|seletor_uf.v|tb_tomasulo.v|
 !i113 1
@@ -44,7 +44,7 @@ R0
 Z9 w1750901784
 8fila_de_instrucoes.v
 Ffila_de_instrucoes.v
-!i122 209
+!i122 211
 L0 1 93
 R4
 r1
@@ -67,7 +67,7 @@ R0
 w1749594315
 8memoria_dados.v
 Fmemoria_dados.v
-!i122 209
+!i122 211
 L0 1 36
 R4
 r1
@@ -90,7 +90,7 @@ R0
 w1751361026
 8memoria_instrucoes.v
 Fmemoria_instrucoes.v
-!i122 209
+!i122 211
 L0 1 67
 R4
 r1
@@ -113,7 +113,7 @@ R0
 w1751374358
 8register_status.v
 Fregister_status.v
-!i122 209
+!i122 211
 L0 1 59
 R4
 r1
@@ -136,7 +136,7 @@ R0
 w1751375603
 8res_station_R.v
 Fres_station_R.v
-!i122 209
+!i122 211
 L0 1 76
 R4
 r1
@@ -160,7 +160,7 @@ R0
 w1751029876
 8seletor_uf.v
 Fseletor_uf.v
-!i122 209
+!i122 211
 L0 1 81
 R4
 r1
@@ -206,7 +206,7 @@ R0
 w1751359272
 8tb_tomasulo.v
 Ftb_tomasulo.v
-!i122 209
+!i122 211
 L0 3 50
 R4
 r1
@@ -229,7 +229,7 @@ R0
 w1751375508
 8tomasulo.v
 Ftomasulo.v
-!i122 209
+!i122 211
 L0 1 194
 R4
 r1
@@ -252,7 +252,7 @@ R0
 w1751375397
 8unidade_despacho.v
 Funidade_despacho.v
-!i122 209
+!i122 211
 L0 1 127
 R4
 r1
@@ -267,16 +267,16 @@ R8
 vunidade_funcional_R
 R1
 !i10b 1
-!s100 3G[NW6KV>9Xj]DRd90I:K2
+!s100 QWzdBL:6?A;od2;cHae712
 R2
-IhOcC6:JHb8aV1Td]acUT<2
+ISQUk6IW8Rj[J7dOd^Tfeg2
 R3
 R0
-w1751374706
+w1751375632
 8unidade_funcional_R.v
 Funidade_funcional_R.v
-!i122 209
-L0 1 70
+!i122 211
+L0 1 71
 R4
 r1
 !s85 0

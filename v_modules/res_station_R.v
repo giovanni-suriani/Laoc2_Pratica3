@@ -61,7 +61,7 @@ module res_station_R (
               Vk_reg <= Vk;  // Sobrescreve o valor de Vk
               Qj_reg <= Qj;  // Sobrescreve o valor de Qj
               Qk_reg <= Qk;  // Sobrescreve o valor de Qk
-              Busy  <= 1'b1; // Ativa a unidade funcional
+              Busy   <= 1'b1; // Ativa a unidade funcional
               // Ready <= 1'b1; // Ativa a prontidao, pois esta executando
             end
         end
