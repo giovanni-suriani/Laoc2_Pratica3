@@ -29,6 +29,8 @@ module fila_de_instrucoes(
                        .Q       (Mem_data)
                      );
 
+  // Preciso separar instrucoes do tipo R e I na fila
+
   always @(negedge Clock or posedge Reset)
     begin
       if (Reset) // Reset sem preencher a FIFO, Passivel de dar merda na fpga
@@ -43,26 +45,6 @@ module fila_de_instrucoes(
           preenche <= 1;
           // $display("[%0t] fuck",$time);
         end
-
-      // if (Reset && !preenche) // Reset sem preencher a FIFO, Passivel de dar merda na fpga
-      // begin
-      //     head <= 0;
-      //     tail <= 0;
-      //     count <= 0;
-      //     PC <= 0;
-      //     Instrucao_Despachada <= 0;
-      //     Full <= 0;
-      //     Empty <= 1;
-      //     preenche <= 1;
-      // end
-      // else if (Reset && preenche)
-      // begin
-      //     // Comeca a preencher a FIFO com as instrucoes da memoria
-      //     Fila[tail] = Mem_data;
-      //     tail = tail + 1;
-      //     count <= count + 1;
-      //     PC <= PC + 1;
-      // end
       else
         begin
           // Busca automatica enquanto FIFO nao esta cheia
