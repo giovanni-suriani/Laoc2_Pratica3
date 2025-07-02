@@ -23,17 +23,23 @@ add wave -label "Clock" tb_fila/Clock
 add wave -label "Pop" /tb_fila/uut/Pop
 add wave -label "Reset" tb_fila/Reset
 add wave -label "Instrucao_Despachada" -radix binary  tb_fila/uut/Instrucao_Despachada
-add wave -label "Fila de Instrucoes" -radix binary  tb_fila/uut/Fila
+add wave -label "Fila_R" -radix binary  tb_fila/uut/Fila_R
+add wave -label "Fila_I" -radix binary  tb_fila/uut/Fila_I
 add wave -label "mem" -radix binary /tb_fila/uut/u_memoria_instrucoes/mem
 add wave -label "Mem_data" -radix binary  /tb_fila/uut/Mem_data
 add wave -label "Instrucao_Despachada" -radix binary /tb_fila/uut/Instrucao_Despachada
 add wave -label "Full" /tb_fila/uut/Full
 add wave -label "Empty" /tb_fila/uut/Empty
 add wave -label "head" /tb_fila/uut/head
+add wave -label "head_R" /tb_fila/uut/head_R
+add wave -label "head_I" /tb_fila/uut/head_I
 add wave -label "tail" /tb_fila/uut/tail
+add wave -label "tail_R" /tb_fila/uut/tail_R
+add wave -label "tail_I" /tb_fila/uut/tail_I
+add wave -label "TipoFila" /tb_fila/uut/TipoFila
 add wave -label "count" /tb_fila/uut/count
 add wave -label "PC" /tb_fila/uut/PC
-add wave -label "preenche" /tb_fila/uut/preenche
+#add wave -label "preenche" /tb_fila/uut/preenche
 add wave -label "Address" /tb_fila/uut/u_memoria_instrucoes/Address
 add wave -label "Q" /tb_fila/uut/u_memoria_instrucoes/Q
 

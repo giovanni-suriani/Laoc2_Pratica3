@@ -22,7 +22,8 @@ vsim -L altera work.tb_tomasulo
 add wave -label "Clock" tb_tomasulo/Clock
 add wave -label "Reset" tb_tomasulo/Reset
 add wave -label "Pop" /tb_tomasulo/uut/Pop
-add wave -label "Fila de Instrucoes" -radix binary  tb_tomasulo/uut/u_fila_de_instrucoes/Fila
+add wave -label "Fila_R" -radix binary /tb_tomasulo/uut/u_fila_de_instrucoes/Fila_R
+add wave -label "Fila_I" -radix binary /tb_tomasulo/uut/u_fila_de_instrucoes/Fila_I
 add wave -label "Instrucao_Despachada" -radix binary /tb_tomasulo/uut/Instrucao_Despachada
 add wave -label "head" /tb_tomasulo/uut/u_fila_de_instrucoes/head
 add wave -label "tail" /tb_tomasulo/uut/u_fila_de_instrucoes/tail

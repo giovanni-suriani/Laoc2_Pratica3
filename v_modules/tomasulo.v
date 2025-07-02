@@ -81,6 +81,8 @@ module tomasulo(
   wire        Empty;                      // Sinal de FIFO vazia
   integer     conta_ciclos = 0;
 
+  reg Pop_R = 1'b0; // Sinal de pop para a unidade de despacho
+  reg Pop_I = 1'b0; // Sinal de pop para a unidade de
 
   // Instancia do modulo register_status
   register_status u_register_status(
@@ -106,6 +108,8 @@ module tomasulo(
                        .Clock                (Clock                ),
                        .Reset                (Reset                ),
                        .Pop                  (Pop                  ),
+                       .Pop_R                (Pop_R                ),
+                       .Pop_I                (Pop_I                ),
                        .Instrucao_Despachada (Instrucao_Despachada ),
                        .Full                 (Full                 ),
                        .Empty                (Empty                )

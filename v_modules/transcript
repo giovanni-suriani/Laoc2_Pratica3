@@ -1,7 +1,7 @@
 # do vlog_wave_tb_tomasulo_ufs.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 09:24:06 on Jul 02,2025
+# Start time: 17:36:22 on Jul 02,2025
 # vlog -reportprogress 300 "+acc" tomasulo.v memoria_instrucoes.v memoria_dados.v fila_de_instrucoes.v contador_3bits.v CDB_arbiter.v register_status.v unidade_despacho.v res_station_R.v unidade_funcional_R.v seletor_uf.v tb_tomasulo.v 
 # -- Compiling module tomasulo
 # -- Compiling module memoria_instrucoes
@@ -20,10 +20,10 @@
 # 	memoria_dados
 # 	contador_3bits
 # 	tb_tomasulo
-# End time: 09:24:06 on Jul 02,2025, Elapsed time: 0:00:00
+# End time: 17:36:22 on Jul 02,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -L altera work.tb_tomasulo 
-# Start time: 09:24:06 on Jul 02,2025
+# Start time: 17:36:22 on Jul 02,2025
 # Loading work.tb_tomasulo
 # Loading work.tomasulo
 # Loading work.register_status
@@ -35,23 +35,39 @@
 # Loading work.seletor_uf
 # Loading work.unidade_funcional_R
 # ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: CDB_arbiter.v(9).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/u_CDB_arbiter File: tomasulo.v Line: 139
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/u_CDB_arbiter File: tomasulo.v Line: 143
 # ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'R_target'. The port definition is at: res_station_R.v(13).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD1 File: tomasulo.v Line: 151
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD1 File: tomasulo.v Line: 155
 # ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'R_target'. The port definition is at: res_station_R.v(13).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD2 File: tomasulo.v Line: 175
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD2 File: tomasulo.v Line: 179
 # ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: seletor_uf.v(8).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD1 File: tomasulo.v Line: 200
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD1 File: tomasulo.v Line: 204
 # ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: seletor_uf.v(8).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD2 File: tomasulo.v Line: 215
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD2 File: tomasulo.v Line: 219
+# [200] Despacho de instrucao head =  0, Tipo_fila[head] = 0
+# [200] Despacho de instrucao R [0] com opcode 010
+# [300] Despacho de instrucao head =  1, Tipo_fila[head] = 0
+# [300] Despacho de instrucao R [1] com opcode 011
+# [350] seletor_uf: Vj: 0004, Vk: 0003, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
 # [350] Ativando despacho
+# [400] Sou um load simplorio
+# [400] Fila_I[0] = 1000000010000001
+# [400] Despacho de instrucao head =  2, Tipo_fila[head] = 1
+# [400] Despacho de instrucao I [0] com opcode 100
 # [450] seletor_uf: Vj: 0004, Vk: 0003, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
+# [450] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 1, Qi_CDB: 0, Qi_CDB_data: 0000
 # [550] seletor_uf: Vj: 0004, Vk: 0003, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
 # [550] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 1, Qi_CDB: 0, Qi_CDB_data: 0000
-# [650] seletor_uf: Vj: 0004, Vk: 0003, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
-# [650] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 1, Qi_CDB: 0, Qi_CDB_data: 0000
+# [650] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 1, Qi_CDB: 1, Qi_CDB_data: 0007
+# [700] Despacho de instrucao head =  3, Tipo_fila[head] = 0
+# [700] Despacho de instrucao R [2] com opcode 011
 # [750] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 1, Qi_CDB: 1, Qi_CDB_data: 0007
+# [800] Despacho de instrucao head =  4, Tipo_fila[head] = 1
+# [800] Despacho de instrucao I [1] com opcode 101
 # [850] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 1, Qi_CDB: 1, Qi_CDB_data: 0007
-# [950] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 1, Qi_CDB: 1, Qi_CDB_data: 0007
+# [900] Despacho de instrucao head =  5, Tipo_fila[head] = 0
+# [900] Despacho de instrucao R [3] com opcode 010
+# [1000] Despacho de instrucao head =  6, Tipo_fila[head] = 0
+# [1000] Despacho de instrucao R [4] com opcode 010
 # unsigned
 # .main_pane.wave.interior.cs.body.pw.wf

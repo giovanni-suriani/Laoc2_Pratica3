@@ -20,9 +20,10 @@ vsim -L altera work.tb_tomasulo
 
 # Sinais do uut (unit under test)
 add wave -label "Clock" tb_tomasulo/Clock
-#add wave -label "Reset" tb_tomasulo/Reset
+add wave -label "Reset" tb_tomasulo/Reset
 add wave -label "Pop" /tb_tomasulo/uut/Pop
-add wave -label "Fila de Instrucoes" -radix binary  tb_tomasulo/uut/u_fila_de_instrucoes/Fila
+add wave -label "Fila_R" -radix binary /tb_tomasulo/uut/u_fila_de_instrucoes/Fila_R
+add wave -label "Fila_I" -radix binary /tb_tomasulo/uut/u_fila_de_instrucoes/Fila_I
 add wave -label "Instrucao_Despachada" -radix binary /tb_tomasulo/uut/Instrucao_Despachada
 
 #Sinais da tabela de registradores
@@ -64,32 +65,32 @@ add wave -label "Despacho/Qk" /tb_tomasulo/uut/u_unidade_despacho/Qk
 #add wave -label "Despacho/Rk" /tb_tomasulo/uut/u_unidade_despacho/Rk
 
 # Sinais da unidade de reserva ADD1
-#add wave -label "ADD1/Busy" /tb_tomasulo/uut/ADD1/Busy
-#add wave -label "ADD1/Vj_reg" /tb_tomasulo/uut/ADD1/Vj_reg
-#add wave -label "ADD1/Vk_reg" /tb_tomasulo/uut/ADD1/Vk_reg
-#add wave -label "ADD1/Qj_reg" /tb_tomasulo/uut/ADD1/Qj_reg
-#add wave -label "ADD1/Qk_reg" /tb_tomasulo/uut/ADD1/Qk_reg
-#add wave -label "ADD1/Done" /tb_tomasulo/uut/ADD1/Done
-#add wave -label "ADD1/Finished" /tb_tomasulo/uut/ADD1/Finished
-##add wave -label "ADD1/Ready" /tb_tomasulo/uut/ADD1/Ready
-##add wave -label "ADD1/Result" /tb_tomasulo/uut/ADD1/Result
-#add wave -label "ADD1/Ufop" -radix binary /tb_tomasulo/uut/ADD1/Ufop
-#add wave -label "ADD1/Busy" -radix binary /tb_tomasulo/uut/ADD1/Busy
-##add wave -label "ADD1/Enable" /tb_tomasulo/uut/ADD1/Enable_VQ_ADD1
-#
-## sinais do seletor da unidade funcional ADD1
-#add wave -label "seletor_ADD1/Qi_CDB" /tb_tomasulo/uut/seletor_uf_ADD1/Qi_CDB
-#add wave -label "seletor_ADD1/Qi_CDB_data" /tb_tomasulo/uut/seletor_uf_ADD1/Qi_CDB_data
-#add wave -label "seletor_ADD1/A" /tb_tomasulo/uut/seletor_uf_ADD1/A
-#add wave -label "seletor_ADD1/B" /tb_tomasulo/uut/seletor_uf_ADD1/B
-#add wave -label "seletor_ADD1/Ready_to_uf" /tb_tomasulo/uut/seletor_uf_ADD1/Ready_to_uf
-#
-## Sinais da unidade funcional ADD1
-#add wave -label "UF_ADD1/Ufop" -radix binary /tb_tomasulo/uut/unidade_funcional_ADD1/Ufop
-#add wave -label "UF_ADD1/Q" /tb_tomasulo/uut/unidade_funcional_ADD1/Q
-#add wave -label "UF_ADD1/Clear" /tb_tomasulo/uut/unidade_funcional_ADD1/Clear
-#add wave -label "UF_ADD1/Tstep" /tb_tomasulo/uut/unidade_funcional_ADD1/Tstep
-#add wave -label "UF_ADD1/Write_Enable_CDB" /tb_tomasulo/uut/unidade_funcional_ADD1/Write_Enable_CDB
+add wave -label "ADD1/Busy" /tb_tomasulo/uut/ADD1/Busy
+add wave -label "ADD1/Vj_reg" /tb_tomasulo/uut/ADD1/Vj_reg
+add wave -label "ADD1/Vk_reg" /tb_tomasulo/uut/ADD1/Vk_reg
+add wave -label "ADD1/Qj_reg" /tb_tomasulo/uut/ADD1/Qj_reg
+add wave -label "ADD1/Qk_reg" /tb_tomasulo/uut/ADD1/Qk_reg
+add wave -label "ADD1/Done" /tb_tomasulo/uut/ADD1/Done
+add wave -label "ADD1/Finished" /tb_tomasulo/uut/ADD1/Finished
+#add wave -label "ADD1/Ready" /tb_tomasulo/uut/ADD1/Ready
+#add wave -label "ADD1/Result" /tb_tomasulo/uut/ADD1/Result
+add wave -label "ADD1/Ufop" -radix binary /tb_tomasulo/uut/ADD1/Ufop
+add wave -label "ADD1/Busy" -radix binary /tb_tomasulo/uut/ADD1/Busy
+#add wave -label "ADD1/Enable" /tb_tomasulo/uut/ADD1/Enable_VQ_ADD1
+
+# sinais do seletor da unidade funcional ADD1
+add wave -label "seletor_ADD1/Qi_CDB" /tb_tomasulo/uut/seletor_uf_ADD1/Qi_CDB
+add wave -label "seletor_ADD1/Qi_CDB_data" /tb_tomasulo/uut/seletor_uf_ADD1/Qi_CDB_data
+add wave -label "seletor_ADD1/A" /tb_tomasulo/uut/seletor_uf_ADD1/A
+add wave -label "seletor_ADD1/B" /tb_tomasulo/uut/seletor_uf_ADD1/B
+add wave -label "seletor_ADD1/Ready_to_uf" /tb_tomasulo/uut/seletor_uf_ADD1/Ready_to_uf
+
+# Sinais da unidade funcional ADD1
+add wave -label "UF_ADD1/Ufop" -radix binary /tb_tomasulo/uut/unidade_funcional_ADD1/Ufop
+add wave -label "UF_ADD1/Q" /tb_tomasulo/uut/unidade_funcional_ADD1/Q
+add wave -label "UF_ADD1/Clear" /tb_tomasulo/uut/unidade_funcional_ADD1/Clear
+add wave -label "UF_ADD1/Tstep" /tb_tomasulo/uut/unidade_funcional_ADD1/Tstep
+add wave -label "UF_ADD1/Write_Enable_CDB" /tb_tomasulo/uut/unidade_funcional_ADD1/Write_Enable_CDB
 
 
 
