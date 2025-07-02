@@ -229,7 +229,7 @@ module tomasulo(
 
   unidade_funcional_R unidade_funcional_ADD1(
                         .Clock            (Clock                 ),
-                        .Clear            (Clear_counter_ADD1  ),
+                        .Clear            (Clear_counter_ADD1    ),
                         .A                (A_ADD1                ),
                         .B                (B_ADD1                ),
                         .Ufop             (Ufop_ADD1             ),
@@ -243,7 +243,7 @@ module tomasulo(
 
   unidade_funcional_R unidade_funcional_ADD2(
                         .Clock            (Clock                 ),
-                        .Clear            (Clear_counter_ADD2  ),
+                        .Clear            (Clear_counter_ADD2    ),
                         .A                (A_ADD2                ),
                         .B                (B_ADD2                ),
                         .Ufop             (Ufop_ADD2             ),

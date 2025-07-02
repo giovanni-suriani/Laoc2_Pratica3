@@ -14,11 +14,12 @@ module seletor_uf (
   parameter Vj_Vk_sem_valor = 16'b1111_1111_1111_0000, // Valor padrao para algo sem valor (como xxx nao existe na fpga)
             Qj_Qk_sem_valor = 3'b000, // Valor padrao para estacao de reserva sem valor
             Qi_CDB_data_sem_valor = 16'b1111_1111_1111_0000;
+
   input Clock;
   input Reset;
   input [15:0] Vj;
   input [15:0] Vk;
-  input [15:0] Qj;
+  input [2:0]  Qj;
   input [2:0]  Qk;
   input [2:0]  Qi_CDB;
   input [15:0] Qi_CDB_data;
@@ -46,6 +47,8 @@ module seletor_uf (
           end
         if (Busy == 1)
           begin
+            $display("[%0t] seletor_uf: Vj: %h, Vk: %h, Qj: %h, Qk: %h, Qi_CDB: %h, Qi_CDB_data: %h",
+                   $time, Vj, Vk, Qj, Qk, Qi_CDB, Qi_CDB_data);
             if (A == Vj_Vk_sem_valor)
               begin
                 // Check primeiro de Vj

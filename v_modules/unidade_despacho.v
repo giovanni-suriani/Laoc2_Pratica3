@@ -98,7 +98,7 @@ module unidade_despacho (
             Enable_VQ_ADD1 <= 1'b0; // Desativa a estacao de reserva R1
             Enable_VQ_ADD2 <= 1'b0; // Desativa a estacao de reserva R2
             // Resolvendo vj ou qj
-            $display("[%0t] unidade_despacho Rs_Qi: %p",$time, Rs_Qi);
+            // $display("[%0t] unidade_despacho Rs_Qi: %p",$time, Rs_Qi);
             if (Rs_Qi[Rj] == FREE_REGISTER)
               begin
                 Vj <= Rs_Qi_data[Rj];

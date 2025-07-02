@@ -11,14 +11,15 @@ module unidade_funcional_R(Clock, Clear, A, B, Ufop, Ready_to_uf, Reset, Q, Busy
   output reg        Write_Enable_CDB; // Sinal para habilitar a escrita no CDB
   output reg        Done; // Sinal de finalização da operação
   // reg conta_ciclos; // Contador de ciclos para a operação
-  wire [2:0] Tstep; // Sinal de clock do contador
+  // wire [2:0] Tstep; // Sinal de clock do contador
 
-  contador_3bits u_contador_3bits(
+/*   contador_3bits u_contador_3bits(
                    .Clear  (Clear  ),
                    .Clock  (Clock  ),
                    .Reset  (Reset  ),
                    .Tstep  (Tstep  )
-                 );
+                 ); */
+  reg Tstep; // Registrador para armazenar o valor do contador
 
   always @(posedge Clock or posedge Reset) // Talvez trocar por logica flip flop
     begin
@@ -27,17 +28,20 @@ module unidade_funcional_R(Clock, Clear, A, B, Ufop, Ready_to_uf, Reset, Q, Busy
           Q                <= 16'b0; // Reseta o valor de Q
           Write_Enable_CDB <= 1'b0; // Desabilita escrita no CDB
           Done             <= 1'b0; // Indica que a operação não foi concluída
+          Tstep            <= 1'b0; // Reseta o contador de etapas
           // conta_ciclos <= 1'b0; // Reseta o contador de ciclos
         end
       if (Clear)
       begin
         Done <= 1'b0; // Reseta o sinal de Done
+        Tstep <= 1'b0; // Reseta o contador de etapas
       end
       if (Ready_to_uf)
         begin
           case (Tstep)
             3'd0:
               begin
+                Tstep <= Tstep + 1; // Incrementa o contador de etapas
               end
             // 3'd1:
             //   begin
