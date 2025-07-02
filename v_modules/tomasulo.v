@@ -39,13 +39,15 @@ module tomasulo(
   wire [15:0] Vk;                                     // Valor do segundo operando (Variaveis)
   wire [2:0]  Qj;                                     // Estacao de reserva do primeiro operando
   wire [2:0]  Qk;                                     // Estacao de reserva do segundo operando
+  wire [6:0]  A;                                      // Imediato para calculo de endereco
   wire        Enable_VQ_ADD1;                         // Sinal de habilitacao da estacao de reserva ADD1
   wire        Enable_VQ_ADD2;                         // Sinal de habilitacao da estacao de reserva ADD2
   wire [15:0] Vk_R1, Vk_R2;                           // Valor do segundo operando (Variaveis)
   wire        R_enable_despacho;
   wire [3:0]  R_target_despacho;                     // Registrador de destino da instrucao
   wire [3:0]  R_res_station_despacho;                // Estacao de reserva que o registrador destino esta dependente
-
+  wire Pop_I;
+  wire Pop_R; // Sinal de pop para a unidade de despacho
 
   // Instancia do modulo de estacao de reserva
   // wire [15:0] Q_ADD1, Q_ADD2;                      // Valor do segundo operando (Variaveis)
@@ -81,8 +83,6 @@ module tomasulo(
   wire        Empty;                      // Sinal de FIFO vazia
   integer     conta_ciclos = 0;
 
-  reg Pop_R = 1'b0; // Sinal de pop para a unidade de despacho
-  reg Pop_I = 1'b0; // Sinal de pop para a unidade de
 
   // Instancia do modulo register_status
   register_status u_register_status(
@@ -127,16 +127,19 @@ module tomasulo(
                      .Vk                          (Vk                          ),
                      .Qj                          (Qj                          ),
                      .Qk                          (Qk                          ),
+                     .A                           (A                           ),
                      .Ufop_ADD1                   (Ufop_ADD1                   ),
                      .Ufop_ADD2                   (Ufop_ADD2                   ),
                      .Enable_VQ_ADD1              (Enable_VQ_ADD1              ),
                      .Enable_VQ_ADD2              (Enable_VQ_ADD2              ),
                      .R_target_ADD1               (R_target_ADD1               ),
                      .R_target_ADD2               (R_target_ADD2               ),
-                     .R_enable_despacho           (R_enable_despacho          ),
+                     .R_enable_despacho           (R_enable_despacho           ),
                      .R_target_despacho           (R_target_despacho           ),
                      .R_res_station_despacho      (R_res_station_despacho      ),
-                     .Pop                         (Pop                         )
+                     .Pop                         (Pop                         ),
+                     .Pop_I                       (Pop_I                       ),
+                     .Pop_R                       (Pop_R                       )
                    );
 
   // Instancia do modulo CDB_arbiter

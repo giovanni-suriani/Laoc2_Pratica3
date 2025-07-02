@@ -27,81 +27,81 @@ r1
 !s85 0
 31
 Z5 !s108 1751488582.000000
-!s107 tb_tomasulo.v|seletor_uf.v|unidade_funcional_R.v|res_station_R.v|unidade_despacho.v|register_status.v|CDB_arbiter.v|contador_3bits.v|fila_de_instrucoes.v|memoria_dados.v|memoria_instrucoes.v|tomasulo.v|
-Z6 !s90 -reportprogress|300|+acc|tomasulo.v|memoria_instrucoes.v|memoria_dados.v|fila_de_instrucoes.v|contador_3bits.v|CDB_arbiter.v|register_status.v|unidade_despacho.v|res_station_R.v|unidade_funcional_R.v|seletor_uf.v|tb_tomasulo.v|
+Z6 !s107 tb_tomasulo.v|seletor_uf.v|unidade_funcional_R.v|res_station_R.v|unidade_despacho.v|register_status.v|CDB_arbiter.v|contador_3bits.v|fila_de_instrucoes.v|memoria_dados.v|memoria_instrucoes.v|tomasulo.v|
+Z7 !s90 -reportprogress|300|+acc|tomasulo.v|memoria_instrucoes.v|memoria_dados.v|fila_de_instrucoes.v|contador_3bits.v|CDB_arbiter.v|register_status.v|unidade_despacho.v|res_station_R.v|unidade_funcional_R.v|seletor_uf.v|tb_tomasulo.v|
 !i113 1
-Z7 o+acc
-Z8 tCvgOpt 0
+Z8 o+acc
+Z9 tCvgOpt 0
 n@c@d@b_arbiter
 vcontador_3bits
-R1
+Z10 !s110 1751489173
 !i10b 1
 !s100 3hnDz3BHEC=]6]4diaci21
 R2
-IGc74Y7iHej:Yn?_GXkL0;1
+IT1NMA5heH4=A2b:mV_@j92
 R3
-R0
-w1751406292
-8contador_3bits.v
-Fcontador_3bits.v
-!i122 756
+Z11 d/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3
+Z12 w1751489170
+Z13 8/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/todo_codigo.v
+Z14 F/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/todo_codigo.v
+!i122 759
 L0 1 32
 R4
 r1
 !s85 0
 31
-R5
-Z9 !s107 tb_tomasulo.v|seletor_uf.v|unidade_funcional_R.v|res_station_R.v|unidade_despacho.v|register_status.v|CDB_arbiter.v|contador_3bits.v|fila_de_instrucoes.v|memoria_dados.v|memoria_instrucoes.v|tomasulo.v|
-R6
+Z15 !s108 1751489173.000000
+Z16 !s107 /home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/todo_codigo.v|
+Z17 !s90 -nologo|-work|/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/work|/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/todo_codigo.v|-lint|
 !i113 1
-R7
-R8
+Z18 o-nologo -work /home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/work -lint
+R9
 vfila_de_instrucoes
-R1
+!s110 1751489168
 !i10b 1
-!s100 ij7W6h;c`PJZkkDCgY8LU3
+!s100 YMfI83]bIHkDn=b5mn:8a0
 R2
-Io3zY`h<Z8=Bl5SoCigj0R3
+I]<DB:K<BO[[mYRHX28EBa0
 R3
-R0
-w1751488276
-8fila_de_instrucoes.v
-Ffila_de_instrucoes.v
-!i122 756
-L0 1 163
+R11
+w1751483138
+8/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/fila_de_instrucoesza.v
+F/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/fila_de_instrucoesza.v
+!i122 758
+L0 1 76
 R4
 r1
 !s85 0
 31
-R5
-R9
-R6
+!s108 1751489168.000000
+!s107 /home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/fila_de_instrucoesza.v|
+!s90 -nologo|-work|/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/work|/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/fila_de_instrucoesza.v|-lint|
 !i113 1
-R7
-R8
+R18
+R9
 vmemoria_dados
-R1
+R10
 !i10b 1
-!s100 TAz8Lna`KRgDHcb0hLTl22
+!s100 I3_SJeQk_QFiFWDhV^L0T3
 R2
-IPRakTU92eLJ<QGjkb^h3R0
+I]kcCX[AdnYCbW4e[F^GVz0
 R3
-R0
-w1749594315
-8memoria_dados.v
-Fmemoria_dados.v
-!i122 756
-L0 1 36
+R11
+R12
+R13
+R14
+!i122 759
+L0 33 36
 R4
 r1
 !s85 0
 31
-R5
-R9
-R6
+R15
+R16
+R17
 !i113 1
-R7
-R8
+R18
+R9
 vmemoria_instrucoes
 R1
 !i10b 1
@@ -120,57 +120,81 @@ r1
 !s85 0
 31
 R5
-R9
 R6
-!i113 1
 R7
+!i113 1
 R8
+R9
 vregister_status
-R1
+R10
 !i10b 1
-!s100 J^iLf9j:]X0mLXonhnzNA3
+!s100 k5mFT[SO1K[J[:VbodF^A3
 R2
-ILinXMPDeINkcQdFDY^ONZ0
+IFIm0M20Yj?Z[f<mZ_`1Ib0
 R3
-R0
-w1751412424
-8register_status.v
-Fregister_status.v
-!i122 756
-L0 1 85
+R11
+R12
+R13
+R14
+!i122 759
+L0 69 85
 R4
 r1
 !s85 0
 31
-R5
-R9
-R6
+R15
+R16
+R17
 !i113 1
-R7
-R8
+R18
+R9
+vres_station_I
+!s110 1751489535
+!i10b 1
+!s100 o9iGM468C6`[gzac>TZg<1
+R2
+IQ_PHB4ZKJ0bbZJOHC??K:1
+R3
+R11
+w1751489535
+Z19 8/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/res_station_I.v
+Z20 F/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/res_station_I.v
+!i122 765
+Z21 L0 1 100
+R4
+r1
+!s85 0
+31
+!s108 1751489535.000000
+Z22 !s107 /home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/res_station_I.v|
+Z23 !s90 -nologo|-work|/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/work|/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/res_station_I.v|-lint|
+!i113 1
+R18
+R9
+nres_station_@i
 vres_station_R
-R1
+!s110 1751489491
 !i10b 1
 !s100 =^gok?WkCnRMfVnPcSDUo2
 R2
-IS>H=0[JUSVn^8T51?Dd<H3
+I<EdAkGRJFg8Zbn;ZdJP9R1
 R3
-R0
-w1751411383
-8res_station_R.v
-Fres_station_R.v
-!i122 756
+R11
+w1751489480
+R19
+R20
+!i122 763
 L0 1 98
 R4
 r1
 !s85 0
 31
-R5
-R9
-R6
+!s108 1751489491.000000
+R22
+R23
 !i113 1
-R7
-R8
+R18
+R9
 nres_station_@r
 vseletor_uf
 R1
@@ -190,11 +214,11 @@ r1
 !s85 0
 31
 R5
-R9
 R6
-!i113 1
 R7
+!i113 1
 R8
+R9
 vtb_fila
 !s110 1751488283
 !i10b 1
@@ -216,8 +240,8 @@ r1
 !s107 tb_fila.v|fila_de_instrucoes.v|memoria_instrucoes.v|
 !s90 -reportprogress|300|+acc|memoria_instrucoes.v|fila_de_instrucoes.v|tb_fila.v|
 !i113 1
-R7
 R8
+R9
 vtb_tomasulo
 R1
 !i10b 1
@@ -236,78 +260,78 @@ r1
 !s85 0
 31
 R5
-R9
 R6
-!i113 1
 R7
+!i113 1
 R8
+R9
 vtomasulo
-R1
+!s110 1751489738
 !i10b 1
-!s100 0eSC^o:oBjkK37hjcSeZe1
+!s100 QW`NDjNMdfV>A]j];c<@m3
 R2
-I6mCRKSkjR]Xh>4_V]iVO^0
+I]C>AMYPjGjJ8lHHU5>e^H1
 R3
-R0
-w1751488365
-8tomasulo.v
-Ftomasulo.v
-!i122 756
-L0 1 267
+R11
+w1751489738
+8/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/tomasulo.v
+F/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/tomasulo.v
+!i122 771
+L0 1 270
 R4
 r1
 !s85 0
 31
-R5
-R9
-R6
+!s108 1751489738.000000
+!s107 /home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/tomasulo.v|
+!s90 -nologo|-work|/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/work|/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/tomasulo.v|-lint|
 !i113 1
-R7
-R8
+R18
+R9
 vunidade_despacho
-R1
+R10
 !i10b 1
-!s100 =5m=IPb]MBBnG>K0bi]I;3
+!s100 E<LhOBOjh4MmKSZSm:FSa1
 R2
-Io3NHhAIIH0E]90W0XFGBO0
+Img_:L1HXb:;<Pe8kZYNQB3
 R3
-R0
-w1751458746
-8unidade_despacho.v
-Funidade_despacho.v
-!i122 756
-L0 1 157
+R11
+R12
+R13
+R14
+!i122 759
+L0 352 157
 R4
 r1
 !s85 0
 31
-R5
-R9
-R6
+R15
+R16
+R17
 !i113 1
-R7
-R8
+R18
+R9
 vunidade_funcional_R
-R1
+!s110 1751489202
 !i10b 1
 !s100 lfcz>=z8An2mHCSNUg6n:3
 R2
-IGTe^l<aT3l;=]ChVHejdb0
+Ia;QKzD8o53JUi7ZLM0W`j2
 R3
-R0
-w1751457890
-8unidade_funcional_R.v
-Funidade_funcional_R.v
-!i122 756
-L0 1 100
+R11
+w1751489198
+8/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/unidade_funcional_I.v
+F/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/unidade_funcional_I.v
+!i122 761
+R21
 R4
 r1
 !s85 0
 31
-R5
-R9
-R6
+!s108 1751489202.000000
+!s107 /home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/unidade_funcional_I.v|
+!s90 -nologo|-work|/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/work|/home/gi/Desktop/Semestre8/LAOC2_REPO/Laoc2_Pratica3/v_modules/unidade_funcional_I.v|-lint|
 !i113 1
-R7
-R8
+R18
+R9
 nunidade_funcional_@r
