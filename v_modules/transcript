@@ -1,12 +1,13 @@
 # do vlog_wave_tb_tomasulo_ufs.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:04:07 on Jul 01,2025
-# vlog -reportprogress 300 "+acc" tomasulo.v memoria_instrucoes.v memoria_dados.v fila_de_instrucoes.v CDB_arbiter.v register_status.v unidade_despacho.v res_station_R.v unidade_funcional_R.v seletor_uf.v tb_tomasulo.v 
+# Start time: 20:32:07 on Jul 01,2025
+# vlog -reportprogress 300 "+acc" tomasulo.v memoria_instrucoes.v memoria_dados.v fila_de_instrucoes.v contador_3bits.v CDB_arbiter.v register_status.v unidade_despacho.v res_station_R.v unidade_funcional_R.v seletor_uf.v tb_tomasulo.v 
 # -- Compiling module tomasulo
 # -- Compiling module memoria_instrucoes
 # -- Compiling module memoria_dados
 # -- Compiling module fila_de_instrucoes
+# -- Compiling module contador_3bits
 # -- Compiling module CDB_arbiter
 # -- Compiling module register_status
 # -- Compiling module unidade_despacho
@@ -18,10 +19,10 @@
 # Top level modules:
 # 	memoria_dados
 # 	tb_tomasulo
-# End time: 16:04:07 on Jul 01,2025, Elapsed time: 0:00:00
+# End time: 20:32:07 on Jul 01,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -L altera work.tb_tomasulo 
-# Start time: 16:04:07 on Jul 01,2025
+# Start time: 20:32:07 on Jul 01,2025
 # Loading work.tb_tomasulo
 # Loading work.tomasulo
 # Loading work.register_status
@@ -32,27 +33,28 @@
 # Loading work.res_station_R
 # Loading work.seletor_uf
 # Loading work.unidade_funcional_R
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'u_register_status'.  Expected 15, found 12.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/u_register_status File: tomasulo.v Line: 75
-# ** Warning: (vsim-3722) tomasulo.v(75): [TFMPC] - Missing connection for port 'R_enable_despacho'.
-# ** Warning: (vsim-3722) tomasulo.v(75): [TFMPC] - Missing connection for port 'R_target_despacho'.
-# ** Warning: (vsim-3722) tomasulo.v(75): [TFMPC] - Missing connection for port 'R_res_station_despacho'.
+# Loading work.contador_3bits
 # ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: CDB_arbiter.v(9).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/u_CDB_arbiter File: tomasulo.v Line: 125
-# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'R_target'. The port definition is at: res_station_R.v(11).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD1 File: tomasulo.v Line: 137
-# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'R_target'. The port definition is at: res_station_R.v(11).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD2 File: tomasulo.v Line: 156
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/u_CDB_arbiter File: tomasulo.v Line: 139
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'R_target'. The port definition is at: res_station_R.v(13).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD1 File: tomasulo.v Line: 151
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'R_target'. The port definition is at: res_station_R.v(13).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD2 File: tomasulo.v Line: 175
 # ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (3) for port 'Qj'. The port definition is at: seletor_uf.v(6).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD1 File: tomasulo.v Line: 176
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD1 File: tomasulo.v Line: 200
 # ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: seletor_uf.v(8).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD1 File: tomasulo.v Line: 176
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD1 File: tomasulo.v Line: 200
 # ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (3) for port 'Qj'. The port definition is at: seletor_uf.v(6).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD2 File: tomasulo.v Line: 191
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD2 File: tomasulo.v Line: 215
 # ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: seletor_uf.v(8).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD2 File: tomasulo.v Line: 191
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD2 File: tomasulo.v Line: 215
+# [350] unidade_despacho Rs_Qi: '{0, 0, 0, 0}
 # [350] Ativando despacho
+# [450] unidade_despacho Rs_Qi: '{0, 0, 0, 1}
+# [550] unidade_despacho Rs_Qi: '{0, 0, 0, 2}
+# [650] unidade_despacho Rs_Qi: '{0, 0, 0, 2}
+# [750] unidade_despacho Rs_Qi: '{0, 0, 0, 1}
+# [850] unidade_despacho Rs_Qi: '{0, 0, 0, 1}
+# [950] unidade_despacho Rs_Qi: '{0, 0, 0, 1}
 # unsigned
 # .main_pane.wave.interior.cs.body.pw.wf
-# End time: 16:04:22 on Jul 01,2025, Elapsed time: 0:00:15
-# Errors: 0, Warnings: 11

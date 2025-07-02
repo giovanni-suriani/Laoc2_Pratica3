@@ -24,12 +24,12 @@ module CDB_arbiter (
       begin
         if (Done_ADD1)
           begin
-            Qi_CDB <= RES_STATION_ADD1; // Atribui o valor da estacao de reserva ADD1
+            Qi_CDB      <= RES_STATION_ADD1; // Atribui o valor da estacao de reserva ADD1
             Qi_CDB_data <= Q_ADD1; // Atribui o dado da unidade funcional ADD1
           end
         else if (Done_ADD2)
           begin
-            Qi_CDB <= RES_STATION_ADD2; // Atribui o valor da estacao de reserva ADD2
+            Qi_CDB      <= RES_STATION_ADD2; // Atribui o valor da estacao de reserva ADD2
             Qi_CDB_data <= Q_ADD2; // Atribui o dado da unidade funcional ADD2
           end
       end

@@ -12,7 +12,12 @@ module tomasulo(
 
   parameter sem_valor = 16'b1111_1111_1111_0000; // Valor padrao para algo sem valor (como xxx nao existe na fpga)
 
-  // Instanciação do módulo register status
+
+  // Instanciacao do modulo contador
+  wire       Clear;                     // Sinal de clear do contador
+  wire [2:0] Tstep;                     // Sinal de clock do contador
+
+  // Instanciação do modulo register status
   wire [3:0]  Qi_CDB;
   wire [15:0] Qi_CDB_data;
   wire [1:0]  Rs_Qi [3:0];
@@ -45,6 +50,10 @@ module tomasulo(
   // Instancia do modulo de estacao de reserva
   // wire [15:0] Q_ADD1, Q_ADD2;                      // Valor do segundo operando (Variaveis)
   // wire        Ready_R1, Ready_R2;                  // Sinal de pronto para executar a operacao
+  wire [15:0] Vj_reg_ADD1, Vj_reg_ADD2;           // Registrador para o primeiro operando
+  wire [15:0] Vk_reg_ADD1, Vk_reg_ADD2;           // Registrador para o segundo operando
+  wire [2:0]  Qj_reg_ADD1, Qj_reg_ADD2;           // Registrador para a estacao de reserva do primeiro
+  wire [2:0]  Qk_reg_ADD1, Qk_reg_ADD2;           // Registrador para a estacao de reserva do segundo
   wire        Busy_ADD1, Busy_ADD2;                   // Sinal de ocupado da estacao de reserva
   wire [3:0]  R_target_ADD1, R_target_ADD2;           // Registrador de destino da estacao de reserva ADD1 e ADD2
   wire        R_enable_ADD1;                          // Sinal de habilitacao da escrita no banco de registradores
@@ -64,6 +73,8 @@ module tomasulo(
   // Instancia do modulo seletor de unidade funcional
   wire Ready_to_uf_ADD1;                           // Sinal de pronto para
   wire Ready_to_uf_ADD2;                           // Sinal de pronto para
+  wire Clear_counter_ADD1;                         // Sinal de clear para resetar o contador da unidade funcional ADD1
+  wire Clear_counter_ADD2;                         // Sinal de clear para resetar o contador da unidade funcional ADD2
 
   // Sinais inuteis
   wire        Full;                       // Sinal de FIFO cheia
@@ -73,18 +84,21 @@ module tomasulo(
 
   // Instancia do modulo register_status
   register_status u_register_status(
-                    .Clock         (Clock       ),
-                    .Reset         (Reset       ),
-                    .Rs_Qi         (Rs_Qi       ),
-                    .Rs_Qi_data    (Rs_Qi_data  ),
-                    .R_enable_ADD1 (R_enable_ADD1),
-                    .R_enable_ADD2 (R_enable_ADD2),
-                    .R_target_ADD1 (R_target_ADD1),
-                    .R_target_ADD2 (R_target_ADD2),
-                    .Finished_ADD1 (Finished_ADD1),
-                    .Finished_ADD2 (Finished_ADD2),
-                    .Qi_CDB        (Qi_CDB      ),
-                    .Qi_CDB_data   (Qi_CDB_data )
+                    .Clock                    (Clock       ),
+                    .Reset                    (Reset       ),
+                    .Rs_Qi                    (Rs_Qi       ),
+                    .Rs_Qi_data               (Rs_Qi_data  ),
+                    .R_enable_ADD1            (R_enable_ADD1),
+                    .R_enable_ADD2            (R_enable_ADD2),
+                    .R_target_ADD1            (R_target_ADD1),
+                    .R_target_ADD2            (R_target_ADD2),
+                    .Finished_ADD1            (Finished_ADD1),
+                    .Finished_ADD2            (Finished_ADD2),
+                    .R_enable_despacho        (R_enable_despacho),
+                    .R_target_despacho        (R_target_despacho),
+                    .R_res_station_despacho   (R_res_station_despacho),
+                    .Qi_CDB                   (Qi_CDB      ),
+                    .Qi_CDB_data              (Qi_CDB_data )
                   );
 
   // Instancia do modulo unidade_despacho
@@ -115,7 +129,7 @@ module tomasulo(
                      .Enable_VQ_ADD2              (Enable_VQ_ADD2              ),
                      .R_target_ADD1               (R_target_ADD1               ),
                      .R_target_ADD2               (R_target_ADD2               ),
-                     .R_enable_despacho           ( R_enable_despacho          ),
+                     .R_enable_despacho           (R_enable_despacho          ),
                      .R_target_despacho           (R_target_despacho           ),
                      .R_res_station_despacho      (R_res_station_despacho      ),
                      .Pop                         (Pop                         )
@@ -135,75 +149,87 @@ module tomasulo(
               );
 
   res_station_R ADD1(
-                  .Clock     (Clock     ),
-                  .Reset     (Reset     ),
-                  .Opcode    (Opcode        ),
-                  .Busy      (Busy_ADD1   ),
-                  .Done      (Done_ADD1  ),
-                  .Finished  (Finished_ADD1),
-                  .Vj        (Vj        ),
-                  .Vk        (Vk        ),
-                  .Qj        (Qj        ),
-                  .Qk        (Qk        ),
-                  .R_target  (R_target_ADD1  ),
-                  .R_enable  (R_enable_ADD1  ),
-                  .Enable_VQ (Enable_VQ_ADD1),
-                  .Ufop      (Ufop_ADD1      )
+                  .Clock            (Clock              ),
+                  .Reset            (Reset              ),
+                  .Opcode           (Opcode             ),
+                  .Busy             (Busy_ADD1          ),
+                  .Done             (Done_ADD1          ),
+                  .Finished         (Finished_ADD1      ),
+                  .Vj               (Vj                 ),
+                  .Vk               (Vk                 ),
+                  .Vj_reg           (Vj_reg_ADD1 ),
+                  .Vk_reg           (Vk_reg_ADD1 ),
+                  .Qj               (Qj                 ),
+                  .Qk               (Qk                 ),
+                  .Qj_reg           (Qj_reg_ADD1 ),
+                  .Qk_reg           (Qk_reg_ADD1 ),
+                  .R_target         (R_target_ADD1      ),
+                  .R_enable         (R_enable_ADD1      ),
+                  .Clear_counter    (Clear_counter_ADD1 ),
+                  .Enable_VQ        (Enable_VQ_ADD1     ),
+                  .Ufop             (Ufop_ADD1          )
                   // .Ready     (Ready_R1  ),
                   // .Result    (Q_ADD1    )
                 );
 
   res_station_R ADD2(
-                  .Clock     (Clock     ),
-                  .Reset     (Reset     ),
-                  .Opcode    (Opcode        ),
-                  .Busy      (Busy_ADD2   ),
-                  .Done      (Done_ADD2  ),
-                  .Finished  (Finished_ADD2),
-                  .Vj        (Vj        ),
-                  .Vk        (Vk        ),
-                  .Qj        (Qj        ),
-                  .Qk        (Qk        ),
-                  .R_target  (R_target_ADD2  ),
-                  .R_enable  (R_enable_ADD2  ),
-                  .Enable_VQ (Enable_VQ_ADD2),
-                  .Ufop      (Ufop_ADD2 )
-                  // .Ready     (Ready_R2  ),
-                  // .Result    (Q_ADD2    )
+                  .Clock            (Clock              ),
+                  .Reset            (Reset              ),
+                  .Opcode           (Opcode             ),
+                  .Busy             (Busy_ADD2          ),
+                  .Done             (Done_ADD2          ),
+                  .Finished         (Finished_ADD2      ),
+                  .Vj               (Vj                 ),
+                  .Vk               (Vk                 ),
+                  .Vj_reg           (Vj_reg_ADD2 ),
+                  .Vk_reg           (Vk_reg_ADD2 ),
+                  .Qj               (Qj                 ),
+                  .Qk               (Qk                 ),
+                  .Qj_reg           (Qj_reg_ADD2 ),
+                  .Qk_reg           (Qk_reg_ADD2 ),
+                  .R_target         (R_target_ADD2      ),
+                  .R_enable         (R_enable_ADD2      ),
+                  .Clear_counter    (Clear_counter_ADD2 ),
+                  .Enable_VQ        (Enable_VQ_ADD2     ),
+                  .Ufop             (Ufop_ADD2          )
+                  // .Ready     (Ready_R1  ),
+                  // .Result    (Q_ADD1    )
                 );
 
   // Instancia do modulo seletor de unidade funcional
   seletor_uf seletor_uf_ADD1(
-               .Clock       (Clock       ),
-               .Reset       (Reset       ),
-               .Vj          (Vj          ),
-               .Vk          (Vk          ),
-               .Qj          (Qj          ),
-               .Qk          (Qk          ),
-               .Qi_CDB      (Qi_CDB      ),
-               .Qi_CDB_data (Qi_CDB_data ),
-               .A           (A_ADD1      ),
-               .B           (B_ADD1      ),
-               .Ready_to_uf (Ready_to_uf_ADD1 ),
-               .Busy        (Busy_ADD1)
+               .Clock         (Clock       ),
+               .Reset         (Reset       ),
+               .Vj            (Vj_reg_ADD1 ),
+               .Vk            (Vk_reg_ADD1 ),
+               .Qj            (Qj_reg_ADD1 ),
+               .Qk            (Qk_reg_ADD1 ),
+               .Qi_CDB        (Qi_CDB      ),
+               .Qi_CDB_data   (Qi_CDB_data ),
+               .A             (A_ADD1      ),
+               .B             (B_ADD1      ),
+               .Ready_to_uf   (Ready_to_uf_ADD1 ),
+               .Busy          (Busy_ADD1)
              );
 
   seletor_uf seletor_uf_ADD2(
-               .Clock       (Clock            ),
-               .Reset       (Reset            ),
-               .Vj          (Vj               ),
-               .Vk          (Vk               ),
-               .Qj          (Qj               ),
-               .Qk          (Qk               ),
-               .Qi_CDB      (Qi_CDB           ),
-               .Qi_CDB_data (Qi_CDB_data      ),
-               .A           (A_ADD2           ),
-               .B           (B_ADD2           ),
-               .Ready_to_uf (Ready_to_uf_ADD2 ),
-               .Busy        (Busy_ADD2)
+               .Clock         (Clock       ),
+               .Reset         (Reset       ),
+               .Vj            (Vj_reg_ADD2 ),
+               .Vk            (Vk_reg_ADD2 ),
+               .Qj            (Qj_reg_ADD2 ),
+               .Qk            (Qk_reg_ADD2 ),
+               .Qi_CDB        (Qi_CDB      ),
+               .Qi_CDB_data   (Qi_CDB_data ),
+               .A             (A_ADD2      ),
+               .B             (B_ADD2      ),
+               .Ready_to_uf   (Ready_to_uf_ADD2 ),
+               .Busy          (Busy_ADD2)
              );
 
   unidade_funcional_R unidade_funcional_ADD1(
+                        .Clock            (Clock                 ),
+                        .Clear            (Clear_counter_ADD1  ),
                         .A                (A_ADD1                ),
                         .B                (B_ADD1                ),
                         .Ufop             (Ufop_ADD1             ),
@@ -216,6 +242,8 @@ module tomasulo(
                       );
 
   unidade_funcional_R unidade_funcional_ADD2(
+                        .Clock            (Clock                 ),
+                        .Clear            (Clear_counter_ADD2  ),
                         .A                (A_ADD2                ),
                         .B                (B_ADD2                ),
                         .Ufop             (Ufop_ADD2             ),

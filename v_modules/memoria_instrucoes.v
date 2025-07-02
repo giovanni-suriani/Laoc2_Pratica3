@@ -51,6 +51,26 @@ module memoria_instrucoes (
               else
                 mem[i] <= 16'b0; // Atribuicao nao bloqueante para sincrono
             end */
+          /* for (i = 0; i < 16; i = i + 1)
+            begin
+              if (i == 0) // Inicializa a posicao 0 com a instrucao ADD R0 R1 R2
+                mem[i] <= {ADD, R0, R1, R2, 4'b0};
+              else if (i == 1) // Inicializa a posicao 1 com a instrucao SUB R0 R1 R2
+                mem[i] <= {SUB, R0, R1, R2, 4'b0};
+              else if (i == 2) // Inicializa a posicao 2com a instrucao ADD R0 R1 R2
+              mem[i] <= {ADD, R0, R1, R2, 4'd1};
+              else if (i == 3)
+              mem[i] <= {SUB, R0, R1, R2, 4'd2};
+              else if (i == 4)
+                mem[i] <= {ADD, R0, R1, R2, 4'b0};
+              else if (i == 5)
+                mem[i] <= {ADD, R0, R1, R2, 4'b0};
+              else if (i == 6)
+                mem[i] <= {ADD, R0, R1, R2, 4'b0};
+              // mem[i] <= NOP; // NOP
+              else
+                mem[i] <= 16'b0; // Atribuicao nao bloqueante para sincrono
+            end */
           for (i = 0; i < 16; i = i + 1)
             begin
               if (i == 0) // Inicializa a posicao 0 com a instrucao ADD R0 R1 R2

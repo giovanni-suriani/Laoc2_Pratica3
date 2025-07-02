@@ -98,6 +98,7 @@ module unidade_despacho (
             Enable_VQ_ADD1 <= 1'b0; // Desativa a estacao de reserva R1
             Enable_VQ_ADD2 <= 1'b0; // Desativa a estacao de reserva R2
             // Resolvendo vj ou qj
+            $display("[%0t] unidade_despacho Rs_Qi: %p",$time, Rs_Qi);
             if (Rs_Qi[Rj] == FREE_REGISTER)
               begin
                 Vj <= Rs_Qi_data[Rj];
@@ -124,23 +125,30 @@ module unidade_despacho (
             // Devolve a estacao de reserva responsavel por realizar a instrucao despachada NAO ESTA NO MESMO PADRAO DE RS_QI
             if (!Qi_Busy[0])
               begin
-                Enable_VQ_ADD1 <= 1'b1; // Ativa a estacao de reserva R1
-                Enable_VQ_ADD2 <= 1'b0; // Desativa a estacao de reserva R2
-                R_target_ADD1  <= Ri;
-                Ufop_ADD1      <= Instrucao_Despachada [15:13]; // Opcode da instrucao despachada
+                Enable_VQ_ADD1         <= 1'b1;                         // Ativa a estacao de reserva R1
+                Enable_VQ_ADD2         <= 1'b0;                         // Desativa a estacao de reserva R2
+                R_target_ADD1          <= Ri;                           // Registrador de destino da estacao de reserva ADD1
+                R_enable_despacho      <= 1'b1;                         // Habilita o registrador de destino para escrita
+                R_target_despacho      <= Ri;                           // Registrador de destino da estacao de reserva despacho
+                R_res_station_despacho <= RES_STATION_ADD1;             // Estacao de reserva despacho
+                Ufop_ADD1              <= Instrucao_Despachada [15:13]; // Opcode da instrucao despachada
 
                 // Estacao_Reserva_Destino <= RES_STATION_ADD1; // Estacao de reserva R1
               end
             else if (!Qi_Busy[1])
               begin
-                Enable_VQ_ADD1 <= 1'b0; // Desativa a estacao de reserva R1
-                Enable_VQ_ADD2 <= 1'b1; // Ativa a est
-                R_target_ADD2  <= Ri;
-                Ufop_ADD2      <= Instrucao_Despachada [15:13]; // Opcode da instrucao despachada
+                Enable_VQ_ADD1         <= 1'b0; // Desativa a estacao de reserva R1
+                Enable_VQ_ADD2         <= 1'b1;                         // Ativa a est
+                R_target_ADD2          <= Ri;
+                R_enable_despacho      <= 1'b1;                         // Habilita o registrador de destino para escrita
+                R_target_despacho      <= Ri;                           // Registrador de destino da estacao de reserva despacho
+                R_res_station_despacho <= RES_STATION_ADD2;             // Estacao de reserva despacho
+                Ufop_ADD2              <= Instrucao_Despachada [15:13]; // Opcode da instrucao despachada
               end
             else if (Qi_Busy[1:0] == 2'b11) // Estacoes de reservas ocupadas
               begin
-                Pop <= 1'b0; // Desativa o sinal de pop para a unidade de despacho
+                R_enable_despacho <= 1'b0; // Desabilita o registrador de destino para escrita
+                Pop               <= 1'b0;     // Desativa o sinal de pop para a unidade de despacho
               end
           end
       end

@@ -3,11 +3,11 @@ module register_status(
     Reset,
     Rs_Qi,
     Rs_Qi_data,
-    R_enable_despacho,        // Sinal de habilitacao da escrita no banco de registradores para o despacho
     R_enable_ADD1,            // Sinal de habilitacao da escrita no banco de registradores para ADD1
     R_enable_ADD2,            // Sinal de habilitacao da escrita no banco de registradores para ADD2
     R_target_ADD1,            // Registrador de destino da estacao de reserva ADD1
     R_target_ADD2,            // Registrador de destino da estacao de reserva ADD2
+    R_enable_despacho,        // Sinal de habilitacao da escrita no banco de registradores para o despacho
     R_target_despacho,        // Registrador de destino da estacao de reserva despacho
     R_res_station_despacho,   // Estacao de reserva despacho
     Finished_ADD1,
@@ -34,14 +34,14 @@ module register_status(
   input [3:0]       R_target_ADD1;                // Registrador de destino da estacao de reserva ADD1
   input [3:0]       R_target_ADD2;                // Registrador de destino da estacao de reserva ADD2
   input [3:0]       R_target_despacho;            // Registrador de destino da estacao de reserva despacho
-  input             R_res_station_despacho;       // Estacao de reserva despacho
+  input [3:0]       R_res_station_despacho;       // Estacao de reserva despacho
   output reg        Finished_ADD1;                // Sinal de finalizacao da operacao da unidade funcional ADD1
   output reg        Finished_ADD2;                // Sinal de finalizacao da operacao da
   output reg [1:0]  Rs_Qi [3:0];                  // Qi dos registradores R0, R1 e R2
   output reg [15:0] Rs_Qi_data [3:0];             // Dados dos registradores R0, R1 e R2
 
 
-  always @(posedge Clock or posedge Reset) // Provavelmente atribuicao no negedge
+  always @(negedge Clock or posedge Reset) // Provavelmente atribuicao no negedge
     begin
       if (Reset)
         begin
@@ -62,8 +62,19 @@ module register_status(
             begin
               // Rs_Qi[R_target_ADD1] <= RES_STATION_ADD1; // Atualiza o Qi do registrador de destino ADD1
               Rs_Qi_data[R_target_ADD1] <= Qi_CDB_data;  // Atualiza o valor do registrador de destino ADD1
-              Finished_ADD1 <= 1'b1; // Indica que a operacao foi finalizada
+              Finished_ADD1             <= 1'b1; // Indica que a operacao foi finalizada
             end
+          
+          if (R_enable_ADD2)
+          begin
+            Rs_Qi_data[R_target_ADD2] <= Qi_CDB_data;  // Atualiza o valor do registrador de destino ADD1
+            Finished_ADD2           <= 1'b1; // Indica que a operacao foi finalizada
+          end
+          
+          if (R_enable_despacho)
+          begin
+            Rs_Qi[R_target_despacho] <= R_res_station_despacho; // Atualiza o Qi do registrador de destino despacho
+          end
 
           // implementar a logica para atualizar os valores de Qi dos registradores de acordo
           // com a instrucao, ou alguma coisa na estacao de reserva, ou algum modulo intermediario, modulo de despacho

@@ -7,7 +7,7 @@ vlib work
 # vlog -work altera /home/giovanni/intelFPGA/20.1/modelsim_ase/altera/verilog/src/altera_mf.v
 
 # Compila os arquivos Verilog necessários
-vlog +acc tomasulo.v memoria_instrucoes.v memoria_dados.v fila_de_instrucoes.v CDB_arbiter.v register_status.v unidade_despacho.v res_station_R.v unidade_funcional_R.v seletor_uf.v tb_tomasulo.v 
+vlog +acc tomasulo.v memoria_instrucoes.v memoria_dados.v fila_de_instrucoes.v contador_3bits.v CDB_arbiter.v register_status.v unidade_despacho.v res_station_R.v unidade_funcional_R.v seletor_uf.v tb_tomasulo.v 
 vsim -L altera work.tb_tomasulo
 
 
@@ -24,6 +24,15 @@ add wave -label "Clock" tb_tomasulo/Clock
 add wave -label "Pop" /tb_tomasulo/uut/Pop
 add wave -label "Fila de Instrucoes" -radix binary  tb_tomasulo/uut/u_fila_de_instrucoes/Fila
 add wave -label "Instrucao_Despachada" -radix binary /tb_tomasulo/uut/Instrucao_Despachada
+
+#Sinais da tabela de registradores
+add wave -label "R_enable_despacho" /tb_tomasulo/uut/u_register_status/R_enable_despacho
+add wave -label "R_target_despacho" /tb_tomasulo/uut/u_register_status/R_target_despacho
+add wave -label "R_res_station_despacho" /tb_tomasulo/uut/u_register_status/R_res_station_despacho
+add wave -label "R_enable_ADD1" /tb_tomasulo/uut/u_register_status/R_enable_ADD1
+add wave -label "R_enable_ADD2" /tb_tomasulo/uut/u_register_status/R_enable_ADD2
+add wave -label "R_target_ADD1" /tb_tomasulo/uut/u_register_status/R_target_ADD1
+add wave -label "R_target_ADD2" /tb_tomasulo/uut/u_register_status/R_target_ADD2
 
 # Sinais da fila de instrucoes
 #add wave -label "Full" /tb_tomasulo/uut/Full
@@ -56,10 +65,10 @@ add wave -label "Despacho/Qk" /tb_tomasulo/uut/u_unidade_despacho/Qk
 
 # Sinais da unidade de reserva ADD1
 add wave -label "ADD1/Busy" /tb_tomasulo/uut/ADD1/Busy
-add wave -label "ADD1/Vj" /tb_tomasulo/uut/ADD1/Vj
-add wave -label "ADD1/Vk" /tb_tomasulo/uut/ADD1/Vk
-add wave -label "ADD1/Qj" /tb_tomasulo/uut/ADD1/Qj
-add wave -label "ADD1/Qk" /tb_tomasulo/uut/ADD1/Qk
+add wave -label "ADD1/Vj_reg" /tb_tomasulo/uut/ADD1/Vj_reg
+add wave -label "ADD1/Vk_reg" /tb_tomasulo/uut/ADD1/Vk_reg
+add wave -label "ADD1/Qj_reg" /tb_tomasulo/uut/ADD1/Qj_reg
+add wave -label "ADD1/Qk_reg" /tb_tomasulo/uut/ADD1/Qk_reg
 add wave -label "ADD1/Done" /tb_tomasulo/uut/ADD1/Done
 add wave -label "ADD1/Finished" /tb_tomasulo/uut/ADD1/Finished
 #add wave -label "ADD1/Ready" /tb_tomasulo/uut/ADD1/Ready
@@ -78,15 +87,18 @@ add wave -label "seletor_uf_ADD1/Ready_to_uf" /tb_tomasulo/uut/seletor_uf_ADD1/R
 # Sinais da unidade funcional ADD1
 add wave -label "UF_ADD1/Ufop" -radix binary /tb_tomasulo/uut/unidade_funcional_ADD1/Ufop
 add wave -label "UF_ADD1/Q" /tb_tomasulo/uut/unidade_funcional_ADD1/Q
+add wave -label "UF_ADD1/Clear" /tb_tomasulo/uut/unidade_funcional_ADD1/u_contador_3bits/Clear
+add wave -label "UF_ADD1/Tstep" /tb_tomasulo/uut/unidade_funcional_ADD1/u_contador_3bits/Tstep
 #add wave -label "UF_ADD1/Write_Enable_CDB" /tb_tomasulo/uut/unidade_funcional_ADD1/Write_Enable_CDB
+
 
 
 # Sinais da unidade de reserva ADD2
 add wave -label "ADD2/Busy" /tb_tomasulo/uut/ADD2/Busy
-add wave -label "ADD2/Vj" /tb_tomasulo/uut/ADD2/Vj
-add wave -label "ADD2/Vk" /tb_tomasulo/uut/ADD2/Vk
-add wave -label "ADD2/Qj" /tb_tomasulo/uut/ADD2/Qj
-add wave -label "ADD2/Qk" /tb_tomasulo/uut/ADD2/Qk
+add wave -label "ADD2/Vj_reg" /tb_tomasulo/uut/ADD2/Vj_reg
+add wave -label "ADD2/Vk_reg" /tb_tomasulo/uut/ADD2/Vk_reg
+add wave -label "ADD2/Qj_reg" /tb_tomasulo/uut/ADD2/Qj_reg
+add wave -label "ADD2/Qk_reg" /tb_tomasulo/uut/ADD2/Qk_reg
 add wave -label "ADD2/Done" /tb_tomasulo/uut/ADD2/Done
 add wave -label "ADD2/Finished" /tb_tomasulo/uut/ADD2/Finished
 #add wave -label "ADD2/Ready" /tb_tomasulo/uut/ADD2/Ready
@@ -102,10 +114,12 @@ add wave -label "seletor_uf_ADD2/A" /tb_tomasulo/uut/seletor_uf_ADD2/A
 add wave -label "seletor_uf_ADD2/B" /tb_tomasulo/uut/seletor_uf_ADD2/B
 add wave -label "seletor_uf_ADD2/Ready_to_uf" /tb_tomasulo/uut/seletor_uf_ADD2/Ready_to_uf
 
+
 # Sinais da unidade funcional ADD2
 add wave -label "UF_ADD2/Ufop" -radix binary /tb_tomasulo/uut/unidade_funcional_ADD2/Ufop
 add wave -label "UF_ADD2/Q" /tb_tomasulo/uut/unidade_funcional_ADD2/Q
-#add wave -label "UF_ADD2/Write_Enable_CDB" /tb_tomasulo/uut/unidade_funcional_ADD2/Write_Enable_CDB
+add wave -label "UF_ADD2/Clear" /tb_tomasulo/uut/unidade_funcional_ADD2/u_contador_3bits/Clear
+add wave -label "UF_ADD2/Tstep" /tb_tomasulo/uut/unidade_funcional_ADD2/u_contador_3bits/Tstep
 
 
 
@@ -116,10 +130,13 @@ add wave -label "CDB_arbiter/Qi_CDB" /tb_tomasulo/uut/u_CDB_arbiter/Qi_CDB
 add wave -label "CDB_arbiter/Qi_CDB_data" /tb_tomasulo/uut/u_CDB_arbiter/Qi_CDB_data
 
 #Sinais da tabela de registradores
-add wave -label "R_enable_ADD1" /tb_tomasulo/uut/u_register_status/R_enable_ADD1
-add wave -label "R_enable_ADD2" /tb_tomasulo/uut/u_register_status/R_enable_ADD2
-add wave -label "R_target_ADD1" /tb_tomasulo/uut/u_register_status/R_target_ADD1
-add wave -label "R_target_ADD2" /tb_tomasulo/uut/u_register_status/R_target_ADD2
+#add wave -label "R_enable_despacho" /tb_tomasulo/uut/u_register_status/R_enable_despacho
+#add wave -label "R_target_despacho" /tb_tomasulo/uut/u_register_status/R_target_despacho
+#add wave -label "R_res_station_despacho" /tb_tomasulo/uut/u_register_status/R_res_station_despacho
+#add wave -label "R_enable_ADD1" /tb_tomasulo/uut/u_register_status/R_enable_ADD1
+#add wave -label "R_enable_ADD2" /tb_tomasulo/uut/u_register_status/R_enable_ADD2
+#add wave -label "R_target_ADD1" /tb_tomasulo/uut/u_register_status/R_target_ADD1
+#add wave -label "R_target_ADD2" /tb_tomasulo/uut/u_register_status/R_target_ADD2
 
 # Executa a simulacao
 run 1000ps

@@ -32,12 +32,18 @@ module seletor_uf (
   always @(posedge Clock or posedge Reset)
     if (Reset)
       begin
-        A <= Vj_Vk_sem_valor;
-        B <= Vj_Vk_sem_valor;
-        Ready_to_uf <= 1'b0;
+        A             <= Vj_Vk_sem_valor;
+        B             <= Vj_Vk_sem_valor;
+        Ready_to_uf   <= 1'b0;
       end
     else
       begin
+        if (Busy == 0)
+          begin
+            A = Vj_Vk_sem_valor; // Reseta A e B para o valor padrao
+            B = Vj_Vk_sem_valor;
+            Ready_to_uf <= 1'b0; // Desativa o sinal de pronto para a unidade funcional
+          end
         if (Busy == 1)
           begin
             if (A == Vj_Vk_sem_valor)
