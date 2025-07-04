@@ -96,6 +96,8 @@ add wave -label "ADD1/Busy" -radix binary /tb_tomasulo/uut/ADD1/Busy
 add wave -label "seletor_ADD1/Qi_CDB" /tb_tomasulo/uut/seletor_uf_ADD1/Qi_CDB
 add wave -label "seletor_ADD1/Qi_CDB_data" /tb_tomasulo/uut/seletor_uf_ADD1/Qi_CDB_data
 add wave -label "ADD1/Qj" /tb_tomasulo/uut/Qj_reg_ADD1
+add wave -label "seletor_ADD1/Vj" /tb_tomasulo/uut/seletor_uf_ADD1/Vj
+add wave -label "seletor_ADD1/Vk" /tb_tomasulo/uut/seletor_uf_ADD1/Vk
 add wave -label "seletor_ADD1/Qj" /tb_tomasulo/uut/seletor_uf_ADD1/Qj
 add wave -label "seletor_ADD1/Qk" /tb_tomasulo/uut/seletor_uf_ADD1/Qk
 add wave -label "seletor_ADD1/Op1" /tb_tomasulo/uut/seletor_uf_ADD1/Op1
@@ -210,7 +212,7 @@ run 5000ps
 # Abre o waveform e ajusta exibição
 radix -unsigned
 view wave
-WaveRestoreZoom 0650ps 3000ps
+WaveRestoreZoom 01200ps 1700ps
 #WaveRestoreZoom 5000ps 5500ps
 configure wave -timelineunits ps
 

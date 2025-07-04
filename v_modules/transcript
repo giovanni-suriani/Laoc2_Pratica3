@@ -1,7 +1,7 @@
 # do vlog_wave_tb_tomasulo_ufs.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 10:01:51 on Jul 04,2025
+# Start time: 10:23:07 on Jul 04,2025
 # vlog -reportprogress 300 "+acc" tomasulo.v memoria_instrucoes.v memoria_dados.v fila_de_instrucoes.v contador_3bits.v CDB_arbiter.v register_status.v unidade_despacho.v res_station_R.v unidade_funcional_R.v seletor_uf.v unidade_funcional_I.v res_station_I.v tb_tomasulo.v 
 # -- Compiling module tomasulo
 # -- Compiling module memoria_instrucoes
@@ -21,10 +21,10 @@
 # Top level modules:
 # 	contador_3bits
 # 	tb_tomasulo
-# End time: 10:01:51 on Jul 04,2025, Elapsed time: 0:00:00
+# End time: 10:23:07 on Jul 04,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -L altera work.tb_tomasulo 
-# Start time: 10:01:51 on Jul 04,2025
+# Start time: 10:23:07 on Jul 04,2025
 # Loading work.tb_tomasulo
 # Loading work.tomasulo
 # Loading work.register_status
@@ -62,45 +62,50 @@
 #    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/LOAD1 File: tomasulo.v Line: 332
 # ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: seletor_uf.v(9).
 #    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_LOAD1 File: tomasulo.v Line: 357
-# [250] Res_station, entrei em enable e te lasquei
-# [350] unidade_despacho: Despachando ST para o registrador 0 com opcode 5
-# [350] seletor_uf: Vj: 0004, Vk: fff0, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
-# [450] unidade_despacho: Despachando ST para o registrador 0 com opcode 5
-# [450] seletor_uf: Vj: 0004, Vk: fff0, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
-# [550] unidade_despacho: Despachando ST para o registrador 0 com opcode 5
-# [550] seletor_uf: Vj: 0004, Vk: fff0, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
-# [550]Ciclo 2 uf tipo i: LOAD, Address: 6, Op1: 0004, Op2: 0002, Op3: fff0
-# [650] unidade_despacho: Despachando ST para o registrador 0 com opcode 5
-# [650] seletor_uf: Vj: 0004, Vk: fff0, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
-# [650]Ciclo 3 uf tipo i: LOAD, Address: 6, Op1: 0004, Op2: 0002, Op3: fff0
-# [750] unidade_despacho: Despachando ST para o registrador 0 com opcode 5
-# [750] seletor_uf: Vj: 0004, Vk: fff0, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
-# [750]Ciclo 3 uf tipo i: LOAD, Address: 6, Op1: 0004, Op2: 0002, Op3: fff0
-# [850] unidade_despacho: Despachando ST para o registrador 0 com opcode 5
-# [850] Res_station, entrei em enable e te lasquei
-# [950] seletor_uf: Vj: 0004, Vk: 0002, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
-# [1050] seletor_uf: Vj: 0004, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
-# [1050] seletor_uf: Vj: 0004, Vk: 0002, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
-# [1050]Ciclo 1 uf tipo i: Store, Address: 6, Op1: 0004, Op2: 0001, Op3: 0002
-# [1150] seletor_uf: Vj: 0004, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
-# [1150] seletor_uf: Vj: 0007, Vk: 0004, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
-# [1150] seletor_uf: Vj: 0004, Vk: 0002, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
-# [1150] Ciclo 2 uf tipo i: Store, Address:  5, Op1:     4, Op2:     1, Op3:     2
-# [1250] seletor_uf: Vj: 0004, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
-# [1250] seletor_uf: Vj: 0007, Vk: 0004, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
-# [1250] Ciclo 2 uf tipo i: Store, Address:  5, Op1:     4, Op2:     1, Op3:     2
-# [1350] seletor_uf: Vj: 0004, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 000b
-# [1350] seletor_uf: Vj: 0007, Vk: 0004, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 000b
-# [1450] seletor_uf: Vj: 0007, Vk: 0004, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 000b
-# [1550] seletor_uf: Vj: 000b, Vk: 000b, Qj: 0, Qk: 0, Qi_CDB: 2, Qi_CDB_data: 0003
-# [1550] seletor_uf: Vj: 0007, Vk: 0004, Qj: 0, Qk: 0, Qi_CDB: 2, Qi_CDB_data: 0003
-# [1650] seletor_uf: Vj: 000b, Vk: 000b, Qj: 0, Qk: 0, Qi_CDB: 2, Qi_CDB_data: 0003
-# [1750] seletor_uf: Vj: 000b, Vk: 000b, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0000
-# [1750] seletor_uf: Vj: 0003, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0000
-# [1850] seletor_uf: Vj: 0003, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0000
-# [1950] seletor_uf: Vj: 0004, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 2, Qi_CDB_data: 000a
-# [1950] seletor_uf: Vj: 0003, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 2, Qi_CDB_data: 000a
-# [2050] seletor_uf: Vj: 0004, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 2, Qi_CDB_data: 000a
-# [2150] seletor_uf: Vj: 0004, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 000b
+# [350] seletor_uf: Vj: 0004, Vk: 0003, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
+# [450] seletor_uf: Vj: 0004, Vk: 0003, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
+# [450] seletor_uf: Vj: fff0, Vk: 0003, Qj: 1, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
+# [450] Res_station, entrei em enable e te lasquei
+# [550] seletor_uf: Vj: 0004, Vk: 0003, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
+# [550] seletor_uf: Vj: fff0, Vk: 0003, Qj: 1, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
+# [550] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
+# [650] seletor_uf: Vj: 0004, Vk: 0003, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0007
+# [650] seletor_uf: Vj: fff0, Vk: 0003, Qj: 1, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0007
+# [650] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0007
+# [750] seletor_uf: Vj: fff0, Vk: 0003, Qj: 1, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0007
+# [750] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0007
+# [850] seletor_uf: Vj: fff0, Vk: 0003, Qj: 1, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0007
+# [850] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0007
+# [850]Ciclo 2 uf tipo i: LOAD, Address: 9, Op1: 0007, Op2: 0002, Op3: fff0
+# [950] seletor_uf: Vj: fff0, Vk: 0003, Qj: 1, Qk: 0, Qi_CDB: 2, Qi_CDB_data: 0004
+# [950] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 0, Qi_CDB: 2, Qi_CDB_data: 0004
+# [950]Ciclo 3 uf tipo i: LOAD, Address: 9, Op1: 0007, Op2: 0002, Op3: fff0
+# [1050] unidade_despacho: Despachando ST para o registrador 0 com opcode 5
+# [1050] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 0, Qi_CDB: 2, Qi_CDB_data: 0004
+# [1050]Ciclo 3 uf tipo i: LOAD, Address: 9, Op1: 0007, Op2: 0002, Op3: fff0
+# [1150] unidade_despacho: Despachando ST para o registrador 0 com opcode 5
+# [1150] seletor_uf: Vj: fff0, Vk: fff0, Qj: 1, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
+# [1150]Ciclo 3 uf tipo i: LOAD, Address: 9, Op1: 0007, Op2: 0002, Op3: fff0
+# [1250] unidade_despacho: Despachando ST para o registrador 0 com opcode 5
+# [1250] Res_station, entrei em enable e te lasquei
+# [1350] seletor_uf: Vj: 0007, Vk: 0004, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
+# [1450] seletor_uf: Vj: 0007, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
+# [1450] seletor_uf: Vj: 0007, Vk: 0004, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
+# [1450]Ciclo 1 uf tipo i: Store, Address: 9, Op1: 0007, Op2: 0001, Op3: 0004
+# [1550] seletor_uf: Vj: 0007, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
+# [1550] seletor_uf: Vj: fff0, Vk: 0007, Qj: 1, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
+# [1550] seletor_uf: Vj: 0007, Vk: 0004, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
+# [1550] Ciclo 2 uf tipo i: Store, Address:  8, Op1:     7, Op2:     1, Op3:     4
+# [1650] seletor_uf: Vj: 0007, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
+# [1650] seletor_uf: Vj: fff0, Vk: 0007, Qj: 1, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0007
+# [1650] Ciclo 2 uf tipo i: Store, Address:  8, Op1:     7, Op2:     1, Op3:     4
+# [1750] seletor_uf: Vj: 0007, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0000
+# [1750] seletor_uf: Vj: fff0, Vk: 0007, Qj: 1, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0000
+# [1850] seletor_uf: Vj: fff0, Vk: 0007, Qj: 1, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0000
+# [1950] seletor_uf: Vj: 0007, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0000
+# [1950] seletor_uf: Vj: fff0, Vk: 0007, Qj: 1, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0000
+# [2050] seletor_uf: Vj: 0007, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 2, Qi_CDB_data: 0007
+# [2050] seletor_uf: Vj: fff0, Vk: 0007, Qj: 1, Qk: 0, Qi_CDB: 2, Qi_CDB_data: 0007
+# [2150] seletor_uf: Vj: 0007, Vk: 0007, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 000e
 # unsigned
 # .main_pane.wave.interior.cs.body.pw.wf
