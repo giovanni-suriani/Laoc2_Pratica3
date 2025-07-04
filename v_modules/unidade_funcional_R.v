@@ -1,8 +1,8 @@
-module unidade_funcional_R(Clock, Clear, A, B, Ufop, Ready_to_uf, Reset, Q, Busy, Write_Enable_CDB, Done);
+module unidade_funcional_R(Clock, Clear, Op1, Op2, Ufop, Ready_to_uf, Reset, Q, Busy, Write_Enable_CDB, Done);
   // Talvez crirar um sinal para indicar se comeca ou nao a execucao, quem envia eh a estacao de reserva
   input             Clock; // Sinal de clock
   input             Clear; // Sinal de clear para o contador
-  input [15:0]      A, B;
+  input [15:0]      Op1, Op2;
   input [2:0]       Ufop; // 2 bits para selecionar a operação da ULA
   input             Ready_to_uf; // Sinal de pronto para a unidade funcional
   input             Reset; // Sinal de reset
@@ -35,6 +35,7 @@ module unidade_funcional_R(Clock, Clear, A, B, Ufop, Ready_to_uf, Reset, Q, Busy
       begin
         Done <= 1'b0; // Reseta o sinal de Done
         Tstep <= 1'b0; // Reseta o contador de etapas
+        Write_Enable_CDB <= 1'b0; // Desabilita escrita no CDB
       end
       if (Ready_to_uf)
         begin
@@ -56,22 +57,22 @@ module unidade_funcional_R(Clock, Clear, A, B, Ufop, Ready_to_uf, Reset, Q, Busy
 
                 3'b010: // Adicao
                   begin
-                    Q <= A + B;
+                    Q <= Op1 + Op2;
                     Write_Enable_CDB <= 1'b1; // Habilita escrita no CDB
                     Done <= 1'b1; // Indica que a operação foi concluída
                   end
 
                 3'b011: // Subtracao
                   begin
-                    Q <= A - B; // Se for subtração, Q recebe A - B
+                    Q <= Op1 - Op2; // Se for subtração, Q recebe A - Op2
                     Write_Enable_CDB <= 1'b1; // Habilita escrita no CDB
                     Done <= 1'b1; // Indica que a operação foi concluída
                   end
 
                 3'b110: // SLT
                   begin
-                    if (A < B)
-                      Q <= 16'd1; // Se A for menor que B, Q recebe 1
+                    if (Op1 < Op2)
+                      Q <= 16'd1; // Se Op1 for menor que Op2, Q recebe 1
                     else
                       Q <= 16'd0; // Caso contrário, Q recebe 0
                     Write_Enable_CDB <= 1'b1; // Habilita escrita no CDB
@@ -80,8 +81,8 @@ module unidade_funcional_R(Clock, Clear, A, B, Ufop, Ready_to_uf, Reset, Q, Busy
 
                 3'b111: // CMP
                   begin
-                    if (A == B)
-                      Q <= 16'd1; // Se A for igual a B, Q recebe 1
+                    if (Op1 == Op2)
+                      Q <= 16'd1; // Se Op1 for igual a Op2, Q recebe 1
                     else
                       Q <= 16'd0; // Caso contrário, Q recebe 0
                     Write_Enable_CDB <= 1'b1; // Habilita escrita no CDB

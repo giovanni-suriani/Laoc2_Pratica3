@@ -90,7 +90,7 @@ module fila_de_instrucoes(
                   end
                 LD:
                   begin
-                    $display("[%0t] Sou um load simplorio",$time);
+                    // $display("[%0t] Sou um load simplorio",$time);
                     if ((tail_I + 1) != head_I)
                       begin
                         Fila_I[tail_I] = Mem_data;
@@ -101,7 +101,7 @@ module fila_de_instrucoes(
                         PC             = PC + 1;
                       end
                     // Depuracao com display
-                    $display("[%0t] Fila_I[%0d] = %b", $time, tail_I - 1, Fila_I[tail_I - 1]);
+                    // $display("[%0t] Fila_I[%0d] = %b", $time, tail_I - 1, Fila_I[tail_I - 1]);
                   end
                 ST:
                   begin
@@ -123,11 +123,11 @@ module fila_de_instrucoes(
             begin
               if (Pop)
                 begin
-                  $display("[%0t] Despacho de instrucao head =  %0d, Tipo_fila[head] = %0d", $time, head, TipoFila[head]);
+                  // $display("[%0t] Despacho de instrucao head =  %0d, Tipo_fila[head] = %0d", $time, head, TipoFila[head]);
                   if (TipoFila[head] == 0)
                     begin
-                      $display("[%0t] Despacho de instrucao R [%0d] com opcode %b",
-                               $time, head_R, Fila_R[head_R][15:13]);
+                      // $display("[%0t] Despacho de instrucao R [%0d] com opcode %b",
+                      //          $time, head_R, Fila_R[head_R][15:13]);
                       Instrucao_Despachada  = Fila_R[head_R];
                       head_R               <= head_R + 1;
                       head                 <= head + 1;
@@ -135,8 +135,8 @@ module fila_de_instrucoes(
                     end
                   else
                     begin
-                      $display("[%0t] Despacho de instrucao I [%0d] com opcode %b",
-                               $time, head_I, Fila_I[head_I][15:13]);
+                      // $display("[%0t] Despacho de instrucao I [%0d] com opcode %b",
+                      //          $time, head_I, Fila_I[head_I][15:13]);
                       Instrucao_Despachada <= Fila_I[head_I];
                       head_I               <= head_I + 1;
                       head                 <= head + 1;

@@ -17,7 +17,7 @@ module memoria_dados (
         begin
             // Inicializa todas as posicoes da memoria com zero
             for (i = 0; i < 16; i = i + 1) begin
-                mem[i] <= 16'b0; // Atribuicao nao bloqueante para sincrono
+                mem[i] <= 16'd7; // Atribuicao nao bloqueante para sincrono
             end
         end
         // Escrita

@@ -26,13 +26,12 @@ module tb_tomasulo;
       // Ciclos para botar a primeira instrucao
       // Pop = 1;
       @(posedge Clock);
-      $display("[%0t] Ativando despacho", $time);
-      // Espera 4 ciclos de clock
       @(posedge Clock);
       @(posedge Clock);
       @(posedge Clock);
       @(posedge Clock);
-      // Ativa o despacho de instrução
+      #250;
+      Pop = 0;
 
       // Depurando unidade de despacho
 

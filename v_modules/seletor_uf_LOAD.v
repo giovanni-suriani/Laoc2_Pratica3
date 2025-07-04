@@ -1,16 +1,19 @@
-module seletor_uf (
+module seletor_uf_LOAD (
     Clock,
     Reset,
     Vj,
     Vk,
     Qj,
     Qk,
+    Rs_Qi,
+    Rs_Qi_Data,
     A,
     Qi_CDB,
     Qi_CDB_data,
+    Ufop,
+    Op0,
     Op1,
     Op2,
-    Op3,
     Busy,
     Ready_to_uf);
   parameter Vj_Vk_sem_valor = 16'b1111_1111_1111_0000, // Valor padrao para algo sem valor (como xxx nao existe na fpga)
@@ -20,17 +23,20 @@ module seletor_uf (
 
   input Clock;
   input Reset;
-  input [15:0] Vj;
-  input [15:0] Vk;
-  input [6:0]  A;
-  input [2:0]  Qj;
-  input [2:0]  Qk;
-  input [2:0]  Qi_CDB;
-  input [15:0] Qi_CDB_data;
-  input        Busy; // Sinal de ocupado da unidade funcional
+  input [15:0]     Vj;
+  input [15:0]     Vk;
+  input [6:0]      A;
+  input [2:0]      Qj;
+  input [2:0]      Qk;
+  input [2:0]      Qi_CDB;
+  input [15:0]     Qi_CDB_data;
+  // input [1:0]      Rs_Qi [3:0];
+  // input [15:0]     Rs_Qi_data [3:0];
+  input            Busy; // Sinal de ocupado da unidade funcional
+  input [2:0]      Ufop;
+  output reg[15:0] Op0;
   output reg[15:0] Op1;
   output reg[15:0] Op2;
-  output reg[15:0] Op3; // Registrador para o imediato, se for usado
   output reg Ready_to_uf; // Talvez fazer um sinal one hot aqui
 
   reg clear; // Sinal para limpar os registradores Op1 e Op2
@@ -38,18 +44,18 @@ module seletor_uf (
   always @(posedge Clock or posedge Reset)
     if (Reset)
       begin
+        Op0             <= Vj_Vk_sem_valor;
         Op1             <= Vj_Vk_sem_valor;
         Op2             <= Vj_Vk_sem_valor;
-        Op3             <= Vj_Vk_sem_valor;
         Ready_to_uf   <= 1'b0;
       end
     else
       begin
         if (Busy == 0)
           begin
+            Op0 = Vj_Vk_sem_valor; // Reseta Op1 e Op2 para o valor padrao
             Op1 = Vj_Vk_sem_valor; // Reseta Op1 e Op2 para o valor padrao
             Op2 = Vj_Vk_sem_valor;
-            Op3 = Vj_Vk_sem_valor; // Reseta Op3 para o valor padrao
             Ready_to_uf <= 1'b0; // Desativa o sinal de pronto para a unidade funcional
           end
         if (Busy == 1)
@@ -73,24 +79,10 @@ module seletor_uf (
               end
             if (Op2 == Vj_Vk_sem_valor)
               begin
-                // Check de A depois de Vj
+                // Check de A depois de Vk
                 if (A != A_sem_valor)
                   begin
                     Op2 = A; // Se A for sem valor, atribui o valor padrao
-                    if (Vk != Vj_Vk_sem_valor || Qk != Qj_Qk_sem_valor)
-                      begin
-                        if (Vk == Vj_Vk_sem_valor)
-                          begin
-                            if (Qk == Qi_CDB)
-                              begin
-                                Op3 = Qi_CDB_data;
-                              end
-                          end
-                        else if (Vk != Vj_Vk_sem_valor)
-                          begin
-                            Op3 = Vk;
-                          end
-                      end
                   end
                 else
                   if (Vk == Vj_Vk_sem_valor)
@@ -100,25 +92,22 @@ module seletor_uf (
                           Op2 = Qi_CDB_data;
                         end
                     end
-                  else if (Vk != Vj_Vk_sem_valor)
+                  else if (Vj != Vj_Vk_sem_valor)
                     begin
                       Op2 = Vk;
                     end
               end
 
-            // Checando se a operacao eh de store
-            if ((Vk != Vj_Vk_sem_valor && A != A_sem_valor ) || (Qk != Qj_Qk_sem_valor && A != A_sem_valor))
-            begin
-              if (Op1 != Vj_Vk_sem_valor && Op2 != Vj_Vk_sem_valor && Op3 != Vj_Vk_sem_valor)
-                begin
-                  Ready_to_uf <= 1'b1; // Pronto para a unidade funcional
-                end
-            end
-
             // Check se Op1 e Op2 estao prontos
-            else if (Op1 != Vj_Vk_sem_valor && Op2 != Vj_Vk_sem_valor)
+            if (Ufop == 3'd5) // LOAD
               begin
-                Ready_to_uf <= 1'b1; // Pronto para a unidade funcional
+                Op0 = Vj; // Op0 recebe o valor de Vj para LOAD
+
+
+                if (Op1 != Vj_Vk_sem_valor && Op2 != Vj_Vk_sem_valor)
+                  begin
+                    Ready_to_uf <= 1'b1; // Pronto para a unidade funcional
+                  end
               end
           end
       end

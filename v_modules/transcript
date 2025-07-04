@@ -1,8 +1,8 @@
-# do vlog_wave_tb_tomasulo_ufs.do
+# do vlog_wave_tb_tomasulo_tipoI.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 19:15:33 on Jul 02,2025
-# vlog -reportprogress 300 "+acc" tomasulo.v memoria_instrucoes.v memoria_dados.v fila_de_instrucoes.v contador_3bits.v CDB_arbiter.v register_status.v unidade_despacho.v res_station_R.v unidade_funcional_R.v seletor_uf.v tb_tomasulo.v 
+# Start time: 09:02:24 on Jul 04,2025
+# vlog -reportprogress 300 "+acc" tomasulo.v memoria_instrucoes.v memoria_dados.v fila_de_instrucoes.v contador_3bits.v CDB_arbiter.v register_status.v unidade_despacho.v res_station_R.v unidade_funcional_R.v seletor_uf.v unidade_funcional_I.v res_station_I.v tb_tomasulo.v 
 # -- Compiling module tomasulo
 # -- Compiling module memoria_instrucoes
 # -- Compiling module memoria_dados
@@ -14,16 +14,17 @@
 # -- Compiling module res_station_R
 # -- Compiling module unidade_funcional_R
 # -- Compiling module seletor_uf
+# -- Compiling module unidade_funcional_I
+# -- Compiling module res_station_I
 # -- Compiling module tb_tomasulo
 # 
 # Top level modules:
-# 	memoria_dados
 # 	contador_3bits
 # 	tb_tomasulo
-# End time: 19:15:33 on Jul 02,2025, Elapsed time: 0:00:00
+# End time: 09:02:24 on Jul 04,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -L altera work.tb_tomasulo 
-# Start time: 19:15:33 on Jul 02,2025
+# Start time: 09:02:24 on Jul 04,2025
 # Loading work.tb_tomasulo
 # Loading work.tomasulo
 # Loading work.register_status
@@ -34,25 +35,57 @@
 # Loading work.res_station_R
 # Loading work.seletor_uf
 # Loading work.unidade_funcional_R
-# ** Error (suppressible): (vsim-3389) Port 'A' not found in the connected module (12th connection).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/u_unidade_despacho File: tomasulo.v Line: 118
-# ** Error (suppressible): (vsim-3389) Port 'Pop_I' not found in the connected module (23rd connection).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/u_unidade_despacho File: tomasulo.v Line: 118
-# ** Error (suppressible): (vsim-3389) Port 'Pop_R' not found in the connected module (24th connection).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/u_unidade_despacho File: tomasulo.v Line: 118
-# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: CDB_arbiter.v(9).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/u_CDB_arbiter File: tomasulo.v Line: 146
+# Loading work.res_station_I
+# Loading work.unidade_funcional_I
+# Loading work.memoria_dados
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: CDB_arbiter.v(14).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/u_CDB_arbiter File: tomasulo.v Line: 194
 # ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'R_target'. The port definition is at: res_station_R.v(13).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD1 File: tomasulo.v Line: 158
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD1 File: tomasulo.v Line: 211
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (1) for port 'Clear_counter'. The port definition is at: res_station_R.v(15).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD1 File: tomasulo.v Line: 211
 # ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'R_target'. The port definition is at: res_station_R.v(13).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD2 File: tomasulo.v Line: 182
-# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: seletor_uf.v(8).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD1 File: tomasulo.v Line: 207
-# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: seletor_uf.v(8).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD2 File: tomasulo.v Line: 222
-# Error loading design
-# Error: Error loading design
-#        Pausing macro execution
-# MACRO ./vlog_wave_tb_tomasulo_ufs.do PAUSED at line 11
-# End time: 19:18:02 on Jul 02,2025, Elapsed time: 0:02:29
-# Errors: 3, Warnings: 5
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD2 File: tomasulo.v Line: 235
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (1) for port 'Clear_counter'. The port definition is at: res_station_R.v(15).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/ADD2 File: tomasulo.v Line: 235
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: seletor_uf.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD1 File: tomasulo.v Line: 260
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: seletor_uf.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_ADD2 File: tomasulo.v Line: 277
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unidade_funcional_ADD1'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/unidade_funcional_ADD1 File: tomasulo.v Line: 294
+# ** Warning: (vsim-3722) tomasulo.v(294): [TFMPC] - Missing connection for port 'Busy'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unidade_funcional_ADD2'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/unidade_funcional_ADD2 File: tomasulo.v Line: 308
+# ** Warning: (vsim-3722) tomasulo.v(308): [TFMPC] - Missing connection for port 'Busy'.
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'R_target'. The port definition is at: res_station_I.v(15).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/LOAD1 File: tomasulo.v Line: 322
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (4) for port 'Qi_CDB'. The port definition is at: seletor_uf.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_tomasulo/uut/seletor_uf_LOAD1 File: tomasulo.v Line: 346
+# [250] unidade_despacho: Despachando ST para o registrador 0 com opcode 5
+# [250] Res_station, entrei em enable e te lasquei
+# [350] seletor_uf: Vj: 0004, Vk: 0002, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
+# [450] seletor_uf: Vj: 0004, Vk: 0002, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
+# [450]Ciclo 1 uf tipo i: Store, Address: 0, Op1: 0004, Op2: 0001, Op3: 0002
+# [550] seletor_uf: Vj: 0004, Vk: 0002, Qj: 0, Qk: 0, Qi_CDB: 0, Qi_CDB_data: 0000
+# [550] Ciclo 2 uf tipo i: Store, Address:  5, Op1:     4, Op2:     1, Op3:     2
+# [650] Ciclo 2 uf tipo i: Store, Address:  5, Op1:     4, Op2:     1, Op3:     2
+# [650] Res_station, entrei em enable e te lasquei
+# [750] seletor_uf: Vj: 0004, Vk: 0002, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0000
+# [850] seletor_uf: Vj: 0004, Vk: fff0, Qj: 0, Qk: 3, Qi_CDB: 3, Qi_CDB_data: 0000
+# [850] seletor_uf: Vj: 0004, Vk: 0002, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0000
+# [950] seletor_uf: Vj: 0004, Vk: fff0, Qj: 0, Qk: 3, Qi_CDB: 3, Qi_CDB_data: 0000
+# [950] seletor_uf: Vj: 0004, Vk: fff0, Qj: 0, Qk: 3, Qi_CDB: 3, Qi_CDB_data: 0000
+# [950] seletor_uf: Vj: 0004, Vk: 0002, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0000
+# [950]Ciclo 2 uf tipo i: LOAD, Address: 6, Op1: 0004, Op2: 0002, Op3: 0002
+# [1050] seletor_uf: Vj: 0004, Vk: fff0, Qj: 0, Qk: 3, Qi_CDB: 3, Qi_CDB_data: 0000
+# [1050] seletor_uf: Vj: 0004, Vk: fff0, Qj: 0, Qk: 3, Qi_CDB: 3, Qi_CDB_data: 0000
+# [1050] seletor_uf: Vj: 0004, Vk: 0002, Qj: 0, Qk: 0, Qi_CDB: 3, Qi_CDB_data: 0000
+# [1050]Ciclo 3 uf tipo i: LOAD, Address: 6, Op1: 0004, Op2: 0002, Op3: 0002
+# [1150] seletor_uf: Vj: 0004, Vk: fff0, Qj: 0, Qk: 3, Qi_CDB: 1, Qi_CDB_data: 0054
+# [1150]Ciclo 3 uf tipo i: LOAD, Address: 6, Op1: 0004, Op2: 0002, Op3: 0002
+# [1250] seletor_uf: Vj: 0054, Vk: 0054, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0054
+# [1350] seletor_uf: Vj: 0004, Vk: 0054, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0054
+# [1450] seletor_uf: Vj: 0004, Vk: 0054, Qj: 0, Qk: 0, Qi_CDB: 1, Qi_CDB_data: 0054
+# unsigned
+# .main_pane.wave.interior.cs.body.pw.wf
