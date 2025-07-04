@@ -13,6 +13,7 @@ module res_station_R (
     R_target, // Registrador de destino
     R_enable, // Sinal de habilitacao da escrita no banco de registradores
     Clear_counter, // Sinal de clear para resetar o contador da unidade funcional
+    CDB_confirm, // Sinal de confirmação do CDB
     Enable_VQ // habilita a sobrescrita do Vj e Vk, Qj e Qk
     // Ready, // pode executar?
     // Result,
@@ -28,6 +29,7 @@ module res_station_R (
   input [15:0]          Vj, Vk;
   input [2:0]           Qj, Qk;
   input                 Enable_VQ;       // Habilita a sobrescrita do Vj e Vk, Qj e Qk
+  input                 CDB_confirm;     // Sinal de confirmação do CDB
   output reg            R_enable;        // Sinal de habilitacao da escrita no banco
   output reg            Busy;
   output reg [2:0]      Ufop;            // Qual operacao esta sendo executada
@@ -47,7 +49,7 @@ module res_station_R (
 
   // Talvez Busy seja um reg
 
-  always @(Reset or Enable_VQ or Done or Finished)
+  always @(Reset or Enable_VQ or Done or posedge Finished or posedge CDB_confirm)
     begin
       if (Reset)
         begin
@@ -72,7 +74,7 @@ module res_station_R (
               // Ready <= 1'b0; // Desativa a prontidao, pois nao esta executando
               // Result <= Vj_reg + Vk_reg; // Resultado da operacao
             end
-          else if (Done)
+          else if (Done && CDB_confirm)
             begin
               R_enable     <= 1'b1; // Habilita o registrador de destino para escrita
               Clear_counter <= 1'b1; // Ativa o sinal de clear para resetar o contador da unidade funcional

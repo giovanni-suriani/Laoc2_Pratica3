@@ -14,7 +14,7 @@ module tomasulo(
 
   parameter Vj_Vk_sem_valor = 16'b1111_1111_1111_0000, // Valor padrao para algo sem valor (como xxx nao existe na fpga)
             Qj_Qk_sem_valor = 3'b000, // Valor padrao para estacao de reserva sem valor
-            A_sem_valor     = 7'b1010000; // Valor padrao para A (imediato) sem valor
+            A_sem_valor     = 7'b1111000; // Valor padrao para A (imediato) sem valor
 
 
   // Instanciacao do modulo contador
@@ -24,6 +24,10 @@ module tomasulo(
   // Instanciação do modulo register status
   wire [3:0]  Qi_CDB;
   wire [15:0] Qi_CDB_data;
+  wire        CDB_confirm_ADD1 ;
+  wire        CDB_confirm_ADD2 ;
+  wire        CDB_confirm_LOAD1;
+  wire        CDB_confirm_LOAD2;
   wire [1:0]  Rs_Qi [3:0];
   wire [15:0] Rs_Qi_data [3:0];
   wire        Finished_ADD1;                          // Sinal de finalizacao da operacao da unidade funcional ADD1
@@ -200,6 +204,10 @@ module tomasulo(
                 .Done_ADD2        (Done_ADD2        ),
                 .Done_LOAD1       (Done_LOAD1       ),
                 .Done_LOAD2       (Done_LOAD2       ),
+                .CDB_confirm_ADD1 (CDB_confirm_ADD1 ),
+                .CDB_confirm_ADD2 (CDB_confirm_ADD2 ),
+                .CDB_confirm_LOAD1(CDB_confirm_LOAD1),
+                .CDB_confirm_LOAD2(CDB_confirm_LOAD2),
                 .Q_ADD1           (Q_ADD1           ),
                 .Q_ADD2           (Q_ADD2           ),
                 .Q_LOAD1          (Q_LOAD1          ),
@@ -227,6 +235,7 @@ module tomasulo(
                   .R_enable         (R_enable_ADD1      ),
                   .Clear_counter    (Clear_counter_ADD1 ),
                   .Enable_VQ        (Enable_VQ_ADD1     ),
+                  .CDB_confirm      (CDB_confirm_ADD1 ),
                   .Ufop             (Ufop_ADD1          )
                   // .Ready     (Ready_R1  ),
                   // .Result    (Q_ADD1    )
@@ -251,6 +260,7 @@ module tomasulo(
                   .R_enable         (R_enable_ADD2      ),
                   .Clear_counter    (Clear_counter_ADD2 ),
                   .Enable_VQ        (Enable_VQ_ADD2     ),
+                  .CDB_confirm      (CDB_confirm_ADD2 ),
                   .Ufop             (Ufop_ADD2          )
                   // .Ready     (Ready_R1  ),
                   // .Result    (Q_ADD1    )
@@ -332,6 +342,7 @@ module tomasulo(
                   .Qk            (Qk                             ),
                   .A             (A                              ),
                   .Enable_VQ     (Enable_VQ_LOAD1                 ),
+                  .CDB_confirm      (CDB_confirm_LOAD1 ),
                   .R_enable      (R_enable_LOAD1                 ),
                   .Busy          (Busy_LOAD1                     ),
                   .Ufop          (Ufop_LOAD1                     ),

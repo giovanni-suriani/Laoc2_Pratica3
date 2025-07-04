@@ -48,7 +48,7 @@ module unidade_despacho (
 
   parameter Vj_Vk_sem_valor = 16'b1111_1111_1111_0000, // Valor padrao para algo sem valor (como xxx nao existe na fpga)
             Qj_Qk_sem_valor = 3'b000, // Valor padrao para estacao de reserva sem valor
-            A_sem_valor     = 7'b1111000; // Valor padrao para A (imediato) sem valor
+            A_sem_valor     = 7'b1110000; // Valor padrao para A (imediato) sem valor
 
 
   input              Clock;
@@ -138,6 +138,11 @@ module unidade_despacho (
             Enable_VQ_ADD2  <= 1'b0; // Desativa a estacao de reserva R2
             Enable_VQ_LOAD1 <= 1'b0; // Desativa a estacao de reserva LOAD1
             Enable_VQ_LOAD2 <= 1'b0; // Desativa a estacao de
+            // Vj              = Vj_Vk_sem_valor; // Valor padrao para vj
+            // Vk              = Vj_Vk_sem_valor; // Valor padrao para vk
+            // Qj              = Qj_Qk_sem_valor; // Estacao de reserva pad
+            // Qk              = Qj_Qk_sem_valor; // Estacao de reserva padrao para qk
+            // A               = A_sem_valor; // Valor padrao para A (imediato
             // Resolvendo vj ou qj
             // $display("[%0t] unidade_despacho Rs_Qi: %p",$time, Rs_Qi);
 

@@ -88,6 +88,7 @@ add wave -label "LOAD1/Finished" /tb_tomasulo/uut/LOAD1/Finished
 #add wave -label "LOAD1/Result" /tb_tomasulo/uut/LOAD1/Result
 add wave -label "LOAD1/Ufop" -radix binary /tb_tomasulo/uut/LOAD1/Ufop
 add wave -label "LOAD1/Busy" -radix binary /tb_tomasulo/uut/LOAD1/Busy
+add wave -label "LOAD1/CDB_confirm" -radix binary /tb_tomasulo/uut/LOAD1/CDB_confirm
 #add wave -label "LOAD1/Enable" /tb_tomasulo/uut/LOAD1/Enable_VQ_LOAD1
 
 # sinais do seletor da unidade funcional LOAD1
@@ -154,6 +155,10 @@ add wave -label "CDB_arbiter/Qi_CDB" /tb_tomasulo/uut/u_CDB_arbiter/Qi_CDB
 add wave -label "CDB_arbiter/Qi_CDB_data" /tb_tomasulo/uut/u_CDB_arbiter/Qi_CDB_data
 add wave -label "CDB_arbiter/Write_Enable_CDB_LOAD1" /tb_tomasulo/uut/u_CDB_arbiter/Write_Enable_CDB_LOAD1
 add wave -label "CDB_arbiter/Write_Enable_CDB_LOAD2" /tb_tomasulo/uut/u_CDB_arbiter/Write_Enable_CDB_LOAD2
+add wave -label "CDB_arbiter/CDB_confirm_ADD1" /tb_tomasulo/uut/u_CDB_arbiter/CDB_confirm_ADD1
+add wave -label "CDB_arbiter/CDB_confirm_ADD2" /tb_tomasulo/uut/u_CDB_arbiter/CDB_confirm_ADD2
+add wave -label "CDB_arbiter/CDB_confirm_LOAD1" /tb_tomasulo/uut/u_CDB_arbiter/CDB_confirm_LOAD1
+add wave -label "CDB_arbiter/CDB_confirm_LOAD2" /tb_tomasulo/uut/u_CDB_arbiter/CDB_confirm_LOAD2
 
 #Sinais da tabela de registradores
 #add wave -label "R_enable_despacho" /tb_tomasulo/uut/u_register_status/R_enable_despacho
@@ -165,12 +170,12 @@ add wave -label "CDB_arbiter/Write_Enable_CDB_LOAD2" /tb_tomasulo/uut/u_CDB_arbi
 #add wave -label "R_target_ADD2" /tb_tomasulo/uut/u_register_status/R_target_ADD2
 
 # Executa a simulacao
-run 1500ps
+run 5000ps
 
 # Abre o waveform e ajusta exibição
 radix -unsigned
 view wave
-WaveRestoreZoom 0650ps 1500ps
+WaveRestoreZoom 0650ps 3000ps
 #WaveRestoreZoom 5000ps 5500ps
 configure wave -timelineunits ps
 

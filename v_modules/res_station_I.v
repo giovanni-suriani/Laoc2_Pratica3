@@ -15,6 +15,7 @@ module res_station_I (
     R_target, // Registrador de destino
     R_enable, // Sinal de habilitacao da escrita no banco de registradores
     Clear_counter, // Sinal de clear para resetar o contador da unidade funcional
+    CDB_confirm, // Sinal de confirmação do CDB
     Enable_VQ // habilita a sobrescrita do Vj e Vk, Qj e Qk
     // Ready, // pode executar?
     // Result,
@@ -30,6 +31,7 @@ module res_station_I (
   input [15:0]        Vj, Vk;
   input [2:0]         Qj, Qk;
   input [6:0]         A;               // Imediato para a unidade funcional
+  input               CDB_confirm;     // Sinal de confirmação do CDB
   input               Enable_VQ;       // Habilita a sobrescrita do Vj e Vk, Qj e Qk
   output reg          R_enable;        // Sinal de habilitacao da escrita no banco
   output reg          Busy;
@@ -40,7 +42,7 @@ module res_station_I (
 
   output reg [15:0]      Vj_reg, Vk_reg;  // Registradores para os operandos
   output reg [2:0]       Qj_reg, Qk_reg;  // Registradores
-  output reg [6:0]       A_reg;           // Registrador para o imediato  
+  output reg [6:0]       A_reg;           // Registrador para o imediato
 
   // assign Ufop = Opcode;   // Passa o opcode diretamente para a saida Ufop
 
@@ -51,7 +53,7 @@ module res_station_I (
 
   // Talvez Busy seja um reg
 
-  always @(Reset or Enable_VQ or Done or posedge Finished)
+  always @(Reset or Enable_VQ or Done or posedge CDB_confirm or posedge Finished)
     begin
       if (Reset)
         begin
@@ -79,13 +81,17 @@ module res_station_I (
             end
           else if (Done)
             begin
-              R_enable      <= 1'b1; // Habilita o registrador de destino para escrita
-              Clear_counter <= 1'b1; // Ativa o sinal de clear para resetar o contador da unidade funcional
               if (Ufop == 3'd5 )
-              begin
-                Busy        <= 1'b0;
-                R_enable    <= 1'b0;
-              end
+                begin
+                  Busy        <= 1'b0;
+                  R_enable    <= 1'b0;
+                end
+              if (CDB_confirm)
+                begin
+                  R_enable      <= 1'b1; // Habilita o registrador de destino para escrita
+                  Clear_counter <= 1'b1; // Ativa o sinal de clear para resetar o contador da unidade funcional
+                end
+
             end
           if (Enable_VQ)
             begin

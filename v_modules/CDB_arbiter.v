@@ -12,7 +12,11 @@ module CDB_arbiter (
     input[15:0] Q_LOAD1,   // Dado da unidade funcional LOAD1
     input[15:0] Q_LOAD2,   // Dado da unidade funcional LOAD
     output reg [2:0]  Qi_CDB,
-    output reg [15:0] Qi_CDB_data
+    output reg [15:0] Qi_CDB_data,
+    output reg CDB_confirm_ADD1, // Sinal de confirmação do CDB para ADD1
+    output reg CDB_confirm_ADD2, // Sinal de confirmação do CDB para ADD2
+    output reg CDB_confirm_LOAD1, // Sinal de confirmação do CDB para LOAD1
+    output reg CDB_confirm_LOAD2  // Sinal de confirmação do CDB para LOAD2
   );
 
   parameter  FREE_REGISTER     = 3'd0,    // Registrador livre, sem estacao de reserva
@@ -22,33 +26,45 @@ module CDB_arbiter (
              RES_STATION_LOAD2 = 3'd4;    // Estacao de reserva R2
 
   // always @(posedge Done_ADD1 or posedge Done_ADD2 or posedge Done_LOAD1 or posedge Write_Enable_CDB_LOAD2 or posedge Write_Enable_CDB_LOAD1 or posedge Done_LOAD2 or posedge Reset)
-  always @(Reset or Done_LOAD1)
+  always @(negedge Clock or posedge Reset)
     if (Reset)
       begin
         Qi_CDB <= 3'd0;
         Qi_CDB_data <= 16'b0;
+        CDB_confirm_ADD1  <= 1'b0; // Reseta o sinal de confirmação do CDB para ADD1
+        CDB_confirm_ADD2  <= 1'b0; // Reseta o sinal de confirmação do CDB para ADD2
+        CDB_confirm_LOAD1 <= 1'b0; // Reseta o sinal de confirmação do CDB para LOAD1
+        CDB_confirm_LOAD2 <= 1'b0; // Reseta o sinal de confirmação do CDB para LOAD2
       end
     else
       begin
+        CDB_confirm_ADD1  <= 1'b0; // Reseta o sinal de confirmação do CDB para ADD1
+        CDB_confirm_ADD2  <= 1'b0; // Reseta o sinal de confirmação do CDB para ADD2
+        CDB_confirm_LOAD1 <= 1'b0; // Reseta o sinal de confirmação do CDB para LOAD1
+        CDB_confirm_LOAD2 <= 1'b0; // Reseta o sinal de confirmação do CDB para LOAD2
         if (Done_ADD1)
           begin
             Qi_CDB      <= RES_STATION_ADD1; // Atribui o valor da estacao de reserva ADD1
             Qi_CDB_data <= Q_ADD1; // Atribui o dado da unidade funcional ADD1
+            CDB_confirm_ADD1 <= 1'b1; // Sinal de confirmação do CDB para ADD1
           end
         else if (Done_ADD2)
           begin
             Qi_CDB      <= RES_STATION_ADD2; // Atribui o valor da estacao de reserva ADD2
             Qi_CDB_data <= Q_ADD2; // Atribui o dado da unidade funcional ADD2
+            CDB_confirm_ADD2 <= 1'b1; // Sinal de confirmação do CDB para ADD2
           end
         else if (Done_LOAD1 && Write_Enable_CDB_LOAD1) 
           begin
-            Qi_CDB      <= RES_STATION_LOAD1;
-            Qi_CDB_data <= Q_LOAD1; // Atribui o dado da unidade funcional LOAD1
+            Qi_CDB            <= RES_STATION_LOAD1;
+            Qi_CDB_data       <= Q_LOAD1; // Atribui o dado da unidade funcional LOAD1
+            CDB_confirm_LOAD1 <= 1'b1; // Sinal de confirmação do CDB para LOAD1
           end
         else if (Done_LOAD2 && Write_Enable_CDB_LOAD2)
           begin
             Qi_CDB      <= RES_STATION_LOAD2;
             Qi_CDB_data <= Q_LOAD2; // Atribui o dado da unidade funcional LOAD2
+            CDB_confirm_LOAD2 <= 1'b1; // Sinal de confirmação do CDB para LOAD2
           end
       end
 
